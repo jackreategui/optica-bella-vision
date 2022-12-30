@@ -30,7 +30,7 @@ header .nav-container{
   align-items: center;
   width: 100%;
   height: 80px;
-  padding: 0 15px;
+  padding: 0 30px;
 }
 
 header .nav-container .nav{
@@ -38,8 +38,8 @@ header .nav-container .nav{
 }
 
 header .nav-container > img{
-  width: 32px;
-  height: 24px;
+  width: 24px;
+  height: 12px;
 }
 
 header .nav-container .nav-buscar{
