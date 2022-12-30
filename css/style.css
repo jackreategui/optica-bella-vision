@@ -11,6 +11,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Manrope', sans-serif;
 }
 
 /* Header */
@@ -56,6 +57,29 @@ header .nav-container .nav-buscar{
 
 .nav-buscar .buscar p{
   margin-left: 6px;
-  font-weight: 800;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
 }
 
+.nav-buscar .carrito{
+  position: relative;
+  width: 12px;
+  height: 16px;
+}
+
+.nav-buscar .carrito span{
+  position: absolute;
+  display: inline-block;
+  width: 11px;
+  height: 8px;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  font-size: 5px;
+  font-weight: 700;
+  bottom: -1px;
+  left: 5px;
+  border-radius: 50px;
+  text-align: center;
+  padding: 0.9px;
+}
