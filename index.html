@@ -8,95 +8,27 @@
     <title>Óptica Bella Visión</title>
 </head>
 <body>
-    <header>
-        <a class="logo-nav" href="index.html"></a>
-        <ul>
-            <li>Inicio</li>
-            <li>Sobre nosotros</li>
-            <li>Contacto</li>
-        </ul>
-    </header>
-    <main class="container">
-        <section class="hero-container">
-            <section class="img-hero"></section>
-            <section class="text-hero-container">
-                <p>Contamos con un equipo de profesionales altamente capacitados y actualizados en las últimas tendencias y tecnologías en el campo de la optometría. Además, contamos con una amplia variedad de lentes y monturas de las mejores marcas, así como con un servicio de óptica personalizado y adaptado a las necesidades de cada cliente. En nuestra óptica, nos enorgullecemos de brindar un excelente servicio al cliente y de ayudar a mejorar la calidad de vida de nuestros clientes mediante la corrección de sus problemas de visión. ¡Te esperamos en nuestra tienda para atenderte!</p>
-                <a class="button-contacto" href="contacto.html">Contactar</a>
-            </section>
-        </section>
-        <section class="caracteristicas-container">
-            <div>
-                <img src="./assets/icon/medalla.svg" alt="">
-                <p>Productos originales</p>
-            </div>
-            <div>
-                <img src="./assets/icon/garantia.svg" alt="">
-                <p>Garantia asegurada</p>
-            </div>
-            <div>
-                <img src="./assets/icon/envio.svg" alt="">
-                <p>Envió rapido</p>
-            </div>
-        </section>
-        <section class="nuestros-servicios-container">
-            <h1>Nuestros servicios</h1>
-            <section class="servicio-refraccion">
-                <div class="img-refraccion"></div>
-                <div>
-                    <h3>Refracción ocular</h3>
-                    <p>La refracción ocular es el proceso de medir la capacidad de los ojos para enfocar la luz y determinar si existe algún problema de refracción, como la miopía, hipermetropía o astigmatismo. El servicio de refracción ocular se ofrece en una óptica y es realizado por un optometrista o un oftalmólogo.</p>
-                </div>
-            </section>
-            <section class="servicio-descarte">
-                <div class="img-descarte"></div>
-                <div>
-                    <h3>Descarte de patologías</h3>
-                    <p>El servicio de detección de patologías en optometría es un servicio que ofrecen los optometristas o oftalmólogos para detectar cualquier enfermedad o problema de salud en los ojos.</p>
-                </div>
-            </section>
-        </section>
-        <section class="contacto-container">
-            <h2>Contacto</h2>
-            <form class="form-contacto" action="contacto.html" method="post">
-                <label for="name">Nombre y apellido</label>
-                <input type="text">
+    
+    <nav class="nav container">
+        <img src="./assets/icon/logo-nav.svg" alt="">
 
-                <label for="name">Número celular</label>
-                <input type="number">
+        <div class="nav_hamburger"></div>
 
-                <label for="name">Correo eléctronico</label>
-                <input type="email">
-
-                <label for="name">Asunto</label>
-                <input type="text">
-
-                <label for="name">Mensaje</label>
-                <input type="text">
-            </form>
-        </section>
-    </main>
-    <footer>
-        <div>
-            <h2>Óptica Bella Visión</h2>
-            <a href="sobre-nosotros.html">Sobre nosotros</a>
-            <div class="icons-rrss">
-                <a class="instagram-logo" href="instagram.com"></a>
-            </div>
-            <p>©Óptica Bella Visión 2022. Nosotros amamos los lentes!</p>
+        <div class="nav_overlay">
+            <ul class="nav_menu">
+                <li class="nav_item">
+                    <a href="./index.html">Inicio</a>
+                </li>
+                <li class="nav_item">
+                    <a href="./sobre_nosotros.html">Sobre nosotros</a>
+                </li>
+                <li class="nav_item">
+                    <a href="./contacto.html">Contacto</a>
+                </li>
+            </ul>
         </div>
-        <div class="informacion">
-            <h3>Información</h3>
-            <a href="politicas-de-privacidad.html">Politicas de privacidad</a>
-            <a href="terminos-y-condiciones.html">Términos y condicones</a>
-        </div>
-        <div class="tiendas">
-            <a href="tiendas.html">Puerto maldonado</a>
-            <p>L-V:09:30-21:00 <br>S:10:00-18:00 <br>D:10:00-16:00</p>
-        </div>
-        <div class="contacto">
-
-        </div>
-    </footer>
+    </nav>
+    <script src="./js/menu.js"></script>
     <script src="./js/index.js"></script>
 </body>
 </html>
