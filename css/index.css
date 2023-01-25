@@ -72,3 +72,10 @@
   cursor: pointer;
   padding: 16px 0;
 }
+
+.nav_link{
+  text-decoration: none;
+  color: var(--black);
+  font-size: 32px;
+  font-weight: 700;
+}
