@@ -170,3 +170,52 @@
   color: var(--black);
   font-weight: 600;
 }
+
+/* Nuestros servicios */
+
+.container_servicios{
+  width: 100%;
+}
+
+.title_servicios{
+  text-align: center;
+  font-size: 32px;
+  color: var(--primario);
+  padding: 50px 0;
+}
+
+.grid_servicios{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.serv{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.picture_servicios{
+  width: 100%;
+}
+
+.picture_img{
+  width: 100%;
+}
+
+.container_text_refraccion{
+  padding: 0 16px;
+}
+
+.serv_h2{
+  color: var(--black);
+  font-size: 24px;
+  padding-bottom: 16px;
+}
+
+.serv_p{
+  font-size: 16px;
+  color: var(--black);
+  line-height: 20px;
+}
