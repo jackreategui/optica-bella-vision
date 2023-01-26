@@ -92,3 +92,50 @@
 .nav_link:hover{
   text-decoration: underline;
 }
+
+/* Main */
+
+.main_grid{
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main_picture{
+  width: 100%;
+}
+
+.main_img{
+  width: 100%;
+}
+
+.main_article{
+  padding: 50px 16px;
+}
+
+.main_text{
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.main_button{
+  background-color: var(--primario);
+  width: 180px;
+  height: 60px;
+  border-radius: 1em;
+  border: none;
+}
+
+.main_button:hover{
+  -webkit-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.75);
+}
+
+.button_link{
+  color: var(--white);
+  font-size: 22px;
+  text-decoration: none;
+}
