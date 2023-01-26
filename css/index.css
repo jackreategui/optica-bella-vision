@@ -49,6 +49,15 @@
   background-color: #000000a7;
   position: fixed;
   inset: 0;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: .3s opacity;
+}
+
+.nav_overlay--show{
+  opacity: 1;
+  pointer-events: unset;
 }
 
 .nav_menu{
@@ -78,4 +87,8 @@
   color: var(--black);
   font-size: 32px;
   font-weight: 700;
+}
+
+.nav_link:hover{
+  text-decoration: underline;
 }
