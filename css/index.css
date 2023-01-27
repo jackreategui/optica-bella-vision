@@ -1,6 +1,6 @@
 :root{
   --primario: #D90429;
-  --secundario: #EADFD8;
+  --secundario: #ECECEC;
   --terciario: #8D99AE;
   --dark-blue: #2B2D42;
   --white: #fff;
@@ -218,4 +218,94 @@
   font-size: 16px;
   color: var(--black);
   line-height: 20px;
+}
+
+/* Contacto */
+
+.container_contact{
+  width: 100%;
+  padding: 50px 0;
+}
+
+.title_contacto{
+  text-align: center;
+  font-size: 32px;
+  color: var(--black);
+  padding-bottom: 50px;
+}
+
+.form_contacto{
+  width: 100%;
+  max-width: 720px;
+  min-width: 328px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.form_contacto label{
+  color: var(--black);
+  font-size: 16px;
+  padding: 8px 16px;
+}
+
+.input{
+  width: 100%;
+  max-width: 95%;
+  margin: 0 auto;
+  height: 40px;
+  background-color: var(--secundario);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: var(--black);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.input::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input:focus-visible{
+  outline: none;
+}
+
+.input:focus{
+  /* outline: solid var(--primario) 2px; */
+  -webkit-box-shadow: 0px 3px 30px -16px rgba(35,35,35,1);
+  -moz-box-shadow: 0px 3px 30px -16px rgba(35,35,35,1);
+  box-shadow: 0px 3px 30px -16px rgba(35,35,35,1);
+  background-color: var(--white);
+}
+
+.input_messege{
+  background-color: var(--secundario);
+  width: 100%;
+  max-width: 95%;
+  margin: 0 auto;
+  height: 200px;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  resize: none;
+}
+
+.input_messege:focus-visible{
+  outline: none;
+}
+
+.input_messege:focus{
+  -webkit-box-shadow: 0px 3px 30px -16px rgba(35,35,35,1);
+  -moz-box-shadow: 0px 3px 30px -16px rgba(35,35,35,1);
+  box-shadow: 0px 3px 30px -16px rgba(35,35,35,1);
+  background-color: var(--white);
+}
+
+.input_messege::-webkit-scrollbar{
+  width: 0;
 }
