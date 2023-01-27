@@ -406,3 +406,43 @@ input[type='number']::-webkit-inner-spin-button {
   font-size: 16px;
   font-weight: 500;
 }
+
+@media (min-width:768px) {
+  .nav{
+    gap: 2em;
+    overflow: visible;
+  }
+
+  .nav_hamburger{
+    display: none;
+  }
+
+  .nav_overlay{
+    position: unset;
+    background-color: transparent;
+    opacity: 1;
+    pointer-events: unset;
+    flex: 1;
+  }
+
+  .nav_menu{
+    position: unset;
+    /* width: unset; */
+    max-width: unset;
+    background-color: unset;
+    padding: 0;
+    overflow: unset;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+
+  .nav_item{
+    width: auto;
+  }
+
+  .nav_link{
+    font-size: 24px;
+    font-weight: 600;
+  }
+}
