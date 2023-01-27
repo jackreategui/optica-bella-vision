@@ -423,6 +423,8 @@ input[type='number']::-webkit-inner-spin-button {
     opacity: 1;
     pointer-events: unset;
     flex: 1;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .nav_menu{
@@ -434,7 +436,8 @@ input[type='number']::-webkit-inner-spin-button {
     overflow: unset;
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 16px;
+    width: 300px;
   }
 
   .nav_item{
@@ -442,7 +445,37 @@ input[type='number']::-webkit-inner-spin-button {
   }
 
   .nav_link{
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 600;
   }
+
+  .main_grid{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    align-items: start;
+  }
+
+  .main_picture{
+    width: 100%;
+    height: 500px;
+    max-height: 500px;
+    object-fit: cover;
+  }
+
+  .main_img{
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .main_article{
+    padding: 32px;
+  }
+
+  .bt_contacto{
+    display: flex;
+    justify-content: flex-start;
+    padding: 16px 0;
+    margin: 0 32px;
+  }
+
 }
