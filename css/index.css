@@ -91,6 +91,7 @@
 
 .nav_link:hover{
   text-decoration: underline;
+  color: var(--dark-blue);
 }
 
 /* Main */
@@ -319,3 +320,89 @@ input[type='number']::-webkit-inner-spin-button {
 
 /* footer */
 
+.footer{
+  width: 100%;
+  background-color: var(--primario);
+  padding: 32px 20px;
+}
+
+.footer_container{
+  display: flex;
+  flex-direction: column;
+}
+
+.footer_left{
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+  gap: 16px;
+  padding-bottom: 16px;
+}
+
+.footer_left h3{
+  color: var(--white);
+  font-size: 40px;
+  padding: 24px 0;
+}
+
+.footer_left a{
+  color: var(--white);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.footer_left a:hover{
+  text-decoration: underline;
+}
+
+.footer_left p{
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.footer_right{
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+  gap: 16px;
+}
+
+.footer_right h3{
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--white);
+  padding: 24px 0;
+}
+
+.informacion, .tiendas, .contacto, .contacto_footer, .soporte_footer{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer_right a{
+  text-decoration: none;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.footer_right a:hover{
+  text-decoration: underline;
+}
+
+.footer_right p{
+  font-weight: 300;
+}
+
+.contacto_footer p{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.soporte_footer p{
+  font-size: 16px;
+  font-weight: 500;
+}
