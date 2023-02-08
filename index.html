@@ -25,7 +25,7 @@
                     <a href="./sobre_nosotros.html" class="nav_link">Sobre nosotros</a>
                 </li>
                 <li class="nav_item">
-                    <a href="./contacto.html" class="nav_link">Contacto</a>
+                    <a target="_blank" href="mailto:santamariayeli6@gmai.com?subject=Atencion al cliente Optica Bella Vision&body=Hola, me megusto tu pagina y quiero mas informacion sobre el servicio de salud visual" class="nav_link">Contactar</a>
                 </li>
             </ul>
         </div>
@@ -41,10 +41,11 @@
             <div class="container_text">
                 <article class="main_article">
                     <p class="main_text">Contamos con un equipo de profesionales altamente capacitados y actualizados en las últimas tendencias y tecnologías en el campo de la optometría. Además, contamos con una amplia variedad de lentes y monturas de las mejores marcas, así como con un servicio de óptica personalizado y adaptado a las necesidades de cada cliente. En nuestra óptica, nos enorgullecemos de brindar un excelente servicio al cliente y de ayudar a mejorar la calidad de vida de nuestros clientes mediante la corrección de sus problemas de visión. ¡Te esperamos en nuestra tienda para atenderte!</p>
+
+                    <button class="button_1">
+                        <a href="mailto:santamariayeli6@gmai.com?subject=Atencion al cliente Optica Bella Vision&body=Hola, me megusto tu pagina y quiero mas informacion sobre el servicio de salud visual" class="link_button">Contactar</a>
+                    </button>
                 </article>
-                <button class="main_button bt_contacto">
-                    <a href="./contacto.html" class="button_link">Contactar</a>
-                </button>
             </div>
         </section>
 
@@ -74,7 +75,7 @@
                     </picture>
                     <article class="container_text_refraccion">
                         <h2 class="serv_h2">Refracción ocular</h2>
-                        <p class="serv_p">La refracción ocular es el proceso de medir la capacidad de los ojos para enfocar la luz y determinar si existe algún problema de refracción, como la miopía, hipermetropía o astigmatismo. El servicio de refracción ocular se ofrece en una óptica y es realizado por un optometrista o un oftalmólogo.</p>
+                        <p class="serv_p">La refracción ocular es un proceso médico que determina la graduación correcta de las gafas o lentes de contacto para un paciente. Se realiza mediante una serie de pruebas, incluida la evaluación visual y la medición de la capacidad de enfoque del ojo, para determinar la cantidad de corrección necesaria para una visión nítida y precisa. La refracción es un paso importante en el proceso de la atención visual y es esencial para el diagnóstico y tratamiento de problemas de visión como la miopía, hipermetropía y astigmatismo.</p>
                     </article>
                 </div>
                 <div class="serv descarte">
@@ -85,7 +86,7 @@
                     </picture>
                     <article class="container_text_refraccion">
                         <h2 class="serv_h2">Descarte de patologías</h2>
-                        <p class="serv_p">El servicio de detección de patologías en optometría es un servicio que ofrecen los optometristas o oftalmólogos para detectar cualquier enfermedad o problema de salud en los ojos.</p>
+                        <p class="serv_p">Descarte de patologías es un proceso de identificación y eliminación de cualquier tipo de enfermedad o anomalía en material biológico o tejido humano. Esta técnica es esencial para garantizar la seguridad de pacientes y profesionales médicos, y para asegurar la precisión de los resultados de los análisis. El descarte se realiza a través de una serie de pruebas y verificaciones, y puede incluir la evaluación microscópica y la prueba de cultivo. Este proceso es crucial en el ámbito médico y es un aspecto fundamental para garantizar una atención médica de calidad.</p>
                     </article>
                 </div>
             </div>
@@ -98,20 +99,16 @@
                 <input type="text" id="name" class="input_name input" name="name" required>
 
                 <label for="phone">Número celular</label>
-                <input type="number" name="phone" id="phone" class="input_phone input" required>
+                <input type="number" name="phone" id="phone" max="9" min="9" class="input_phone input" required>
 
                 <label for="email">Correo Electrónico</label>
                 <input type="email" name="email" id="email" class="input_email input" required>
 
-                <label for="subject">Asunto</label>
-                <input type="text" name="subject" id="subject" class="input_subject input" required>
-
                 <label for="descrption">Mensaje</label>
                 <textarea name="messege" id="messege" class="input_messege" required></textarea>
+
+                <button type="submit" class="main_button bt_contacto bt_desk">Enviar</button>
             </form>
-            <button class="main_button bt_contacto bt_desk">
-                <a href="#" class="button_link">Enviar</a>
-            </button>
         </section>
     </main>
 

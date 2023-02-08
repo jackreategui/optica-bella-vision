@@ -122,24 +122,25 @@
   line-height: 24px;
 }
 
-.main_button{
+.button_1, .bt_contacto{
   background-color: var(--primario);
-  width: 180px;
-  height: 60px;
+  width: 160px;
+  height: 40px;
+  margin: 16px 0;
   border-radius: 1em;
   border: none;
   cursor: pointer;
 }
 
-.main_button:hover{
+.button_1:hover{
   -webkit-box-shadow: 0px 3px 30px -16px rgba(35,35,35,1);
   -moz-box-shadow: 0px 3px 30px -16px rgba(35,35,35,1);
   box-shadow: 0px 3px 30px -16px rgba(35,35,35,1);
 }
 
-.button_link{
+.link_button{
   color: var(--white);
-  font-size: 22px;
+  font-size: 16px;
   text-decoration: none;
   width: 100%;
   height: 100%;
@@ -203,6 +204,8 @@
 
 .picture_img{
   width: 100%;
+  max-height: 300px;
+  object-fit: cover;
 }
 
 .container_text_refraccion{
@@ -220,13 +223,15 @@
   font-size: 16px;
   font-weight: 500;
   color: var(--black);
-  line-height: 20px;
+  line-height: 24px;
 }
 
 /* Contacto */
 
 .container_contact{
   width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
   padding: 50px 0;
 }
 
@@ -263,7 +268,7 @@
   padding: 8px 16px;
   color: var(--black);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 300;
 }
 
 .input::-webkit-outer-spin-button,
@@ -314,10 +319,16 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 .bt_contacto{
+  width: 100px;
+  height: 40px;
   display: flex;
   justify-content: center;
-  padding: 16px 0;
+  align-items: center;
   margin: 32px auto;
+
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 500;
 }
 
 /* footer */
@@ -509,11 +520,12 @@ input[type='number']::-webkit-inner-spin-button {
 
   .serv{
     max-width: 1400px;
+    max-height: 350px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
-    justify-items: end;
+    justify-items: flex-start;
   }
 
   .descarte{
@@ -536,9 +548,9 @@ input[type='number']::-webkit-inner-spin-button {
   .container_text_refraccion{
     width: 100%;
     max-width: 500px;
-    margin: 0;
+    margin: 0 auto;
     text-align: left;
-    padding: 50px 16px 0;
+    padding: 0;
   }
 
   .footer_container{
