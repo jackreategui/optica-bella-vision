@@ -94,6 +94,27 @@
   color: var(--dark-blue);
 }
 
+.logo_whatsapp{
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  bottom: 80px;
+  right: 100px;
+  cursor: pointer;
+}
+
+.logo_whatsapp img{
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  transition: 0.3s;
+}
+
+.logo_whatsapp img:hover{
+  transform: scale(1.2);
+  filter:drop-shadow( 0px 0px 6px rgba(133, 133, 133, 0.377));
+}
+
 /* Main */
 
 .main_grid{
