@@ -116,6 +116,12 @@
   padding: 50px 16px;
 }
 
+.h2_main{
+  font-size: 28px;
+  font-weight: 700;
+  padding: 16px 0;
+}
+
 .main_text{
   font-size: 16px;
   font-weight: 500;
@@ -124,8 +130,8 @@
 
 .button_1, .bt_contacto{
   background-color: var(--primario);
-  width: 160px;
-  height: 40px;
+  width: 120px;
+  height: 50px;
   margin: 16px 0;
   border-radius: 1em;
   border: none;
@@ -140,7 +146,7 @@
 
 .link_button{
   color: var(--white);
-  font-size: 16px;
+  font-size: 18px;
   text-decoration: none;
   width: 100%;
   height: 100%;
@@ -319,15 +325,15 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 .bt_contacto{
-  width: 100px;
-  height: 40px;
+  width: 120px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 32px auto;
 
   color: var(--white);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
 }
 
