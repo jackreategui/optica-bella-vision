@@ -1,0 +1,35 @@
+:root{
+  --primario: #D90429;
+  --secundario: #ECECEC;
+  --terciario: #8D99AE;
+  --dark-blue: #2B2D42;
+  --white: #fff;
+  --black: #232323;
+}
+
+.nav{
+  margin-bottom: 50px;
+}
+
+.main{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+strong{
+  display: inline-block;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 16px 0;
+}
+
+p{
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 0 16px;
+}
+
+footer{
+  margin-top: 100px;
+}
