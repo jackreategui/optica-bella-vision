@@ -481,6 +481,13 @@ input[type='number']::-webkit-inner-spin-button {
     margin: 0 auto;
   }
 
+  .nuestro_objetico--grid{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 80px auto;
+    gap: 50px;
+  }
+
   .main_picture{
     width: 500px;
     height: 500px;
@@ -495,7 +502,7 @@ input[type='number']::-webkit-inner-spin-button {
 
   .main_article{
     max-width: 500px;
-    padding: 32px 16px;
+    padding: 0 0 100px 0;
   }
 
   .main_button{
@@ -534,7 +541,7 @@ input[type='number']::-webkit-inner-spin-button {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 50px;
     justify-items: flex-start;
   }
 
