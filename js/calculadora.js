@@ -6,10 +6,10 @@ const container = document.querySelector('.calculadora_container');
     const formResina = `<form class="form_resina" id="form_resina">
 <label class="label" id="monturas" name="monturas">
 Montura: <select name="monturas" id="monturas_select">
-    <option value="sinMontura">Sin montura</option>
-    <option value="economico">Ecónomico</option>
-    <option value="calidad">Calidad</option>
-    <option value="premium">Premium</option>
+    <option value="sinMontura" id="sinMontura">Sin montura</option>
+    <option value="economico" id="economico">Ecónomico</option>
+    <option value="calidad" id="calidad">Calidad</option>
+    <option value="premium" id="premium">Premium</option>
 </select>
 </label>
 
@@ -60,10 +60,10 @@ Protección: <select name="proteccion" id="proteccion_select">
     const formCristal = `<form class="form_cristal" id="form_cristal">
 <label class="label" id="monturas" name="monturas">
     Montura: <select name="monturas" id="monturas_select">
-        <option value="sinMontura">Sin montura</option>
-        <option value="economico">Ecónomico</option>
-        <option value="calidad">Calidad</option>
-        <option value="premium">Premium</option>
+        <option value="sinMontura" id="sinMontura">Sin montura</option>
+        <option value="economico" id="economico">Ecónomico</option>
+        <option value="calidad" id="calidad">Calidad</option>
+        <option value="premium" id="premium">Premium</option>
     </select>
 </label>
 
@@ -127,15 +127,27 @@ addEventListener('click', (e)=>{
     if (select == 'resina') {
         if (!document.getElementById('form_resina')) {
             crearFormResina();
-            document.getElementById( 'form_cristal' ).remove();
-            document.querySelector('.precio_container').remove();
+            
+            if (!document.getElementById('form_cristal')) {
+                return
+            } else {
+                document.getElementById( 'form_cristal' ).remove();
+                document.querySelector('.precio_container').remove();
+            }
         }
+        montura();
     } else if (select == 'cristal'){
         if (!document.getElementById('form_cristal')) {
             crearFormCristal();
-            document.getElementById( 'form_resina' ).remove();
-            document.querySelector('.precio_container').remove();
+
+            if (!document.getElementById('form_resina')) {
+                return
+            } else {
+                document.getElementById( 'form_resina' ).remove();
+                document.querySelector('.precio_container').remove();
+            }
         }
+        montura();
     }
 });
 
@@ -158,4 +170,11 @@ const multifocal = document.querySelector('#multifocal').value;
 
 // Seleccion si tiene o no una montura
 
-const sinMontura = Document.querySelector('')
+function montura() {
+    const sinMontura = document.querySelector('#sinMontura').value;
+    const economico = document.querySelector('#economico').value;
+    const calidad = document.querySelector('#calidad').value;
+    const premium = document.querySelector('#premium').value;
+    
+    console.log(sinMontura, economico, calidad, premium);
+}
