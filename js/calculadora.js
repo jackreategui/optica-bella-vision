@@ -56,7 +56,7 @@ Protección: <select name="proteccion" id="proteccion_select">
 </label>
 <br>
 <button class="boton_calcular">Calcular precio</button>
-</form>`;
+        </form>`;
     const formCristal = `<form class="form_cristal" id="form_cristal">
 <label class="label" id="monturas" name="monturas">
     Montura: <select name="monturas" id="monturas_select">
@@ -105,7 +105,7 @@ Protección: <select name="proteccion" id="proteccion_select">
 </label>
 <br>
 <button class="boton_calcular">Calcular precio</button>
-</form>`
+        </form>`
     const precioHtml = `<div class="precio_container">
 <p>Precio: s/360</p>
 
@@ -118,10 +118,10 @@ Protección: <select name="proteccion" id="proteccion_select">
         Porcentaje de descuento: %<input type="number" class="input_descuento" id="input_descuento">
     </label>
 </form>
-</div>`
+        </div>`
 
 // Crear form de resina y cristal
-material.addEventListener('click', (e)=>{
+addEventListener('click', (e)=>{
     const select = e.target.value;
 
     if (select == 'resina') {
@@ -150,5 +150,12 @@ function crearFormCristal() {
     container.insertAdjacentHTML("beforeend", precioHtml);
 }
 
-// precios de lunas dependiendo de su tipo
+// Seleccion de tipos de monturas
+const monofocal = document.querySelector('#monofocal').value;
+const bifocalP = document.querySelector('#bifocalP').value;
+const bifocalI = document.querySelector('#bifocalI').value;
+const multifocal = document.querySelector('#multifocal').value;
 
+// Seleccion si tiene o no una montura
+
+const sinMontura = Document.querySelector('')
