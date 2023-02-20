@@ -120,6 +120,9 @@ Protección: <select name="proteccion" id="proteccion_select">
 </form>
         </div>`
 
+
+
+        
 // Crear form de resina y cristal
 addEventListener('click', (e)=>{
     const select = e.target.value;
@@ -135,7 +138,6 @@ addEventListener('click', (e)=>{
                 document.querySelector('.precio_container').remove();
             }
         }
-        montura();
     } else if (select == 'cristal'){
         if (!document.getElementById('form_cristal')) {
             crearFormCristal();
@@ -147,7 +149,6 @@ addEventListener('click', (e)=>{
                 document.querySelector('.precio_container').remove();
             }
         }
-        montura();
     }
 });
 
@@ -171,10 +172,21 @@ const multifocal = document.querySelector('#multifocal').value;
 // Seleccion si tiene o no una montura
 
 function montura() {
-    const sinMontura = document.querySelector('#sinMontura').value;
-    const economico = document.querySelector('#economico').value;
-    const calidad = document.querySelector('#calidad').value;
-    const premium = document.querySelector('#premium').value;
+    const sinMontura = document.querySelector('#sinMontura');
+    // const economico = document.querySelector('#economico').value;
+    // const calidad = document.querySelector('#calidad').value;
+    // const premium = document.querySelector('#premium').value;
     
-    console.log(sinMontura, economico, calidad, premium);
+    sinMontura.addEventListener('click', () => {
+        // const precioMonturas = {
+        //     sinMontura: 0,
+        //     economico: 100,
+        //     calidad: 200,
+        //     premium: 400
+        // };
+
+        // console.log(precioMonturas);
+        console.log('holaP');
+    })
+    console.log(sinMontura);
 }
