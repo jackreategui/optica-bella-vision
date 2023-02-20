@@ -3,7 +3,7 @@ const container = document.querySelector('.calculadora_container');
 
 
 
-    const formResina = `<br><form class="form_resina" id="form_resina">
+    const formResina = `<form class="form_resina" id="form_resina">
 <label class="label" id="monturas" name="monturas">
 Montura: <select name="monturas" id="monturas_select">
     <option value="sinMontura">Sin montura</option>
@@ -57,7 +57,7 @@ Protección: <select name="proteccion" id="proteccion_select">
 <br>
 <button class="boton_calcular">Calcular precio</button>
 </form>`;
-    const formCristal = `<br><form class="form_cristal" id="form_cristal">
+    const formCristal = `<form class="form_cristal" id="form_cristal">
 <label class="label" id="monturas" name="monturas">
     Montura: <select name="monturas" id="monturas_select">
         <option value="sinMontura">Sin montura</option>
@@ -120,18 +120,21 @@ Protección: <select name="proteccion" id="proteccion_select">
 </form>
 </div>`
 
-
+// Crear form de resina y cristal
 material.addEventListener('click', (e)=>{
     const select = e.target.value;
 
     if (select == 'resina') {
         if (!document.getElementById('form_resina')) {
             crearFormResina();
+            document.getElementById( 'form_cristal' ).remove();
+            document.querySelector('.precio_container').remove();
         }
     } else if (select == 'cristal'){
         if (!document.getElementById('form_cristal')) {
             crearFormCristal();
-            document.getElementById('form_resina').appendChild.removeChild(this);
+            document.getElementById( 'form_resina' ).remove();
+            document.querySelector('.precio_container').remove();
         }
     }
 });
@@ -146,3 +149,6 @@ function crearFormCristal() {
     container.insertAdjacentHTML("beforeend", formCristal);
     container.insertAdjacentHTML("beforeend", precioHtml);
 }
+
+// precios de lunas dependiendo de su tipo
+
