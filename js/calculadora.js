@@ -22,6 +22,30 @@ const precioMonturas = {
 };
 const sinMontura = 0;
 
+// Precio segun las medidas
+const medidas = {
+    segunda: 1.25 <= 2,
+    tercera: 2.25 <= 3,
+    cuarta: 3.25 <= 4,
+    quinta: 4.25 <= 5,
+    sexta: 5.25 <= 6,
+    setima: 6.25 <= 7,
+    octava: 7.25 <= 8,
+    novena: 8.25 <= 9,
+    decima: 9.25 <= 10,
+    onceava: 10.25 <= 11,
+    doceava: 11.25 <= 12,
+    decimotercero: 12.25 <= 13,
+    decimocuarto: 13.25 <= 14,
+    decimoquinto: 14.25 <= 15,
+    decimosexto: 15.25 <= 16,
+    decimosetimo: 16.25 <= 17,
+    decimooctavo: 17.25 <= 18,
+    decimonoveno: 18.25 <= 19,
+    vigesimo: 19.25 <= 20,
+}
+const mediasBajas = 0 <= 1;
+
 const check = document.querySelector('#check');
 
 // Crear formularios
@@ -43,20 +67,14 @@ Montura: <select name="monturas" id="monturas_select">
 </label>
 <br>
 <label name="od" id="od" class="label">
-OD: <select name="od" id="od_signo">
-<option value="-">-</option>
-<option value="+">+</option>
-</select>
+OD:
 <input type="number" name="od_esferico" class="input_medida" min="0" step="0.01" id="odEsf">
 x
 <input type="number" name="od_cilindro" class="input_mediad" min="0" step="0.01" id="odCil">
 </label>
 <br>
 <label name="oi" id="oi" class="label">
-OI: <select name="oi" id="oi_signo">
-<option value="-">-</option>
-<option value="+">+</option>
-</select>
+OI:
 <input type="number" name="oi_esferico" class="input_medida checkOn" min="0" step="0.01" id="oiEsf">
 x
 <input type="number" name="oi _cilindro" class="input_mediad checkOn" min="0" step="0.01" id="oiCil">
@@ -99,20 +117,14 @@ Montura: <select name="monturas" id="monturas_select">
 </label>
 <br>
 <label name="od" id="od" class="label">
-OD: <select name="od" id="od_signo">
-    <option value="-">-</option>
-    <option value="+">+</option>
-</select>
+OD:
 <input type="number" name="od_esferico" class="input_medida" min="0" step="0.01" id="odEsf">
 x
 <input type="number" name="od_cilindro" class="input_mediad" min="0" step="0.01" id="odCil">
 </label>
 <br>
 <label name="oi" id="oi" class="label">
-OI: <select name="oi" id="oi_signo">
-    <option value="-">-</option>
-    <option value="+">+</option>
-</select>
+OI:
 <input type="number" name="oi_esferico" class="input_medida checkOn" min="0" step="0.01" id="oiEsf">
 x
 <input type="number" name="oi _cilindro" class="input_mediad checkOn" min="0" step="0.01" id="oiCil">
@@ -133,7 +145,7 @@ Protección: <select name="proteccion" id="proteccion_select">
 <button class="boton_calcular">Calcular precio</button>
     </form>`
 const precioHtml = `<div class="precio_container">
-<p id="precioFinal">Precio: s/360</p>
+<p id="precioFinal">Precio: s/300</p>
 
 <form class="descuento" id="descuento">
     <label name="descuento">
@@ -149,9 +161,10 @@ const precioHtml = `<div class="precio_container">
 // Creacion de formularios
 formMaterial.addEventListener('click', (e) => {
     e.preventDefault();
+
     const select = e.target.value;
 
-    // Crear form de resina y cristal
+// Crear form de resina y cristal
     if (select == 'resina') {
         if (!document.getElementById('form_resina')) {
             crearFormResina();
@@ -179,6 +192,7 @@ formMaterial.addEventListener('click', (e) => {
 
 // Seleccion de tipo de luna
 formTipo.addEventListener('click', (e) => {
+    e.preventDefault();
     const select = e.target.value;
 })
 
@@ -193,17 +207,28 @@ function crearFormCristal() {
 }
 
 setTimeout(() => {
-    const odEsf = document.getElementById('odEsf');
+    const btn = document.querySelector('.boton_calcular');
     const monturaSelect = document.querySelector('#monturas_select');
     let precioFinal = document.querySelector('#precioFinal');
 
     // Seleccion de montura con precio
     monturaSelect.addEventListener('click', (e) => {
+        e.preventDefault();
         let select = e.target.value;
         let precioMontura = precioMonturas[select] || sinMontura;
 
         console.log(precioMontura);
     })
-    
+
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const odEsf = parseFloat(document.getElementById('odEsf').value);
+        const odCil = document.getElementById('odCil').value;
+        const oiEsf = document.getElementById('oiEsf').value;
+        const oiCil = document.getElementById('oiCil').value;
+
+        precioFinal.textContent = 'Precio: s/';
+        console.log(odEsf);
+    })
 
 }, 3000);
