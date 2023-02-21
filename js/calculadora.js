@@ -1,6 +1,29 @@
-const resina = document.querySelector('#resina');
 const container = document.querySelector('.calculadora_container');
+const formMaterial = document.querySelector('.form_material');
 
+// tiene monturas
+const sinMontura = document.querySelector('#sinMontura');
+const economico = document.querySelector('#economico');
+const calidad = document.querySelector('#calidad');
+const premium = document.querySelector('#premium');
+
+// tipos de lunas
+const monofocal = document.querySelector('#monofocal').value;
+const bifocalP = document.querySelector('#bifocalP').value;
+const bifocalI = document.querySelector('#bifocalI').value;
+const multifocal = document.querySelector('#multifocal').value;
+
+// precio monturas
+const precioMonturas = {
+        sinMontura: 0.1,
+        economico: 100,
+        calidad: 200,
+        premium: 400
+};
+
+const check = document.querySelector('#check');
+
+// Crear formularios
 const formResina = `<form class="form_resina" id="form_resina">
 <label class="label" id="monturas" name="monturas">
 Montura: <select name="monturas" id="monturas_select">
@@ -32,9 +55,9 @@ OI: <select name="oi" id="oi_signo">
 <option value="-">-</option>
 <option value="+">+</option>
 </select>
-<input type="number" name="oi_esferico" class="input_medida">
+<input type="number" name="oi_esferico" class="input_medida checkOn">
 x
-<input type="number" name="oi _cilindro" class="input_mediad">
+<input type="number" name="oi _cilindro" class="input_mediad checkOn">
 </label>
 <br>
 <label name="proteccion" id="proteccion" class="label">
@@ -86,9 +109,9 @@ OI: <select name="oi" id="oi_signo">
     <option value="-">-</option>
     <option value="+">+</option>
 </select>
-<input type="number" name="oi_esferico" class="input_medida">
+<input type="number" name="oi_esferico" class="input_medida checkOn">
 x
-<input type="number" name="oi _cilindro" class="input_mediad">
+<input type="number" name="oi _cilindro" class="input_mediad checkOn">
 </label>
 <br>
 <label name="proteccion" id="proteccion" class="label">
@@ -117,11 +140,11 @@ const precioHtml = `<div class="precio_container">
     </label>
 </form>
         </div>`
-        
-// Crear form de resina y cristal
-addEventListener('click', (e)=>{
+
+addEventListener('click', (e) => {
     const select = e.target.value;
 
+// Crear form de resina y cristal
     if (select == 'resina') {
         if (!document.getElementById('form_resina')) {
             crearFormResina();
@@ -145,43 +168,21 @@ addEventListener('click', (e)=>{
             }
         }
     }
+// Seleccion si tiene o no una montura
+    const montura = precioMonturas[select] || precioMonturas;
 
-    // montura()
+    if (select == 'on') {
+        // document.querySelector('#oi').input;
+        console.log(document.querySelectorAll('.checkOn').disabled = true);
+    }
 });
 
 function crearFormResina() {
     container.insertAdjacentHTML("beforeend", formResina);
     container.insertAdjacentHTML("beforeend", precioHtml);
-
 }
 
 function crearFormCristal() {
     container.insertAdjacentHTML("beforeend", formCristal);
     container.insertAdjacentHTML("beforeend", precioHtml);
-}
-
-// Seleccion de tipos de monturas
-const monofocal = document.querySelector('#monofocal').value;
-const bifocalP = document.querySelector('#bifocalP').value;
-const bifocalI = document.querySelector('#bifocalI').value;
-const multifocal = document.querySelector('#multifocal').value;
-
-// Seleccion si tiene o no una montura
-function montura() {
-    const sinMontura = document.querySelector('#sinMontura');
-    // const economico = document.querySelector('#economico').value;
-    // const calidad = document.querySelector('#calidad').value;
-    // const premium = document.querySelector('#premium').value;
-    
-    sinMontura.addEventListener('click', () => {
-        // const precioMonturas = {
-        //     sinMontura: 0,
-        //     economico: 100,
-        //     calidad: 200,
-        //     premium: 400
-        // };
-
-        // console.log(precioMonturas);
-        console.log('holaP');
-    })
 }
