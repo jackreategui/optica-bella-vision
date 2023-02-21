@@ -1,11 +1,12 @@
 const container = document.querySelector('.calculadora_container');
 const formMaterial = document.querySelector('.form_material');
+const formTipo = document.querySelector('.form_tipo');
 
-// tiene monturas
-const sinMontura = document.querySelector('#sinMontura');
-const economico = document.querySelector('#economico');
-const calidad = document.querySelector('#calidad');
-const premium = document.querySelector('#premium');
+// // tiene monturas
+// const sinMontura = document.querySelector('#sinMontura');
+// const economico = document.querySelector('#economico');
+// const calidad = document.querySelector('#calidad');
+// const premium = document.querySelector('#premium');
 
 // tipos de lunas
 const monofocal = document.querySelector('#monofocal').value;
@@ -15,11 +16,11 @@ const multifocal = document.querySelector('#multifocal').value;
 
 // precio monturas
 const precioMonturas = {
-        sinMontura: 0.1,
-        economico: 100,
-        calidad: 200,
-        premium: 400
+    economico: 100,
+    calidad: 200,
+    premium: 400
 };
+const sinMontura = 0;
 
 const check = document.querySelector('#check');
 
@@ -27,6 +28,7 @@ const check = document.querySelector('#check');
 const formResina = `<form class="form_resina" id="form_resina">
 <label class="label" id="monturas" name="monturas">
 Montura: <select name="monturas" id="monturas_select">
+<option value="" disabled selected hidden>Selecciona una opción</option>
 <option value="sinMontura" id="sinMontura">Sin montura</option>
 <option value="economico" id="economico">Ecónomico</option>
 <option value="calidad" id="calidad">Calidad</option>
@@ -45,9 +47,9 @@ OD: <select name="od" id="od_signo">
 <option value="-">-</option>
 <option value="+">+</option>
 </select>
-<input type="number" name="od_esferico" class="input_medida">
+<input type="number" name="od_esferico" class="input_medida" min="0" step="0.01" id="odEsf">
 x
-<input type="number" name="od_cilindro" class="input_mediad">
+<input type="number" name="od_cilindro" class="input_mediad" min="0" step="0.01" id="odCil">
 </label>
 <br>
 <label name="oi" id="oi" class="label">
@@ -55,13 +57,14 @@ OI: <select name="oi" id="oi_signo">
 <option value="-">-</option>
 <option value="+">+</option>
 </select>
-<input type="number" name="oi_esferico" class="input_medida checkOn">
+<input type="number" name="oi_esferico" class="input_medida checkOn" min="0" step="0.01" id="oiEsf">
 x
-<input type="number" name="oi _cilindro" class="input_mediad checkOn">
+<input type="number" name="oi _cilindro" class="input_mediad checkOn" min="0" step="0.01" id="oiCil">
 </label>
 <br>
 <label name="proteccion" id="proteccion" class="label">
 Protección: <select name="proteccion" id="proteccion_select">
+<option value="" disabled selected hidden>Selecciona una opción</option>
 <option value="blanco">Blanco</option>
 <option value="ar">Antireflex</option>
 <option value="blue">Blue Defense</option>
@@ -81,6 +84,7 @@ Protección: <select name="proteccion" id="proteccion_select">
 const formCristal = `<form class="form_cristal" id="form_cristal">
 <label class="label" id="monturas" name="monturas">
 Montura: <select name="monturas" id="monturas_select">
+    <option value="" disabled selected hidden>Selecciona una opción</option>
     <option value="sinMontura" id="sinMontura">Sin montura</option>
     <option value="economico" id="economico">Ecónomico</option>
     <option value="calidad" id="calidad">Calidad</option>
@@ -99,9 +103,9 @@ OD: <select name="od" id="od_signo">
     <option value="-">-</option>
     <option value="+">+</option>
 </select>
-<input type="number" name="od_esferico" class="input_medida">
+<input type="number" name="od_esferico" class="input_medida" min="0" step="0.01" id="odEsf">
 x
-<input type="number" name="od_cilindro" class="input_mediad">
+<input type="number" name="od_cilindro" class="input_mediad" min="0" step="0.01" id="odCil">
 </label>
 <br>
 <label name="oi" id="oi" class="label">
@@ -109,13 +113,14 @@ OI: <select name="oi" id="oi_signo">
     <option value="-">-</option>
     <option value="+">+</option>
 </select>
-<input type="number" name="oi_esferico" class="input_medida checkOn">
+<input type="number" name="oi_esferico" class="input_medida checkOn" min="0" step="0.01" id="oiEsf">
 x
-<input type="number" name="oi _cilindro" class="input_mediad checkOn">
+<input type="number" name="oi _cilindro" class="input_mediad checkOn" min="0" step="0.01" id="oiCil">
 </label>
 <br>
 <label name="proteccion" id="proteccion" class="label">
 Protección: <select name="proteccion" id="proteccion_select">
+    <option value="" disabled selected hidden>Selecciona una opción</option>
     <option value="blanco">Blanco</option>
     <option value="ar">Antireflex</option>
     <option value="phg">PHG</option>
@@ -128,7 +133,7 @@ Protección: <select name="proteccion" id="proteccion_select">
 <button class="boton_calcular">Calcular precio</button>
     </form>`
 const precioHtml = `<div class="precio_container">
-<p>Precio: s/360</p>
+<p id="precioFinal">Precio: s/360</p>
 
 <form class="descuento" id="descuento">
     <label name="descuento">
@@ -141,10 +146,12 @@ const precioHtml = `<div class="precio_container">
 </form>
         </div>`
 
-addEventListener('click', (e) => {
+// Creacion de formularios
+formMaterial.addEventListener('click', (e) => {
+    e.preventDefault();
     const select = e.target.value;
 
-// Crear form de resina y cristal
+    // Crear form de resina y cristal
     if (select == 'resina') {
         if (!document.getElementById('form_resina')) {
             crearFormResina();
@@ -152,30 +159,28 @@ addEventListener('click', (e) => {
             if (!document.getElementById('form_cristal')) {
                 return
             } else {
-                document.getElementById( 'form_cristal' ).remove();
+                document.getElementById('form_cristal').remove();
                 document.querySelector('.precio_container').remove();
             }
         }
-    } else if (select == 'cristal'){
+    } else if (select == 'cristal') {
         if (!document.getElementById('form_cristal')) {
             crearFormCristal();
 
             if (!document.getElementById('form_resina')) {
                 return
             } else {
-                document.getElementById( 'form_resina' ).remove();
+                document.getElementById('form_resina').remove();
                 document.querySelector('.precio_container').remove();
             }
         }
     }
-// Seleccion si tiene o no una montura
-    const montura = precioMonturas[select] || precioMonturas;
+})
 
-    if (select == 'on') {
-        // document.querySelector('#oi').input;
-        console.log(document.querySelectorAll('.checkOn').disabled = true);
-    }
-});
+// Seleccion de tipo de luna
+formTipo.addEventListener('click', (e) => {
+    const select = e.target.value;
+})
 
 function crearFormResina() {
     container.insertAdjacentHTML("beforeend", formResina);
@@ -186,3 +191,19 @@ function crearFormCristal() {
     container.insertAdjacentHTML("beforeend", formCristal);
     container.insertAdjacentHTML("beforeend", precioHtml);
 }
+
+setTimeout(() => {
+    const odEsf = document.getElementById('odEsf');
+    const monturaSelect = document.querySelector('#monturas_select');
+    let precioFinal = document.querySelector('#precioFinal');
+
+    // Seleccion de montura con precio
+    monturaSelect.addEventListener('click', (e) => {
+        let select = e.target.value;
+        let precioMontura = precioMonturas[select] || sinMontura;
+
+        console.log(precioMontura);
+    })
+    
+
+}, 3000);
