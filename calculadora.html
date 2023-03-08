@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="./css/index.css">
     <title>Calculadora | Óptica Bella Visión</title>
 </head>
+
 <body>
     <nav class="nav container">
         <a href="index.html">
@@ -29,153 +31,59 @@
                     <a href="./sobre_nosotros.html" class="nav_link">Sobre nosotros</a>
                 </li>
                 <li class="nav_item">
-                    <a target="_blank" href="mailto:santamariayeli6@gmai.com?subject=Atencion al cliente Optica Bella Vision&body=Hola, me megusto tu pagina y quiero mas informacion sobre el servicio de salud visual" class="nav_link">Contactar</a>
+                    <a target="_blank"
+                        href="mailto:santamariayeli6@gmai.com?subject=Atencion al cliente Optica Bella Vision&body=Hola, me megusto tu pagina y quiero mas informacion sobre el servicio de salud visual"
+                        class="nav_link">Contactar</a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <main class="calculadora_container">
-        <form class="form_material">
-            <label name="material">
-                Material: <select name="material" id="material">
-                    <option value="" disabled selected hidden>Selecciona una opción</option>
-                    <option value="resina">Resina</option>
-                    <option value="cristal">Cristal</option>
-                </select>
-            </label>
-        </form>
-
-        <form class="form_tipo">
-            <label name="tipoDeLuna">
-                Tipo de luna: <select name="tipoDeLuna" id="tipoDeLuna" class="label">
-                    <option value="" disabled selected hidden>Selecciona una opción</option>
-                    <option value="monofocal" id="monofocal">Monofocal</option>
-                    <option value="bifocalP" id="bifocalP">Bifocal Plattop</option>
-                    <option value="bifocalI" id="bifocalI">Bifocal Invisible</option>
-                    <option value="multifocal" id="multifocal">Multifocal</option>
-                </select>
-            </label>
-        </form>
-
-        <!-- <form class="form_resina" id="form_resina">
-            <label class="label" id="monturas" name="monturas">
-                Montura: <select name="monturas" id="monturas_select">
-                    <option value="sinMontura">Sin montura</option>
-                    <option value="economico">Ecónomico</option>
-                    <option value="calidad">Calidad</option>
-                    <option value="premium">Premium</option>
-                </select>
-            </label>
-
-            <p class="titulo">Medidas</p>
-
-            <label name="check" id="label_check" class="label">
-                <input type="checkbox" name="check" id="check" class="input_check"> Usar OD como principal
-            </label>
-            <br>
+        <form class="form" id="form">
+            <p class="titulo">Medidas:</p>
             <label name="od" id="od" class="label">
-                OD: <select name="od" id="od_signo">
-                    <option value="-">-</option>
-                    <option value="+">+</option>
-                </select>
-                <input type="number" name="od_esferico" class="input_medida">
+                OD:
+                <input type="number" name="od_esferico" class="input_medida" min="0" step="0.01" id="odEsf" placeholder=" Esferico">
                 x
-                <input type="number" name="od_cilindro" class="input_mediad">
+                <input type="number" name="od_cilindro" class="input_mediad" min="0" step="0.01" id="odCil" placeholder=" Cilindro">
             </label>
             <br>
             <label name="oi" id="oi" class="label">
-                OI: <select name="oi" id="oi_signo">
-                    <option value="-">-</option>
-                    <option value="+">+</option>
-                </select>
-                <input type="number" name="oi_esferico" class="input_medida">
+                OI:
+                <input type="number" name="oi_esferico" class="input_medida checkOn" min="0" step="0.01" id="oiEsf" placeholder=" Esferico">
                 x
-                <input type="number" name="oi _cilindro" class="input_mediad">
+                <input type="number" name="oi _cilindro" class="input_mediad checkOn" min="0" step="0.01" id="oiCil" placeholder=" Cilindro">
             </label>
             <br>
-            <label name="proteccion" id="proteccion" class="label">
-                Protección: <select name="proteccion" id="proteccion_select">
-                    <option value="blanco">Blanco</option>
-                    <option value="ar">Antireflex</option>
-                    <option value="blue">Blue Defense</option>
-                    <option value="fotomate">Fotomate</option>
-                    <option value="fotomateAr">Fotomate AR</option>
-                    <option value="fotomateBlue">Fotomate Blue Defense</option>
-                    <option value="sensitiveAr">Sensitive AR</option>
-                    <option value="sensitiveBlue">Sensitive Blue</option>
-                    <option value="transition">Transition</option>
-                    <option value="transitionAr">Transition AR</option>
-                    <option value="transitionBlue">Transition Blue</option>
-                </select>
-            </label>
-            <br>
-            <button class="boton_calcular">Calcular precio</button>
-        </form> -->
+            <button class="button" id="button">Calcular</button>
+        </form>
 
-        <!-- <form class="form_cristal" id="form_cristal">
-            <label class="label" id="monturas" name="monturas">
-                Montura: <select name="monturas" id="monturas_select">
-                    <option value="sinMontura">Sin montura</option>
-                    <option value="economico">Ecónomico</option>
-                    <option value="calidad">Calidad</option>
-                    <option value="premium">Premium</option>
-                </select>
-            </label>
+        <div>
+            <h2>Precios Lunas Resina:</h2>
+            <ul>
+                <li>Resina BL: s/100</li>
+                <li>Resina AR: s/100</li>
+                <li>Resina Blue Def.: s/100</li>
+                <li>Resina Sensitive Ar: s/100</li>
+                <li>Resina Sensitive Blue Def.: s/100</li>
+                <li>Resina Fotomate: s/100</li>
+                <li>Resina Fotomate AR: s/100</li>
+                <li>Resina Fotomate Blue Def.: s/100</li>
+                <li>Resina Transition: s/100</li>
+                <li>Resina Transition AR: s/100</li>
+                <li>Resina Transition Blue: s/100</li>
+            </ul>
 
-            <p class="titulo">Medidas</p>
-
-            <label name="check" id="label_check" class="label">
-                <input type="checkbox" name="check" id="check" class="input_check"> Usar OD como principal
-            </label>
-            <br>
-            <label name="od" id="od" class="label">
-                OD: <select name="od" id="od_signo">
-                    <option value="-">-</option>
-                    <option value="+">+</option>
-                </select>
-                <input type="number" name="od_esferico" class="input_medida">
-                x
-                <input type="number" name="od_cilindro" class="input_mediad">
-            </label>
-            <br>
-            <label name="oi" id="oi" class="label">
-                OI: <select name="oi" id="oi_signo">
-                    <option value="-">-</option>
-                    <option value="+">+</option>
-                </select>
-                <input type="number" name="oi_esferico" class="input_medida">
-                x
-                <input type="number" name="oi _cilindro" class="input_mediad">
-            </label>
-            <br>
-            <label name="proteccion" id="proteccion" class="label">
-                Protección: <select name="proteccion" id="proteccion_select">
-                    <option value="blanco">Blanco</option>
-                    <option value="ar">Antireflex</option>
-                    <option value="phg">PHG</option>
-                    <option value="phb">PHB</option>
-                    <option value="phgAr">PHG AR</option>
-                    <option value="phbAr">PHB AR</option>
-                </select>
-            </label>
-            <br>
-            <button class="boton_calcular">Calcular precio</button>
-        </form> -->
-
-        <!-- <div class="precio_container">
-            <p>Precio: s/360</p>
-            
-            <form class="descuento" id="descuento">
-                <label name="descuento">
-                    <input type="checkbox"> Aplica descuento
-                </label>
-                <br>
-                <label name="cantidadDescuento" class="label" id="cantidadDescuento">
-                    Porcentaje de descuento: %<input type="number" class="input_descuento" id="input_descuento">
-                </label>
-            </form>
-        </div> -->
+            <h2>Precios Lunas Cristal:</h2>
+            <ul>
+                <li>Cristal BL: s/100</li>
+                <li>Cristal AR: s/100</li>
+                <li>Cristal PHG: s/100</li>
+                <li>Cristal PHG AR: s/100</li>
+                <li>Cristal PHG AR: s/100</li>
+            </ul>
+        </div>
     </main>
 
     <footer class="footer">
@@ -196,10 +104,12 @@
                 </div>
                 <div class="tiendas">
                     <h3>Tiendas</h3>
-                    <a href="https://www.google.com/maps/place/Av.+2+de+Mayo+768,+Puerto+Maldonado+17001/@-12.5922225,-69.1836244,18z/data=!3m1!4b1!4m5!3m4!1s0x917b4eafc613016f:0x4fbc90ba32b170cd!8m2!3d-12.5922249!4d-69.1826233" target="_blank">Puerto Maldonado</a>
+                    <a href="https://www.google.com/maps/place/Av.+2+de+Mayo+768,+Puerto+Maldonado+17001/@-12.5922225,-69.1836244,18z/data=!3m1!4b1!4m5!3m4!1s0x917b4eafc613016f:0x4fbc90ba32b170cd!8m2!3d-12.5922249!4d-69.1826233"
+                        target="_blank">Puerto Maldonado</a>
                     <p>L-V:09:30-21:00
-                    <br>S:10:00-18:00
-                    <br>D:10:00-16:00</p>
+                        <br>S:10:00-18:00
+                        <br>D:10:00-16:00
+                    </p>
                 </div>
                 <div class="contacto">
                     <h3>Contacto</h3>
@@ -224,4 +134,5 @@
     <script src="./js/cerrar_menu.js"></script>
     <script src="./js/calculadora.js"></script>
 </body>
+
 </html>
