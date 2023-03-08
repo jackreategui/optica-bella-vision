@@ -1,9 +1,25 @@
-const od = document.querySelector('#od');
-const oi = document.querySelector('#oi');
+const odEsf = document.querySelector('#odEsf');
+const odCil = document.querySelector('#odCil');
+const oiEsf = document.querySelector('#oiEsf');
+const oiCil = document.querySelector('#oiCil');
+const button = document.querySelector('#button');
 
-od.addEventListener('click', (e) => {
-    const select = e.target;
-    select
+button.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    const odEsfNumber = parseFloat(odEsf.value);
+    const odCilNumber = parseFloat(odCil.value);
+    const oiEsfNumber = parseFloat(oiEsf.value);
+    const oiCilNumber = parseFloat(oiCil.value);
+
+    let odMedida = odEsfNumber + odCilNumber;
+    let oiMedida = oiEsfNumber + oiCilNumber;
+
+    if (odMedida != 0 && oiMedida != 0) {
+        listaDePrecios();
+    } else {
+        return odEsfNumber, oiEsfNumber;
+    }
 })
 
 // Precio segun las medidas
