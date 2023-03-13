@@ -42,46 +42,54 @@
     <main class="calculadora_container">
         <form class="form" id="form">
             <p class="titulo">Medidas:</p>
-            <label name="od" id="od" class="label">
-                OD:
-                <input type="number" name="od_esferico" class="input_medida" min="0" step="0.01" id="odEsf" placeholder=" Esferico">
-                x
-                <input type="number" name="od_cilindro" class="input_mediad" min="0" step="0.01" id="odCil" placeholder=" Cilindro">
-            </label>
-            <br>
-            <label name="oi" id="oi" class="label">
-                OI:
-                <input type="number" name="oi_esferico" class="input_medida checkOn" min="0" step="0.01" id="oiEsf" placeholder=" Esferico">
-                x
-                <input type="number" name="oi _cilindro" class="input_mediad checkOn" min="0" step="0.01" id="oiCil" placeholder=" Cilindro">
-            </label>
-            <br>
-            <button class="button" id="button">Calcular</button>
+            <select name="selec" id="select" class="select">
+                <option class="option" value=""></option>
+                <option class="option" value="clase0">0 - 1.50</option>
+                <option class="option" value="clase1">1.75 - 2.50</option>
+                <option class="option" value="clase2">2.75 - 3.50</option>
+                <option class="option" value="clase3">3.75 - 4.50</option>
+                <option class="option" value="clase4">4.75 - 5.50</option>
+                <option class="option" value="clase5">5.75 - 6.50</option>
+                <option class="option" value="clase6">6.75 - 7.50</option>
+                <option class="option" value="clase7">7.75 - 8.50</option>
+                <option class="option" value="clase8">8.75 - 9.50</option>
+                <option class="option" value="clase9">9.75 - 10.50</option>
+                <option class="option" value="clase10">10.75 - 11.50</option>
+                <option class="option" value="clase11">11.75 - 12.50</option>
+                <option class="option" value="clase12">12.75 - 13.50</option>
+                <option class="option" value="clase13">13.75 - 14.50</option>
+                <option class="option" value="clase14">14.75 - 15.50</option>
+                <option class="option" value="clase15">15.75 - 16.50</option>
+                <option class="option" value="clase16">16.75 - 17.50</option>
+                <option class="option" value="clase17">17.75 - 18.50</option>
+                <option class="option" value="clase18">18.75 - 20</option>
+            </select>
         </form>
 
-        <div>
-            <h2>Precios Lunas Resina:</h2>
-            <ul>
-                <li>Resina BL: s/100</li>
-                <li>Resina AR: s/100</li>
-                <li>Resina Blue Def.: s/100</li>
-                <li>Resina Sensitive Ar: s/100</li>
-                <li>Resina Sensitive Blue Def.: s/100</li>
-                <li>Resina Fotomate: s/100</li>
-                <li>Resina Fotomate AR: s/100</li>
-                <li>Resina Fotomate Blue Def.: s/100</li>
-                <li>Resina Transition: s/100</li>
-                <li>Resina Transition AR: s/100</li>
-                <li>Resina Transition Blue: s/100</li>
+        <div class="container_price">
+            <h2 class="h2_resina_lunas">Precios Lunas Resina:</h2>
+            <ul class="ul_list">
+                <li id="resinaBL">Resina BL: s/100</li>
+                <li id="resinaAr">Resina AR: s/160</li>
+                <li id="resinaBlue">Resina Blue Def.: s/220</li>
+                <li id="resinaSensitiveAr">Resina Sensitive Ar: s/260</li>
+                <li id="resinaSensitiveBlue">Resina Sensitive Blue Def.: s/320</li>
+                <li id="resinaFotomate">Resina Fotomate: s/280</li>
+                <li id="resinaFotomateAr">Resina Fotomate AR: s/320</li>
+                <li id="resinaFotomateBlue">Resina Fotomate Blue Def.: s/360</li>
+                <li id="resinaTransition">Resina Transition: s/400</li>
+                <li id="resinaTransitionAr">Resina Transition AR: s/460</li>
+                <li id="resinaTransitionBlue">Resina Transition Blue: s/520</li>
             </ul>
 
-            <h2>Precios Lunas Cristal:</h2>
-            <ul>
-                <li>Cristal BL: s/100</li>
-                <li>Cristal AR: s/100</li>
-                <li>Cristal PHG: s/100</li>
-                <li>Cristal PHG AR: s/100</li>
-                <li>Cristal PHG AR: s/100</li>
+            <h2 class="h2_cristal_lunas">Precios Lunas Cristal:</h2>
+            <ul class="ul_list">
+                <li id="cristalBl">Cristal BL: s/100</li>
+                <li id="cristalAr">Cristal AR: s/160</li>
+                <li id="cristalPhg">Cristal PHG: s/180</li>
+                <li id="cristalPhb">Cristal PHB: s/180</li>
+                <li id="cristalPhgAr">Cristal PHG AR: s/240</li>
+                <li id="cristalPhbAr">Cristal PHB AR: s/240</li>
             </ul>
         </div>
     </main>

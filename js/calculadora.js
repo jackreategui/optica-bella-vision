@@ -1,120 +1,87 @@
-const odEsf = document.querySelector('#odEsf');
-const odCil = document.querySelector('#odCil');
-const oiEsf = document.querySelector('#oiEsf');
-const oiCil = document.querySelector('#oiCil');
-const button = document.querySelector('#button');
+//*Para quien revise mi codigo dira... "Pero que mierda es esto un if enorme jajaja, es lo que se me ocurrio y lo mas sencillo que pude hacer para poder sacar una calculadora de precios :c ya en un futuro lo mejorare"
 
-button.addEventListener('click', (e) => {
+const formSelect = document.querySelector('#select');
+// Resina
+const resinaBL = document.querySelector('#resinaBL');
+const resinaAr = document.querySelector('#resinaAr');
+const resinaBlue = document.querySelector('#resinaBlue');
+const resinaSensitiveAr = document.querySelector('#resinaSensitiveAr');
+const resinaSensitiveBlue = document.querySelector('#resinaSensitiveBlue');
+const resinaFotomate = document.querySelector('#resinaFotomate');
+const resinaFotomateAr = document.querySelector('#resinaFotomateAr');
+const resinaFotomateBlue = document.querySelector('#resinaFotomateBlue');
+const resinaTransition = document.querySelector('#resinaTransition');
+const resinaTransitionAr = document.querySelector('#resinaTransitionAr');
+const resinaTransitionBlue = document.querySelector('#resinaTransitionBlue');
+// cristal
+const cristalBl = document.querySelector('#cristalBl');
+const cristalAr = document.querySelector('#cristalAr');
+const cristalPhg = document.querySelector('#cristalPhg');
+const cristalPhb = document.querySelector('#cristalPhb');
+const cristalPhgAr = document.querySelector('#cristalPhgAr');
+const cristalPhbAr = document.querySelector('#cristalPhbAr');
+
+
+formSelect.addEventListener('click', (e) => {
     e.preventDefault();
-    
-    const odEsfNumber = parseFloat(odEsf.value);
-    const odCilNumber = parseFloat(odCil.value);
-    const oiEsfNumber = parseFloat(oiEsf.value);
-    const oiCilNumber = parseFloat(oiCil.value);
+    const select = e.target.value;
 
-    for (let i = 0; i < medidasPositivas.length; i++) {
-        medidaPositiva = medidasPositivas[i];
-        
-        if (medidaPositiva == odEsfNumber) {
-            medidaPositiva = medidasPositivas[i];
-        }
+    let precioResinaBL = 100;
+    let precioResinaAr = 160;
+    let precioResinaBlue = 220;
+    let precioResinaSensitiveAr = 260;
+    let precioResinaSensitiveBlue = 320;
+    let precioResinaFotomate = 280;
+    let precioResinaFotomateAr = 320;
+    let precioResinaFotomateBlue = 360;
+    let precioResinaTransition = 400;
+    let precioResinaTransitionAr = 460;
+    let precioResinaTransitionBlue = 520;
+    // cristal
+    let precioCristalBl = 100;
+    let precioCristalAr = 160;
+    let precioCristalPhg = 180;
+    let precioCristalPhb = 180;
+    let precioCristalPhgAr = 240;
+    let precioCristalPhbAr = 240;
+
+    if (select == 'clase1') {
+        precioResinaBL += 40;
+        precioResinaAr += 40;
+        precioResinaBlue += 40;
+        precioResinaSensitiveAr += 40;
+        precioResinaSensitiveBlue += 40;
+        precioResinaFotomate += 40;
+        precioResinaFotomateAr += 40;
+        precioResinaFotomateBlue += 40;
+        precioResinaTransition += 40;
+        precioResinaTransitionAr += 40;
+        precioResinaTransitionBlue += 40;
+        // cristal
+        precioCristalBl += 40;
+        precioCristalAr += 40;
+        precioCristalPhg += 40;
+        precioCristalPhb += 40;
+        precioCristalPhgAr += 40;
+        precioCristalPhbAr += 40;
     }
 
-    if (odEsfNumber > medidaPositiva || odEsfNumber < medidaNegativa || odCilNumber > medidaPositiva || odCilNumber < medidaNegativa) {
-        
-        // Lanzar funcion que indique el precio de las lunas solo para el ojo derecho que seria de de 50 soles ya que son medidas menores a 1.25
-    } else {
-        // En el caso la medida sea mayor a 1.25 o -1.25 el precio aumenta 40 soles, asi con cada dioctria
-    }
-
+    resinaBL.textContent = "Resina BL: s/." + precioResinaBL;
+    resinaAr.textContent = "Resina AR: s/." + precioResinaAr;
+    resinaBlue.textContent = "Resina Blue Def.: s/." + precioResinaBlue;
+    resinaSensitiveAr.textContent = "Resina Sensitive Ar: s/." + precioResinaSensitiveAr;
+    resinaSensitiveBlue.textContent = "Resina Sensitive Blue Def.: s/." + precioResinaSensitiveBlue;
+    resinaFotomate.textContent = "Resina Fotomate: s/." + precioResinaFotomate;
+    resinaFotomateAr.textContent = "Resina Fotomate AR: s/." + precioResinaFotomateAr;
+    resinaFotomateBlue.textContent = "Resina Fotomate Blue Def.: s/." + precioResinaFotomateBlue;
+    resinaTransition.textContent = "Resina Transition: s/." + precioResinaTransition;
+    resinaTransitionAr.textContent = "Resina Transition AR: s/." + precioResinaTransitionAr;
+    resinaTransitionBlue.textContent = "Resina Transition Blue: s/." + precioResinaTransitionBlue;
+    // cristal
+    cristalBl.textContent = "Cristal BL: s/." + precioCristalBl;
+    cristalAr.textContent = "Cristal AR: s/." + precioCristalAr;
+    cristalPhg.textContent = "Cristal PHG: s/." + precioCristalPhg;
+    cristalPhb.textContent = "Cristal PHB: s/." + precioCristalPhb;
+    cristalPhgAr.textContent = "Cristal PHG AR: s/." + precioCristalPhgAr;
+    cristalPhbAr.textContent = "Cristal PHB AR: s/." + precioCristalPhbAr;
 })
-
-const medidas = [
-    {name: 'clase 2', positivo: 1.25, negativo: -1.25},
-    {name: 'clase 3', positivo: 2.25, negativo: -2.25},
-    {name: 'clase 4', positivo: 3.25, negativo: -3.25},
-    {name: 'clase 5', positivo: 4.25, negativo: -4.25},
-    {name: 'clase 6', positivo: 5.25, negativo: -5.25},
-];
-
-medidas.some((medida) => {
-    console.log(medida);
-})
-
-const precioLunas = [
-    {name: 'resina BL', precio: 50}
-]
-
-const medidasPositivas = [
-    1.25,
-    2.25,
-    3.25,
-    4.25,
-    5.25,
-    6.25,
-    7.25,
-    8.25,
-    9.25,
-    10.25,
-    11.25,
-    12.25,
-    13.25,
-    14.25,
-    15.25,
-    16.25,
-    17.25,
-    18.25,
-    19.25,
-]
-const medidasNegativas = [
-    -1.25,
-    -2.25,
-    -3.25,
-    -4.25,
-    -5.25,
-    -6.25,
-    -7.25,
-    -8.25,
-    -9.25,
-    -10.25,
-    -11.25,
-    -12.25,
-    -13.25,
-    -14.25,
-    -15.25,
-    -16.25,
-    -17.25,
-    -18.25,
-    -19.25,
-]
-
-let medidaPositiva = 0;
-let medidaNegativa = 0;
-
-
-
-// const medidas = {
-//     segunda: 1.25 <= 2,
-//     tercera: 2.25 <= 3,
-//     cuarta: 3.25 <= 4,
-//     quinta: 4.25 <= 5,
-//     sexta: 5.25 <= 6,
-//     setima: 6.25 <= 7,
-//     octava: 7.25 <= 8,
-//     novena: 8.25 <= 9,
-//     decima: 9.25 <= 10,
-//     onceava: 10.25 <= 11,
-//     doceava: 11.25 <= 12,
-//     decimotercero: 12.25 <= 13,
-//     decimocuarto: 13.25 <= 14,
-//     decimoquinto: 14.25 <= 15,
-//     decimosexto: 15.25 <= 16,
-//     decimosetimo: 16.25 <= 17,
-//     decimooctavo: 17.25 <= 18,
-//     decimonoveno: 18.25 <= 19,
-//     vigesimo: 19.25 <= 20,
-// }
-// const mediasBajas = 0 <= 1;
-
-// Crear formularios
-const precios = ``;
