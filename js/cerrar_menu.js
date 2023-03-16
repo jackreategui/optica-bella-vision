@@ -5,7 +5,6 @@ window.addEventListener('scroll', () => {
   if (navOverlay.classList.contains('nav_overlay--show')) {
     closeMenu();
   };
-  console.log(hola);
 })
 
 navOverlay.addEventListener('click', () => {

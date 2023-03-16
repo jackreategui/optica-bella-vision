@@ -1,36 +1,81 @@
-const formSelect = document.querySelector('#select');
-// Resina
-const resinaBL = document.querySelector('#resinaBL');
-const resinaAr = document.querySelector('#resinaAr');
-const resinaBlue = document.querySelector('#resinaBlue');
-const resinaSensitiveAr = document.querySelector('#resinaSensitiveAr');
-const resinaSensitiveBlue = document.querySelector('#resinaSensitiveBlue');
-const resinaFotomate = document.querySelector('#resinaFotomate');
-const resinaFotomateAr = document.querySelector('#resinaFotomateAr');
-const resinaFotomateBlue = document.querySelector('#resinaFotomateBlue');
-const resinaTransition = document.querySelector('#resinaTransition');
-const resinaTransitionAr = document.querySelector('#resinaTransitionAr');
-const resinaTransitionBlue = document.querySelector('#resinaTransitionBlue');
-// cristal
-const cristalBl = document.querySelector('#cristalBl');
-const cristalAr = document.querySelector('#cristalAr');
-const cristalPhg = document.querySelector('#cristalPhg');
-const cristalPhb = document.querySelector('#cristalPhb');
-const cristalPhgAr = document.querySelector('#cristalPhgAr');
-const cristalPhbAr = document.querySelector('#cristalPhbAr');
+let selectMedidas = document.querySelector('#selectMedidas');
+let selectMedidasValue = selectMedidas.options[selectMedidas.selectedIndex].value;
+let selectMaterial = document.querySelector('#selectMaterial');
+let selectMaterialValue = selectMaterial.options[selectMaterial.selectedIndex].value;
+
+const monturaEconomica = document.querySelector('#monturaEconomica');
+const monturaCalidad = document.querySelector('#monturaCalidad');
+const monturaAltaCalidad = document.querySelector('#monturaAltaCalidad');
+
+const bifocalPlattop = document.querySelector('#bifocalPlattop');
+const bifocalInvisible = document.querySelector('#bifocalInvisible');
+const multifocal = document.querySelector('#multifocal');
 
 const precio = document.querySelector('#precio');
 
+let precioFinal = 0;
 
-formSelect.addEventListener('click', (e) => {
-    e.preventDefault();
-    const select = e.target.value;
-
-    let precioFinal = 0;
-
-    if (select == 'clase0') {
+function precioLunas() {
+    if (selectMedidasValue == 'clase0' && selectMaterialValue == 'resinaBl') {   
         precioFinal += 100;
-        console.log('hola');
+        
+    }
+
+    precio.textContent = "Precio: s/." + precioFinal;
+}
+
+selectMedidas.addEventListener('change', precioLunas);
+selectMaterial.addEventListener('change', precioLunas);
+
+
+// Precio monturas
+monturaEconomica.addEventListener('click', () => {
+    if (monturaEconomica.checked) {
+        precioFinal += 100;
+    } else {
+        precioFinal -= 100;
+    }
+
+    precio.textContent = "Precio: s/." + precioFinal;
+})
+
+monturaCalidad.addEventListener('click', () => {
+    if (monturaCalidad.checked) {
+        precioFinal += 200;
+    } else {
+        precioFinal -= 200;
+    }
+
+    precio.textContent = "Precio: s/." + precioFinal;
+})
+
+monturaAltaCalidad.addEventListener('click', () => {
+    if (monturaAltaCalidad.checked) {
+        precioFinal += 400;
+    } else {
+        precioFinal -= 400;
+    }
+
+    precio.textContent = "Precio: s/." + precioFinal;
+})
+
+// Tipo de lunas
+
+bifocalPlattop.addEventListener('click', () => {
+    if (bifocalPlattop.checked) {
+        precioFinal += precioFinal * 0.55;
+    } else {
+        precioFinal = parseInt(precioFinal / (1 + 55 / 100));
+    }
+
+    precio.textContent = "Precio: s/." + precioFinal;
+})
+
+bifocalInvisible.addEventListener('click', () => {
+    if (bifocalInvisible.checked) {
+        precioFinal += precioFinal * 0.55;
+    } else {
+        precioFinal = precioFinal / (1 + 55 / 100);
     }
 
     precio.textContent = "Precio: s/." + precioFinal;

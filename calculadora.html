@@ -40,9 +40,10 @@
     </nav>
 
     <main class="calculadora_container">
-        <form class="form" id="form">
+        <form class="form">
             <h2 class="titulo_medidas">Medidas:</>
-            <select name="selec" id="select" class="select">
+            <select name="selec" id="selectMedidas" class="select_medidas">
+                <option class="option" value="">Selecciona</option>
                 <option class="option" value="clase0">0 - 1.50</option>
                 <option class="option" value="clase1">1.75 - 2.50</option>
                 <option class="option" value="clase2">2.75 - 3.50</option>
@@ -65,7 +66,8 @@
             </select>
 
             <h2 class="titulo_material">Material:</h2>
-                <select name="selec" id="select" class="select">
+                <select name="selec" id="selectMaterial" class="select">
+                    <option class="option" value="">Selecciona</option>
                     <option class="option" value="resinaBl" id="resinaBl">Resina BL</option>
                     <option class="option" value="resinaAr" id="resinaAr">Resina AR</option>
                     <option class="option" value="resinaBlueDef" id="resinaBlueDef">Resina Blue Def.</option>
@@ -84,7 +86,9 @@
                     <option class="option" value="cristalPhgAr" id="cristalPhgAr">Cristal PHG AR</option>
                     <option class="option" value="cristalPhbAr" id="cristalPhbAr">Cristal PHB AR</option>
                 </select>
+        </form>
 
+        <form class="form">
             <h2 class="titulo_monturas">Monturas:</h2>
 
             <p class="subtitulo_montura">Ecónomica</p>
@@ -95,7 +99,9 @@
 
             <p class="subtitulo_montura">Alta Calidad</p>
             <input type="checkbox" id="monturaAltaCalidad" value="monturaAltaCalidad">
+        </form>
 
+        <form class="form">
             <h2 class="">Tipo de luna:</h2>
 
             <p class="subtitulo_tipoLuna">Bifocal Plattop</p>
