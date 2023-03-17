@@ -73,9 +73,19 @@ bifocalPlattop.addEventListener('click', () => {
 
 bifocalInvisible.addEventListener('click', () => {
     if (bifocalInvisible.checked) {
-        precioFinal += precioFinal * 0.55;
+        precioFinal += precioFinal * 0.6;
     } else {
-        precioFinal = precioFinal / (1 + 55 / 100);
+        precioFinal = parseInt(precioFinal / (1 + 60 / 100));
+    }
+
+    precio.textContent = "Precio: s/." + precioFinal;
+})
+
+multifocal.addEventListener('click', () => {
+    if (multifocal.checked) {
+        precioFinal += precioFinal * 0.8;
+    } else {
+        precioFinal = parseInt(precioFinal / (1 + 80 / 100));
     }
 
     precio.textContent = "Precio: s/." + precioFinal;
