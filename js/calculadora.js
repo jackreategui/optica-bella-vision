@@ -1,8 +1,7 @@
-let selectMedidas = document.querySelector('#selectMedidas');
-let selectMedidasValue = selectMedidas.options[selectMedidas.selectedIndex].value;
-let selectMaterial = document.querySelector('#selectMaterial');
-let selectMaterialValue = selectMaterial.options[selectMaterial.selectedIndex].value;
+const selectMedidas = document.querySelector('#selectMedidas');
+const selectMaterial = document.querySelector('#selectMaterial');
 
+const formMedidasMaterial = document.querySelector('#formMedidasMaterial');
 const monturaEconomica = document.querySelector('#monturaEconomica');
 const monturaCalidad = document.querySelector('#monturaCalidad');
 const monturaAltaCalidad = document.querySelector('#monturaAltaCalidad');
@@ -16,17 +15,46 @@ const precio = document.querySelector('#precio');
 let precioFinal = 0;
 
 function precioLunas() {
-    if (selectMedidasValue == 'clase0' && selectMaterialValue == 'resinaBl') {   
+    if (selectMedidas.selectedIndex == 1 && selectMaterial.selectedIndex == 1) {   
         precioFinal += 100;
-        
     }
 
     precio.textContent = "Precio: s/." + precioFinal;
 }
 
-selectMedidas.addEventListener('change', precioLunas);
-selectMaterial.addEventListener('change', precioLunas);
+formMedidasMaterial.addEventListener('change', precioLunas);
 
+// Tipo de lunas
+
+bifocalPlattop.addEventListener('click', () => {
+    if (bifocalPlattop.checked) {
+        precioFinal += precioFinal * 0.8;
+    } else {
+        precioFinal = parseInt(precioFinal / (1 + 80 / 100));
+    }
+
+    precio.textContent = "Precio: s/." + precioFinal;
+})
+
+bifocalInvisible.addEventListener('click', () => {
+    if (bifocalInvisible.checked) {
+        precioFinal += precioFinal * 1.00;
+    } else {
+        precioFinal = parseInt(precioFinal / (1 + 100 / 100));
+    }
+
+    precio.textContent = "Precio: s/." + precioFinal;
+})
+
+multifocal.addEventListener('click', () => {
+    if (multifocal.checked) {
+        precioFinal += precioFinal * 2.1;
+    } else {
+        precioFinal = parseInt(precioFinal / (1 + 210 / 100));
+    }
+
+    precio.textContent = "Precio: s/." + precioFinal;
+})
 
 // Precio monturas
 monturaEconomica.addEventListener('click', () => {
@@ -59,34 +87,3 @@ monturaAltaCalidad.addEventListener('click', () => {
     precio.textContent = "Precio: s/." + precioFinal;
 })
 
-// Tipo de lunas
-
-bifocalPlattop.addEventListener('click', () => {
-    if (bifocalPlattop.checked) {
-        precioFinal += precioFinal * 0.55;
-    } else {
-        precioFinal = parseInt(precioFinal / (1 + 55 / 100));
-    }
-
-    precio.textContent = "Precio: s/." + precioFinal;
-})
-
-bifocalInvisible.addEventListener('click', () => {
-    if (bifocalInvisible.checked) {
-        precioFinal += precioFinal * 0.6;
-    } else {
-        precioFinal = parseInt(precioFinal / (1 + 60 / 100));
-    }
-
-    precio.textContent = "Precio: s/." + precioFinal;
-})
-
-multifocal.addEventListener('click', () => {
-    if (multifocal.checked) {
-        precioFinal += precioFinal * 0.8;
-    } else {
-        precioFinal = parseInt(precioFinal / (1 + 80 / 100));
-    }
-
-    precio.textContent = "Precio: s/." + precioFinal;
-})

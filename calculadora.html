@@ -40,7 +40,7 @@
     </nav>
 
     <main class="calculadora_container">
-        <form class="form">
+        <form class="form" id="formMedidasMaterial">
             <h2 class="titulo_medidas">Medidas:</>
             <select name="selec" id="selectMedidas" class="select_medidas">
                 <option class="option" value="">Selecciona</option>
@@ -76,6 +76,7 @@
                     <option class="option" value="resinaFotomate" id="resinaFotomate">Resina Fotomate</option>
                     <option class="option" value="resinaFotomateAr" id="resinaFotomateAr">Resina Fotomate AR</option>
                     <option class="option" value="resinaFotomateBlue" id="resinaFotomateBlue">Resina Fotomate Blue Def.</option>
+                    <option class="option" value="resinaFotocromatica" id="resinaFotocromatica">Resina Fotocromatica</option>
                     <option class="option" value="resinaTransition" id="resinaTransition">Resina Transition</option>
                     <option class="option" value="resinaTransitionAr" id="resinaTransitionAr">Resina Transition AR</option>
                     <option class="option" value="resinaTransitionBlue" id="resinaTransitionBlue">Resina Transition Blue</option>
@@ -89,19 +90,6 @@
         </form>
 
         <form class="form">
-            <h2 class="titulo_monturas">Monturas:</h2>
-
-            <p class="subtitulo_montura">Ecónomica</p>
-            <input type="checkbox" id="monturaEconomica" value="monturaEconomica">
-
-            <p class="subtitulo_montura">Calidad</p>
-            <input type="checkbox" id="monturaCalidad" value="monturaCalidad">
-
-            <p class="subtitulo_montura">Alta Calidad</p>
-            <input type="checkbox" id="monturaAltaCalidad" value="monturaAltaCalidad">
-        </form>
-
-        <form class="form">
             <h2 class="">Tipo de luna:</h2>
 
             <p class="subtitulo_tipoLuna">Bifocal Plattop</p>
@@ -112,6 +100,19 @@
 
             <p class="subtitulo_tipoLuna">Multifocal</p>
             <input type="checkbox" id="multifocal" value="multifocal">
+        </form>
+        
+        <form class="form">
+            <h2 class="titulo_monturas">Monturas:</h2>
+
+            <p class="subtitulo_montura">Ecónomica</p>
+            <input type="checkbox" id="monturaEconomica" value="monturaEconomica">
+
+            <p class="subtitulo_montura">Calidad</p>
+            <input type="checkbox" id="monturaCalidad" value="monturaCalidad">
+
+            <p class="subtitulo_montura">Alta Calidad</p>
+            <input type="checkbox" id="monturaAltaCalidad" value="monturaAltaCalidad">
         </form>
 
         <div class="container_price">
