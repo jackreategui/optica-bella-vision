@@ -330,6 +330,656 @@ function precioLunas() {
         precioFinal += precioCristalPhgPhbAr+(precioAumento*5);
     }
 
+    if (selectMedidas.selectedIndex == 7 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*6);
+    } else if (selectMedidas.selectedIndex == 7 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*6);
+    } else if (selectMedidas.selectedIndex == 7 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*6);
+    } else if (selectMedidas.selectedIndex == 7 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*6);
+    } else if (selectMedidas.selectedIndex == 7 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*6);
+    } else if (selectMedidas.selectedIndex == 7 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*6);
+    } else if (selectMedidas.selectedIndex == 7 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*6);
+    } else if (selectMedidas.selectedIndex == 7 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*6);
+    } else if (selectMedidas.selectedIndex == 7 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*6);
+    } else if (selectMedidas.selectedIndex == 7 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*6);
+    } else if (selectMedidas.selectedIndex == 7 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*6);
+    } else if (selectMedidas.selectedIndex == 7 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*6);
+    }
+
+    if (selectMedidas.selectedIndex == 8 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*7);
+    } else if (selectMedidas.selectedIndex == 8 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*7);
+    } else if (selectMedidas.selectedIndex == 8 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*7);
+    } else if (selectMedidas.selectedIndex == 8 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*7);
+    } else if (selectMedidas.selectedIndex == 8 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*7);
+    } else if (selectMedidas.selectedIndex == 8 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*7);
+    } else if (selectMedidas.selectedIndex == 8 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*7);
+    } else if (selectMedidas.selectedIndex == 8 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*7);
+    } else if (selectMedidas.selectedIndex == 8 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*7);
+    } else if (selectMedidas.selectedIndex == 8 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*7);
+    } else if (selectMedidas.selectedIndex == 8 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*7);
+    } else if (selectMedidas.selectedIndex == 8 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*7);
+    }
+
+    if (selectMedidas.selectedIndex == 9 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*8);
+    } else if (selectMedidas.selectedIndex == 9 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*8);
+    } else if (selectMedidas.selectedIndex == 9 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*8);
+    } else if (selectMedidas.selectedIndex == 9 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*8);
+    } else if (selectMedidas.selectedIndex == 9 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*8);
+    } else if (selectMedidas.selectedIndex == 9 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*8);
+    } else if (selectMedidas.selectedIndex == 9 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*8);
+    } else if (selectMedidas.selectedIndex == 9 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*8);
+    } else if (selectMedidas.selectedIndex == 9 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*8);
+    } else if (selectMedidas.selectedIndex == 9 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*8);
+    } else if (selectMedidas.selectedIndex == 9 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*8);
+    } else if (selectMedidas.selectedIndex == 9 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*8);
+    }
+
+    if (selectMedidas.selectedIndex == 10 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*9);
+    } else if (selectMedidas.selectedIndex == 10 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*9);
+    } else if (selectMedidas.selectedIndex == 10 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*9);
+    } else if (selectMedidas.selectedIndex == 10 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*9);
+    } else if (selectMedidas.selectedIndex == 10 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*9);
+    } else if (selectMedidas.selectedIndex == 10 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*9);
+    } else if (selectMedidas.selectedIndex == 10 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*9);
+    } else if (selectMedidas.selectedIndex == 10 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*9);
+    } else if (selectMedidas.selectedIndex == 10 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*9);
+    } else if (selectMedidas.selectedIndex == 10 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*9);
+    } else if (selectMedidas.selectedIndex == 10 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*9);
+    } else if (selectMedidas.selectedIndex == 10 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*9);
+    }
+
+    if (selectMedidas.selectedIndex == 11 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*10);
+    } else if (selectMedidas.selectedIndex == 11 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*10);
+    } else if (selectMedidas.selectedIndex == 11 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*10);
+    } else if (selectMedidas.selectedIndex == 11 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*10);
+    } else if (selectMedidas.selectedIndex == 11 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*10);
+    } else if (selectMedidas.selectedIndex == 11 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*10);
+    } else if (selectMedidas.selectedIndex == 11 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*10);
+    } else if (selectMedidas.selectedIndex == 11 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*10);
+    } else if (selectMedidas.selectedIndex == 11 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*10);
+    } else if (selectMedidas.selectedIndex == 11 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*10);
+    } else if (selectMedidas.selectedIndex == 11 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*10);
+    } else if (selectMedidas.selectedIndex == 11 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*10);
+    }
+
+    if (selectMedidas.selectedIndex == 12 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*11);
+    } else if (selectMedidas.selectedIndex == 12 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*11);
+    } else if (selectMedidas.selectedIndex == 12 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*11);
+    } else if (selectMedidas.selectedIndex == 12 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*11);
+    } else if (selectMedidas.selectedIndex == 12 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*11);
+    } else if (selectMedidas.selectedIndex == 12 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*11);
+    } else if (selectMedidas.selectedIndex == 12 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*11);
+    } else if (selectMedidas.selectedIndex == 12 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*11);
+    } else if (selectMedidas.selectedIndex == 12 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*11);
+    } else if (selectMedidas.selectedIndex == 12 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*11);
+    } else if (selectMedidas.selectedIndex == 12 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*11);
+    } else if (selectMedidas.selectedIndex == 12 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*11);
+    }
+
+    if (selectMedidas.selectedIndex == 13 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*12);
+    } else if (selectMedidas.selectedIndex == 13 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*12);
+    } else if (selectMedidas.selectedIndex == 13 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*12);
+    } else if (selectMedidas.selectedIndex == 13 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*12);
+    } else if (selectMedidas.selectedIndex == 13 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*12);
+    } else if (selectMedidas.selectedIndex == 13 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*12);
+    } else if (selectMedidas.selectedIndex == 13 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*12);
+    } else if (selectMedidas.selectedIndex == 13 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*12);
+    } else if (selectMedidas.selectedIndex == 13 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*12);
+    } else if (selectMedidas.selectedIndex == 13 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*12);
+    } else if (selectMedidas.selectedIndex == 13 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*12);
+    } else if (selectMedidas.selectedIndex == 13 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*12);
+    }
+
+    if (selectMedidas.selectedIndex == 14 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*13);
+    } else if (selectMedidas.selectedIndex == 14 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*13);
+    } else if (selectMedidas.selectedIndex == 14 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*13);
+    } else if (selectMedidas.selectedIndex == 14 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*13);
+    } else if (selectMedidas.selectedIndex == 14 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*13);
+    } else if (selectMedidas.selectedIndex == 14 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*13);
+    } else if (selectMedidas.selectedIndex == 14 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*13);
+    } else if (selectMedidas.selectedIndex == 14 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*13);
+    } else if (selectMedidas.selectedIndex == 14 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*13);
+    } else if (selectMedidas.selectedIndex == 14 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*13);
+    } else if (selectMedidas.selectedIndex == 14 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*13);
+    } else if (selectMedidas.selectedIndex == 14 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*13);
+    }
+
+    if (selectMedidas.selectedIndex == 15 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*14);
+    } else if (selectMedidas.selectedIndex == 15 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*14);
+    } else if (selectMedidas.selectedIndex == 15 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*14);
+    } else if (selectMedidas.selectedIndex == 15 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*14);
+    } else if (selectMedidas.selectedIndex == 15 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*14);
+    } else if (selectMedidas.selectedIndex == 15 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*14);
+    } else if (selectMedidas.selectedIndex == 15 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*14);
+    } else if (selectMedidas.selectedIndex == 15 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*14);
+    } else if (selectMedidas.selectedIndex == 15 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*14);
+    } else if (selectMedidas.selectedIndex == 15 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*14);
+    } else if (selectMedidas.selectedIndex == 15 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*14);
+    } else if (selectMedidas.selectedIndex == 15 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*14);
+    }
+
+    if (selectMedidas.selectedIndex == 16 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*15);
+    } else if (selectMedidas.selectedIndex == 16 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*15);
+    } else if (selectMedidas.selectedIndex == 16 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*15);
+    } else if (selectMedidas.selectedIndex == 16 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*15);
+    } else if (selectMedidas.selectedIndex == 16 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*15);
+    } else if (selectMedidas.selectedIndex == 16 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*15);
+    } else if (selectMedidas.selectedIndex == 16 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*15);
+    } else if (selectMedidas.selectedIndex == 16 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*15);
+    } else if (selectMedidas.selectedIndex == 16 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*15);
+    } else if (selectMedidas.selectedIndex == 16 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*15);
+    } else if (selectMedidas.selectedIndex == 16 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*15);
+    } else if (selectMedidas.selectedIndex == 16 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*15);
+    }
+
+    if (selectMedidas.selectedIndex == 17 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*16);
+    } else if (selectMedidas.selectedIndex == 17 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*16);
+    } else if (selectMedidas.selectedIndex == 17 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*16);
+    } else if (selectMedidas.selectedIndex == 17 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*16);
+    } else if (selectMedidas.selectedIndex == 17 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*16);
+    } else if (selectMedidas.selectedIndex == 17 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*16);
+    } else if (selectMedidas.selectedIndex == 17 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*16);
+    } else if (selectMedidas.selectedIndex == 17 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*16);
+    } else if (selectMedidas.selectedIndex == 17 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*16);
+    } else if (selectMedidas.selectedIndex == 17 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*16);
+    } else if (selectMedidas.selectedIndex == 17 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*16);
+    } else if (selectMedidas.selectedIndex == 17 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*16);
+    }
+
+    if (selectMedidas.selectedIndex == 18 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*17);
+    } else if (selectMedidas.selectedIndex == 18 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*17);
+    } else if (selectMedidas.selectedIndex == 18 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*17);
+    } else if (selectMedidas.selectedIndex == 18 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*17);
+    } else if (selectMedidas.selectedIndex == 18 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*17);
+    } else if (selectMedidas.selectedIndex == 18 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*17);
+    } else if (selectMedidas.selectedIndex == 18 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*17);
+    } else if (selectMedidas.selectedIndex == 18 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*17);
+    } else if (selectMedidas.selectedIndex == 18 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*17);
+    } else if (selectMedidas.selectedIndex == 18 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*17);
+    } else if (selectMedidas.selectedIndex == 18 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*17);
+    } else if (selectMedidas.selectedIndex == 18 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*17);
+    }
+
+    if (selectMedidas.selectedIndex == 19 && selectMaterial.selectedIndex == 1) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaCristalBl+(precioAumento*18);
+    } else if (selectMedidas.selectedIndex == 19 && selectMaterial.selectedIndex == 2) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaAr+(precioAumento*18);
+    } else if (selectMedidas.selectedIndex == 19 && selectMaterial.selectedIndex == 3) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaBlue+(precioAumento*18);
+    } else if (selectMedidas.selectedIndex == 19 && selectMaterial.selectedIndex == 4) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateAr+(precioAumento*18);
+    } else if (selectMedidas.selectedIndex == 19 && selectMaterial.selectedIndex == 5) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaSensitiveFotomateBlue+(precioAumento*18);
+    } else if (selectMedidas.selectedIndex == 19 && selectMaterial.selectedIndex == 6) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaFotocromatica+(precioAumento*18);
+    } else if (selectMedidas.selectedIndex == 19 && selectMaterial.selectedIndex == 7) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransition+(precioAumento*18);
+    } else if (selectMedidas.selectedIndex == 19 && selectMaterial.selectedIndex == 8) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionAr+(precioAumento*18);
+    } else if (selectMedidas.selectedIndex == 19 && selectMaterial.selectedIndex == 9) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioResinaTransitionBlue+(precioAumento*18);
+    } else if (selectMedidas.selectedIndex == 19 && selectMaterial.selectedIndex == 10) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalAr+(precioAumento*18);
+    } else if (selectMedidas.selectedIndex == 19 && selectMaterial.selectedIndex == 11) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhb+(precioAumento*18);
+    } else if (selectMedidas.selectedIndex == 19 && selectMaterial.selectedIndex == 12) {
+        precioFinal = 0;
+        precio.textContent = "Precio: s/." + precioFinal;
+        precioFinal += precioCristalPhgPhbAr+(precioAumento*18);
+    }
+
     precio.textContent = "Precio: s/." + precioFinal;
 }
 
