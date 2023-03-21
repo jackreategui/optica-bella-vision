@@ -27,7 +27,7 @@ const precioCristalAr = 180;
 const precioCristalPhgPhb = 220;
 const precioCristalPhgPhbAr = 280;
 
-const precioAumento = 40;
+const precioAumento = 10;
 
 function precioLunas() {
     if (selectMedidas.selectedIndex == 1 && selectMaterial.selectedIndex == 1) {
