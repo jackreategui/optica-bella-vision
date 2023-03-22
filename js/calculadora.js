@@ -988,30 +988,36 @@ formMedidasMaterial.addEventListener('change', precioLunas);
 // Tipo de lunas
 
 bifocalPlattop.addEventListener('click', () => {
-    if (bifocalPlattop.checked) {
+    if (bifocalPlattop.checked && selectMaterial.selectedIndex <= 3) {
         precioFinal += precioFinal * 0.8;
+    } else if (bifocalPlattop.checked && selectMaterial.selectedIndex >= 4) {
+        precioFinal += precioFinal * 0.5;
     } else {
-        precioFinal = parseInt(precioFinal / (1 + 80 / 100));
+        location.reload()
     }
 
     precio.textContent = "Precio: s/." + precioFinal;
 })
 
 bifocalInvisible.addEventListener('click', () => {
-    if (bifocalInvisible.checked) {
-        precioFinal += precioFinal * 1.00;
-    } else {
-        precioFinal = parseInt(precioFinal / (1 + 100 / 100));
+    if (bifocalInvisible.checked && selectMaterial.selectedIndex <= 3) {
+        precioFinal += (precioFinal * 0.80) + 40;
+    } else if (bifocalInvisible.checked && selectMaterial.selectedIndex >= 4) {
+        precioFinal += (precioFinal * 0.50) + 40;
+    } else{
+        location.reload()
     }
 
     precio.textContent = "Precio: s/." + precioFinal;
 })
 
 multifocal.addEventListener('click', () => {
-    if (multifocal.checked) {
-        precioFinal += precioFinal * 2.1;
+    if (multifocal.checked && selectMaterial.selectedIndex <= 3) {
+        precioFinal += precioFinal * 1.8;
+    } else if (multifocal.checked && selectMaterial.selectedIndex >= 4) {
+        precioFinal += precioFinal * 1;
     } else {
-        precioFinal = parseInt(precioFinal / (1 + 210 / 100));
+        location.reload()
     }
 
     precio.textContent = "Precio: s/." + precioFinal;
