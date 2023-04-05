@@ -96,6 +96,19 @@ option{
     height: 30px;
 }
 
+.containerMedidas{
+    display: flex;
+    gap: 16px;
+}
+
 .container_price{
     margin-top: 16px;
+}
+
+@media (max-width: 450px) {
+    .containerMedidas{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
 }
