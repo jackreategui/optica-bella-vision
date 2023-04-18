@@ -13,23 +13,49 @@ const multifocal = document.querySelector('#multifocal');
 
 const precio = document.querySelector('#precio');
 
-let precioFinal = 0;
+let precioMedidas = 0;
+let porcentajePrecio = 0;
 
-const precioResinaCristalBl = 100;
-const precioResinaAr = 160;
-const precioResinaBlue = 220;
-const precioResinaSensitiveFotomateAr = 280;
-const precioResinaSensitiveFotomateBlue = 340;
-const precioResinaFotocromatica = 400;
-const precioResinaTransition = 460;
-const precioResinaTransitionAr = 520;
-const precioResinaTransitionBlue = 580;
-const precioCristalAr = 180;
-const precioCristalPhgPhb = 220;
-const precioCristalPhgPhbAr = 280;
+const preciosBase = {
+    resinaBl: 100,
+    resinaAr: 160,
+    resinaBlue: 220,
+    resinaSenAr: 280,
+    resinaSenBlue: 340,
+    resinaFoto: 400,
+    resinaTrans: 460,
+    resinaTransAr: 520,
+    resinaTransBlue: 580,
+    cristalAr: 180,
+    cristalPhg: 220,
+    cristalPhgAr: 280,
+};
+
+const precioMonturas = {
+    economico: 100,
+    calidad: 200,
+    premiun: 400,
+};
 
 const precioAumento = 10;
 const precioAumentoCil = 20;
+
+// const precioResinaCristalBl = 100;
+// const precioResinaAr = 160;
+// const precioResinaBlue = 220;
+// const precioResinaSensitiveFotomateAr = 280;
+// const precioResinaSensitiveFotomateBlue = 340;
+// const precioResinaFotocromatica = 400;
+// const precioResinaTransition = 460;
+// const precioResinaTransitionAr = 520;
+// const precioResinaTransitionBlue = 580;
+// const precioCristalAr = 180;
+// const precioCristalPhgPhb = 220;
+// const precioCristalPhgPhbAr = 280;
+
+function precioLunas(e) {
+    
+}
 
 function precioLunasEsf() {
     if (selectMedidasEsf.selectedIndex == 1 && selectMaterial.selectedIndex == 1) {
@@ -1156,8 +1182,8 @@ bifocalPlattop.addEventListener('click', () => {
         precioFinal += precioFinal * 0.8;
     } else if (bifocalPlattop.checked && selectMaterial.selectedIndex >= 4) {
         precioFinal += precioFinal * 0.5;
-    } else {
-        location.reload()
+    } else if (!bifocalPlattop.checked && selectMaterial.selectedIndex <= 3) {
+        precioFinal += precioFinal * 0.8;
     }
 
     precio.textContent = "Precio: s/." + precioFinal;
