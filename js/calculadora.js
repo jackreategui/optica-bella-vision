@@ -36,6 +36,30 @@ const preciosMonturas = {
     premiun: 400,
 };
 
+const clases = [
+    'clase0',
+    'clase1',
+    'clase2',
+    'clase3',
+    'clase4',
+    'clase5',
+    'clase6',
+    'clase7',
+    'clase8',
+    'clase9',
+    'clase10',
+    'clase11',
+    'clase12',
+    'clase13',
+    'clase14',
+    'clase15',
+    'clase16',
+    'clase17',
+    'clase18',
+];
+
+let claseLunas = undefined;
+
 const precioAumento = 10;
 const precioAumentoCil = 20;
 
@@ -52,9 +76,7 @@ const precioAumentoCil = 20;
 // const precioCristalPhgPhb = 220;
 // const precioCristalPhgPhbAr = 280;
 
-formMedidasMaterial.addEventListener('change', () => {
-    precioLunas();
-})
+formMedidasMaterial.addEventListener('change', precioLunas);
 
 function precioLunas() {
     const selectMedidasEsf = document.querySelector('#selectMedidasEsf');
@@ -66,15 +88,25 @@ function precioLunas() {
     const selectMaterial = document.querySelector('#selectMaterial');
     const material = selectMaterial.value;
     
-    for (let i = 0; i < selectMedidasEsf.options.length; i++) {
-        const element = selectMedidasEsf.options[i];
-
-        if (element.value === medidasEsf) {
-            console.log(element, medidasEsf);
+    function averiguarClase() {
+        for (let i = 0; i < clases.length; i++) {
+            if (clases[i] == medidasEsf) {
+                claseLunas = clases[i];
+            }
         }
-        
     }
+
+    averiguarClase();
+    if (medidasEsf && material) {
+        if (medidasEsf == claseLunas && material == 'resinaBl') {
+            console.log(preciosBases[material]);
+        } else if (medidasEsf == claseLunas && material == 'resinaAr') {
+            console.log(preciosBases[material]);
+        }
+    }
+    
 }
+
 
 // function precioLunasEsf() {
 //     if (selectMedidasEsf.selectedIndex == 1 && selectMaterial.selectedIndex == 1) {
