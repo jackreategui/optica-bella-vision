@@ -97,7 +97,7 @@ function precioLunas() {
     }
 
     averiguarClase();
-    if (medidasEsf && material) {
+    if (medidasEsf && material || medidasCil && material) {
         if (medidasEsf == claseLunas && material == 'resinaBl') {
             console.log(preciosBases[material]);
         } else if (medidasEsf == claseLunas && material == 'resinaAr') {
