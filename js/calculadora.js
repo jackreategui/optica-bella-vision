@@ -14,6 +14,7 @@ const precio = document.querySelector('#precio');
 let precioMedida = 0;
 let porcentajePrecio = 0;
 let precioMontura = 0;
+let precioTotal = 0;
 
 const preciosBases = {
     resinaBl: 100,
@@ -91,22 +92,90 @@ function precioLunas() {
     function averiguarClase() {
         for (let i = 0; i < clases.length; i++) {
             if (clases[i] == medidasEsf) {
-                claseLunas = clases[i];
+                claseLunas = clases.indexOf(clases[i]);
             }
         }
     }
 
     averiguarClase();
-    if (medidasEsf && material || medidasCil && material) {
+
+    //* Mejorar esto a futuro para hacer el codigo más corto
+    if (medidasEsf && material) {
         if (medidasEsf == claseLunas && material == 'resinaBl') {
-            console.log(preciosBases[material]);
+
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasEsf == claseLunas && material == 'resinaAr') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasEsf == claseLunas && material == 'resinaBlue') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasEsf == claseLunas && material == 'resinaSenAr') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasEsf == claseLunas && material == 'resinaSenBlue') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasEsf == claseLunas && material == 'resinaFoto') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasEsf == claseLunas && material == 'resinaTrans') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasEsf == claseLunas && material == 'resinaTransAr') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasEsf == claseLunas && material == 'resinaTransAr') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasEsf == claseLunas && material == 'resinaTransBlue') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasEsf == claseLunas && material == 'cristalAr') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasEsf == claseLunas && material == 'cristalPhg') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasEsf == claseLunas && material == 'cristalPhgAr') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
         }
     }
     
+    if (claseLunas > 0) {
+        if (medidasEsf) {
+            precioMedida + precioAumento;
+        } else if (medidasCil) {
+            precioMedida + precioAumentoCil;
+        }
+    }
 }
 
 function precioFinal() {
-    preciosBases[material]
+    if (!porcentajePrecio === 0) {
+        precioTotal = precioMedida + precioMontura * porcentajePrecio + (precioMedida + precioMontura);
+    } else if (precioMontura) {
+        precioTotal = precioMedida + precioMontura;
+    } else {
+        precioTotal = precioMedida;
+    }
+
+    precio.textContent = "Precio: s/." + precioTotal;
 }
 
 
