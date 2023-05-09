@@ -1,11 +1,13 @@
+const formMedidasMaterial = document.querySelector('#formMedidasMaterial');
+const formMontura = document.querySelector('#formMontura');
+
 const selectMedidasEsf = document.querySelector('#selectMedidasEsf');
 const selectMedidasCil = document.querySelector('#selectMedidasCil');
 const selectMaterial = document.querySelector('#selectMaterial');
 
-const formMedidasMaterial = document.querySelector('#formMedidasMaterial');
 const monturaEconomica = document.querySelector('#monturaEconomica');
 const monturaCalidad = document.querySelector('#monturaCalidad');
-const monturaAltaCalidad = document.querySelector('#monturaAltaCalidad');
+const monturaPremium = document.querySelector('#monturaPremium');
 
 const bifocalPlattop = document.querySelector('#bifocalPlattop');
 const bifocalInvisible = document.querySelector('#bifocalInvisible');
@@ -36,7 +38,7 @@ const preciosBases = {
 const preciosMonturas = {
     economico: 100,
     calidad: 200,
-    premiun: 400,
+    premium: 400,
 };
 
 const clases = [
@@ -1454,6 +1456,21 @@ multifocal.addEventListener('click', () => {
         precioFinal();
     }
 })
+
+formMontura.addEventListener('change', () => {
+    if (monturaEconomica.value === 'economico') {
+        precioMontura += preciosMonturas.economico;
+        precioFinal();
+    } else if (monturaCalidad.value === 'calidad') {
+        precioMontura += preciosMonturas.calidad;
+        precioFinal();
+    } else if (monturaPremium.value === 'premium') {
+        precioMontura += preciosMonturas.premium;
+        precioFinal();
+    } else {
+        
+    }
+});
 
 // Precio monturas
 // monturaEconomica.addEventListener('click', () => {
