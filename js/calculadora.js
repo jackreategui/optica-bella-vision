@@ -5,6 +5,7 @@ const selectMedidasEsf = document.querySelector('#selectMedidasEsf');
 const selectMedidasCil = document.querySelector('#selectMedidasCil');
 const selectMaterial = document.querySelector('#selectMaterial');
 
+const monturaNo = document.querySelector('#monturaNo');
 const monturaEconomica = document.querySelector('#monturaEconomica');
 const monturaCalidad = document.querySelector('#monturaCalidad');
 const monturaPremium = document.querySelector('#monturaPremium');
@@ -288,7 +289,7 @@ function precioLunas() {
 
 function precioFinal() {
     if (porcentajePrecio > 0) {
-        precioTotal = ((precioMedida + precioMontura) * porcentajePrecio) + precioMedida + precioMontura;
+        precioTotal = (precioMedida * porcentajePrecio) + precioMedida + precioMontura;
         console.log(precioTotal);
     } else {
         precioTotal = precioMedida + precioMontura;
@@ -1457,18 +1458,25 @@ multifocal.addEventListener('click', () => {
     }
 })
 
-formMontura.addEventListener('change', () => {
-    if (monturaEconomica.value === 'economico') {
+formMontura.addEventListener('change', (e) => {
+    const value = e.target.value;
+
+    if (value == 'economico') {
+        precioMontura = 0;
         precioMontura += preciosMonturas.economico;
         precioFinal();
-    } else if (monturaCalidad.value === 'calidad') {
+        console.log(preciosMonturas.calidad);
+    } else if (value == 'calidad') {
+        precioMontura = 0;
         precioMontura += preciosMonturas.calidad;
         precioFinal();
-    } else if (monturaPremium.value === 'premium') {
+    } else if (value == 'premium') {
+        precioMontura = 0;
         precioMontura += preciosMonturas.premium;
         precioFinal();
-    } else {
-        
+    } else if (value == 'monturaNo'){
+        precioMontura = 0;
+        precioFinal();
     }
 });
 
