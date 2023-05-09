@@ -40,7 +40,7 @@ const preciosMonturas = {
 const clases = [
     'clase0',
     'clase1',
-    'clase2',
+    'clase3',
     'clase3',
     'clase4',
     'clase5',
@@ -91,7 +91,7 @@ function precioLunas() {
     
     function averiguarClase() {
         for (let i = 0; i < clases.length; i++) {
-            if (clases[i] == medidasEsf) {
+            if (clases[i] == medidasEsf || clases[i] == medidasCil) {
                 claseLunas = clases.indexOf(clases[i]);
             }
         }
@@ -100,57 +100,115 @@ function precioLunas() {
     averiguarClase();
 
     //* Mejorar esto a futuro para hacer el codigo más corto
+    // Lo que estoy haciendo aca es validar el material pero no la medida
     if (medidasEsf && material) {
-        if (medidasEsf == claseLunas && material == 'resinaBl') {
+        if (medidasEsf && material == 'resinaBl') {
 
             precioMedida = preciosBases[material];
 
             precioFinal();
-        } else if (medidasEsf == claseLunas && material == 'resinaAr') {
+        } else if (medidasEsf && material == 'resinaAr') {
             precioMedida = preciosBases[material];
 
             precioFinal();
-        } else if (medidasEsf == claseLunas && material == 'resinaBlue') {
+        } else if (medidasEsf && material == 'resinaBlue') {
             precioMedida = preciosBases[material];
 
             precioFinal();
-        } else if (medidasEsf == claseLunas && material == 'resinaSenAr') {
+        } else if (medidasEsf && material == 'resinaSenAr') {
             precioMedida = preciosBases[material];
 
             precioFinal();
-        } else if (medidasEsf == claseLunas && material == 'resinaSenBlue') {
+        } else if (medidasEsf && material == 'resinaSenBlue') {
             precioMedida = preciosBases[material];
 
             precioFinal();
-        } else if (medidasEsf == claseLunas && material == 'resinaFoto') {
+        } else if (medidasEsf && material == 'resinaFoto') {
             precioMedida = preciosBases[material];
 
             precioFinal();
-        } else if (medidasEsf == claseLunas && material == 'resinaTrans') {
+        } else if (medidasEsf && material == 'resinaTrans') {
             precioMedida = preciosBases[material];
 
             precioFinal();
-        } else if (medidasEsf == claseLunas && material == 'resinaTransAr') {
+        } else if (medidasEsf && material == 'resinaTransAr') {
             precioMedida = preciosBases[material];
 
             precioFinal();
-        } else if (medidasEsf == claseLunas && material == 'resinaTransAr') {
+        } else if (medidasEsf && material == 'resinaTransAr') {
             precioMedida = preciosBases[material];
 
             precioFinal();
-        } else if (medidasEsf == claseLunas && material == 'resinaTransBlue') {
+        } else if (medidasEsf && material == 'resinaTransBlue') {
             precioMedida = preciosBases[material];
 
             precioFinal();
-        } else if (medidasEsf == claseLunas && material == 'cristalAr') {
+        } else if (medidasEsf && material == 'cristalAr') {
             precioMedida = preciosBases[material];
 
             precioFinal();
-        } else if (medidasEsf == claseLunas && material == 'cristalPhg') {
+        } else if (medidasEsf && material == 'cristalPhg') {
             precioMedida = preciosBases[material];
 
             precioFinal();
-        } else if (medidasEsf == claseLunas && material == 'cristalPhgAr') {
+        } else if (medidasEsf && material == 'cristalPhgAr') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        }
+    }
+
+    if (medidasCil && material) {
+        if (medidasCil && material == 'resinaBl') {
+
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasCil && material == 'resinaAr') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasCil && material == 'resinaBlue') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasCil && material == 'resinaSenAr') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasCil && material == 'resinaSenBlue') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasCil && material == 'resinaFoto') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasCil && material == 'resinaTrans') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasCil && material == 'resinaTransAr') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasCil && material == 'resinaTransAr') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasCil && material == 'resinaTransBlue') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasCil && material == 'cristalAr') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasCil && material == 'cristalPhg') {
+            precioMedida = preciosBases[material];
+
+            precioFinal();
+        } else if (medidasCil && material == 'cristalPhgAr') {
             precioMedida = preciosBases[material];
 
             precioFinal();
@@ -158,10 +216,74 @@ function precioLunas() {
     }
     
     if (claseLunas > 0) {
-        if (medidasEsf) {
-            precioMedida + precioAumento;
-        } else if (medidasCil) {
-            precioMedida + precioAumentoCil;
+        if (medidasEsf == 'clase1') {
+            precioMedida += precioAumento;
+            precioFinal();
+        } else if (medidasEsf == 'clase2') {
+            precioMedida += precioAumento * 2;
+            precioFinal();
+        } else if (medidasEsf == 'clase3') {
+            precioMedida += precioAumento * 3;
+            precioFinal();
+        } else if (medidasEsf == 'clase4') {
+            precioMedida += precioAumento * 4;
+            precioFinal();
+        } else if (medidasEsf == 'clase5') {
+            precioMedida += precioAumento * 5;
+            precioFinal();
+        } else if (medidasEsf == 'clase6') {
+            precioMedida += precioAumento * 6;
+            precioFinal();
+        } else if (medidasEsf == 'clase7') {
+            precioMedida += precioAumento * 7;
+            precioFinal();
+        } else if (medidasEsf == 'clase8') {
+            precioMedida += precioAumento * 8;
+            precioFinal();
+        } else if (medidasEsf == 'clase9') {
+            precioMedida += precioAumento * 9;
+            precioFinal();
+        } else if (medidasEsf == 'clase10') {
+            precioMedida += precioAumento * 10;
+            precioFinal();
+        } else if (medidasEsf == 'clase11') {
+            precioMedida += precioAumento * 11;
+            precioFinal();
+        } else if (medidasEsf == 'clase12') {
+            precioMedida += precioAumento * 12;
+            precioFinal();
+        } else if (medidasEsf == 'clase13') {
+            precioMedida += precioAumento * 13;
+            precioFinal();
+        } else if (medidasEsf == 'clase14') {
+            precioMedida += precioAumento * 14;
+            precioFinal();
+        } else if (medidasEsf == 'clase15') {
+            precioMedida += precioAumento * 15;
+            precioFinal();
+        } else if (medidasEsf == 'clase16') {
+            precioMedida += precioAumento * 16;
+            precioFinal();
+        } else if (medidasEsf == 'clase17') {
+            precioMedida += precioAumento * 17;
+            precioFinal();
+        } else if (medidasEsf == 'clase18') {
+            precioMedida += precioAumento * 18;
+            precioFinal();
+        }
+        
+        if (medidasCil == 'clase1') {
+            precioMedida += precioAumentoCil;
+            precioFinal();
+        } else if (medidasCil == 'clase2') {
+            precioMedida += precioAumentoCil * 2;
+            precioFinal();
+        } else if (medidasCil == 'clase3') {
+            precioMedida += precioAumentoCil * 3;
+            precioFinal();
+        } else if (medidasCil == 'clase4') {
+            precioMedida += precioAumentoCil * 4;
+            precioFinal();
         }
     }
 }
@@ -169,10 +291,10 @@ function precioLunas() {
 function precioFinal() {
     if (!porcentajePrecio === 0) {
         precioTotal = precioMedida + precioMontura * porcentajePrecio + (precioMedida + precioMontura);
-    } else if (precioMontura) {
-        precioTotal = precioMedida + precioMontura;
-    } else {
+    } else if (!precioMontura) {
         precioTotal = precioMedida;
+    } else {
+        precioTotal = precioMedida + precioMontura;
     }
 
     precio.textContent = "Precio: s/." + precioTotal;
