@@ -1,4 +1,6 @@
-
+const selectMedidasEsf = document.querySelector('#selectMedidasEsf');
+const selectMedidasCil = document.querySelector('#selectMedidasCil');
+const selectMaterial = document.querySelector('#selectMaterial');
 
 const formMedidasMaterial = document.querySelector('#formMedidasMaterial');
 const monturaEconomica = document.querySelector('#monturaEconomica');
@@ -80,15 +82,10 @@ const precioAumentoCil = 20;
 formMedidasMaterial.addEventListener('change', precioLunas);
 
 function precioLunas() {
-    const selectMedidasEsf = document.querySelector('#selectMedidasEsf');
     const medidasEsf = selectMedidasEsf.value;
-
-    const selectMedidasCil = document.querySelector('#selectMedidasCil');
     const medidasCil = selectMedidasCil.value;
-
-    const selectMaterial = document.querySelector('#selectMaterial');
     const material = selectMaterial.value;
-    
+
     function averiguarClase() {
         for (let i = 0; i < clases.length; i++) {
             if (clases[i] == medidasEsf || clases[i] == medidasCil) {
@@ -103,7 +100,6 @@ function precioLunas() {
     // Lo que estoy haciendo aca es validar el material pero no la medida
     if (medidasEsf && material) {
         if (medidasEsf && material == 'resinaBl') {
-
             precioMedida = preciosBases[material];
 
             precioFinal();
@@ -289,10 +285,9 @@ function precioLunas() {
 }
 
 function precioFinal() {
-    if (!porcentajePrecio === 0) {
-        precioTotal = precioMedida + precioMontura * porcentajePrecio + (precioMedida + precioMontura);
-    } else if (!precioMontura) {
-        precioTotal = precioMedida;
+    if (porcentajePrecio > 0) {
+        precioTotal = ((precioMedida + precioMontura) * porcentajePrecio) + precioMedida + precioMontura;
+        console.log(precioTotal);
     } else {
         precioTotal = precioMedida + precioMontura;
     }
@@ -1422,39 +1417,42 @@ function precioFinal() {
 // Tipo de lunas
 
 bifocalPlattop.addEventListener('click', () => {
-    if (bifocalPlattop.checked && selectMaterial.selectedIndex <= 3) {
-        precioFinal += precioFinal * 0.8;
-    } else if (bifocalPlattop.checked && selectMaterial.selectedIndex >= 4) {
-        precioFinal += precioFinal * 0.5;
-    } else if (!bifocalPlattop.checked && selectMaterial.selectedIndex <= 3) {
-        precioFinal += precioFinal * 0.8;
+    if (bifocalPlattop.checked == true && selectMaterial.selectedIndex <= 3) {
+        porcentajePrecio += 0.8;
+        precioFinal();
+    } else if (bifocalPlattop.checked == true && selectMaterial.selectedIndex >= 2){
+        porcentajePrecio += 0.5;
+        precioFinal();
+    } else if (bifocalPlattop.checked == false) {
+        porcentajePrecio = 0;
+        precioFinal();
     }
-
-    precio.textContent = "Precio: s/." + precioFinal;
 })
 
 bifocalInvisible.addEventListener('click', () => {
-    if (bifocalInvisible.checked && selectMaterial.selectedIndex <= 3) {
-        precioFinal += (precioFinal * 0.80) + 40;
-    } else if (bifocalInvisible.checked && selectMaterial.selectedIndex >= 4) {
-        precioFinal += (precioFinal * 0.50) + 40;
-    } else{
-        location.reload()
+    if (bifocalInvisible.checked == true && selectMaterial.selectedIndex <= 3) {
+        porcentajePrecio += (precioFinal * 0.80) + 40;
+        precioFinal();
+    } else if (bifocalInvisible.checked == true && selectMaterial.selectedIndex >= 2) {
+        porcentajePrecio += (precioFinal * 0.50) + 40;
+        precioFinal();
+    } else if (bifocalInvisible.checked == false) {
+        porcentajePrecio = 0;
+        precioFinal();
     }
-
-    precio.textContent = "Precio: s/." + precioFinal;
 })
 
 multifocal.addEventListener('click', () => {
-    if (multifocal.checked && selectMaterial.selectedIndex <= 3) {
-        precioFinal += precioFinal * 1.8;
-    } else if (multifocal.checked && selectMaterial.selectedIndex >= 4) {
-        precioFinal += precioFinal * 1;
-    } else {
-        location.reload()
+    if (multifocal.checked == true && selectMaterial.selectedIndex <= 3) {
+        porcentajePrecio += precioFinal * 1.8;
+        precioFinal();
+    } else if (multifocal.checked == true && selectMaterial.selectedIndex >= 2) {
+        porcentajePrecio += precioFinal * 1;
+        precioFinal();
+    } else if (multifocal.checked == false){
+        porcentajePrecio = 0;
+        precioFinal();
     }
-
-    precio.textContent = "Precio: s/." + precioFinal;
 })
 
 // Precio monturas
