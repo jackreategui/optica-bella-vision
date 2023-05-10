@@ -1,9 +1,11 @@
 const formMedidasMaterial = document.querySelector('#formMedidasMaterial');
 const formMontura = document.querySelector('#formMontura');
+const formTipo = document.querySelector('#formTipo');
 
 const selectMedidasEsf = document.querySelector('#selectMedidasEsf');
 const selectMedidasCil = document.querySelector('#selectMedidasCil');
 const selectMaterial = document.querySelector('#selectMaterial');
+const selectTipo = document.querySelector('#selectTipo');
 
 const monturaNo = document.querySelector('#monturaNo');
 const monturaEconomica = document.querySelector('#monturaEconomica');
@@ -68,6 +70,7 @@ let claseLunas = undefined;
 
 const precioAumento = 10;
 const precioAumentoCil = 20;
+const precioAumenoTipo = 40;
 
 // const precioResinaCristalBl = 100;
 // const precioResinaAr = 160;
@@ -290,8 +293,10 @@ function precioLunas() {
 function precioFinal() {
     if (porcentajePrecio > 0) {
         precioTotal = (precioMedida * porcentajePrecio) + precioMedida + precioMontura;
-        console.log(precioTotal);
-    } else {
+        if (selectTipo.selectedIndex === 2) {
+            precioTotal = (precioMedida * porcentajePrecio) + precioMedida + precioMontura + precioAumenoTipo;
+        }
+    } else{
         precioTotal = precioMedida + precioMontura;
     }
 
@@ -1419,44 +1424,78 @@ function precioFinal() {
 
 // Tipo de lunas
 
-bifocalPlattop.addEventListener('click', () => {
-    if (bifocalPlattop.checked == true && selectMaterial.selectedIndex <= 3) {
+// bifocalPlattop.addEventListener('click', () => {
+//     if (bifocalPlattop.checked == true && selectMaterial.selectedIndex <= 3) {
+//         porcentajePrecio += 0.8;
+//         precioFinal();
+//     } else if (bifocalPlattop.checked == true && selectMaterial.selectedIndex >= 2){
+//         porcentajePrecio += 0.5;
+//         precioFinal();
+//     } else if (bifocalPlattop.checked == false) {
+//         porcentajePrecio = 0;
+//         precioFinal();
+//     }
+// })
+
+// bifocalInvisible.addEventListener('click', () => {
+//     if (bifocalInvisible.checked == true && selectMaterial.selectedIndex <= 3) {
+//         porcentajePrecio += 0.80;
+//         precioMedida += 40;
+//         precioFinal();
+//     } else if (bifocalInvisible.checked == true && selectMaterial.selectedIndex >= 2) {
+//         porcentajePrecio += 0.5;
+//         precioMedida += 40;
+//         precioFinal();
+//     } else if (bifocalInvisible.checked == false) {
+//         porcentajePrecio = 0;
+//         precioAumenoTipo -= 40;
+//         precioFinal();
+//     }
+// })
+
+// multifocal.addEventListener('click', () => {
+//     if (multifocal.checked == true && selectMaterial.selectedIndex <= 3) {
+//         porcentajePrecio += precioMedida * 1.8;
+//         precioFinal();
+//     } else if (multifocal.checked == true && selectMaterial.selectedIndex >= 2) {
+//         porcentajePrecio += precioMedida * 1;
+//         precioFinal();
+//     } else if (multifocal.checked == false){
+//         porcentajePrecio = 0;
+//         precioFinal();
+//     }
+// })
+
+formTipo.addEventListener('change', (e) => {
+    const value = e.target.value;
+
+    if (value == 'bifocalPlattop') {
+        porcentajePrecio = 0;
         porcentajePrecio += 0.8;
         precioFinal();
-    } else if (bifocalPlattop.checked == true && selectMaterial.selectedIndex >= 2){
-        porcentajePrecio += 0.5;
+        if (selectMaterial.selectedIndex >= 3) {
+            porcentajePrecio = 0;
+            porcentajePrecio += 0.5;
+            precioFinal();
+        }
+    } else if (value == 'bifocalInvisible') {
+        porcentajePrecio = 0;
+        porcentajePrecio += 0.8;
         precioFinal();
-    } else if (bifocalPlattop.checked == false) {
+        if (selectMaterial.selectedIndex >= 3) {
+            porcentajePrecio = 0;
+            porcentajePrecio += 0.5;
+            precioFinal();
+        }
+    } else if (value == 'multifocal') {
+        porcentajePrecio = 0;
+        porcentajePrecio += 1.8;
+        precioFinal();
+    } else if (value == 'sinTipo'){
         porcentajePrecio = 0;
         precioFinal();
     }
-})
-
-bifocalInvisible.addEventListener('click', () => {
-    if (bifocalInvisible.checked == true && selectMaterial.selectedIndex <= 3) {
-        porcentajePrecio += (precioFinal * 0.80) + 40;
-        precioFinal();
-    } else if (bifocalInvisible.checked == true && selectMaterial.selectedIndex >= 2) {
-        porcentajePrecio += (precioFinal * 0.50) + 40;
-        precioFinal();
-    } else if (bifocalInvisible.checked == false) {
-        porcentajePrecio = 0;
-        precioFinal();
-    }
-})
-
-multifocal.addEventListener('click', () => {
-    if (multifocal.checked == true && selectMaterial.selectedIndex <= 3) {
-        porcentajePrecio += precioFinal * 1.8;
-        precioFinal();
-    } else if (multifocal.checked == true && selectMaterial.selectedIndex >= 2) {
-        porcentajePrecio += precioFinal * 1;
-        precioFinal();
-    } else if (multifocal.checked == false){
-        porcentajePrecio = 0;
-        precioFinal();
-    }
-})
+});
 
 formMontura.addEventListener('change', (e) => {
     const value = e.target.value;
@@ -1465,7 +1504,6 @@ formMontura.addEventListener('change', (e) => {
         precioMontura = 0;
         precioMontura += preciosMonturas.economico;
         precioFinal();
-        console.log(preciosMonturas.calidad);
     } else if (value == 'calidad') {
         precioMontura = 0;
         precioMontura += preciosMonturas.calidad;
