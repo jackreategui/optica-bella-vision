@@ -1473,7 +1473,7 @@ formTipo.addEventListener('change', (e) => {
         porcentajePrecio = 0;
         porcentajePrecio += 0.8;
         precioFinal();
-        if (selectMaterial.selectedIndex >= 3) {
+        if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
             porcentajePrecio = 0;
             porcentajePrecio += 0.5;
             precioFinal();
@@ -1482,15 +1482,20 @@ formTipo.addEventListener('change', (e) => {
         porcentajePrecio = 0;
         porcentajePrecio += 0.8;
         precioFinal();
-        if (selectMaterial.selectedIndex >= 3) {
+        if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
             porcentajePrecio = 0;
             porcentajePrecio += 0.5;
             precioFinal();
         }
     } else if (value == 'multifocal') {
         porcentajePrecio = 0;
-        porcentajePrecio += 1.8;
+        porcentajePrecio += 1.15;
         precioFinal();
+        if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
+            porcentajePrecio = 0;
+            porcentajePrecio += 0.95;
+            precioFinal();
+        }
     } else if (value == 'sinTipo'){
         porcentajePrecio = 0;
         precioFinal();
