@@ -85,7 +85,7 @@ const precioAumenoTipo = 40;
 // const precioCristalPhgPhb = 220;
 // const precioCristalPhgPhbAr = 280;
 
-formMedidasMaterial.addEventListener('click', precioLunas);
+formMedidasMaterial.addEventListener('change', precioLunas);
 
 function precioLunas() {
     const medidasEsf = selectMedidasEsf.value;
