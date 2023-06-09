@@ -47,7 +47,7 @@ const preciosMonturas = {
 const clases = [
     'clase0',
     'clase1',
-    'clase3',
+    'clase2',
     'clase3',
     'clase4',
     'clase5',
@@ -85,7 +85,7 @@ const precioAumenoTipo = 40;
 // const precioCristalPhgPhb = 220;
 // const precioCristalPhgPhbAr = 280;
 
-formMedidasMaterial.addEventListener('change', precioLunas);
+formMedidasMaterial.addEventListener('click', precioLunas);
 
 function precioLunas() {
     const medidasEsf = selectMedidasEsf.value;
