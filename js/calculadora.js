@@ -292,10 +292,10 @@ function precioLunas() {
 
 function precioFinal() {
     if (porcentajePrecio > 0) {
-        precioTotal = (precioMedida * porcentajePrecio) + precioMedida + precioMontura;
-        if (selectTipo.selectedIndex === 2) {
-            precioTotal = (precioMedida * porcentajePrecio) + precioMedida + precioMontura + precioAumenoTipo;
-        }
+        precioTotal = (precioMedida * porcentajePrecio / 100) + precioMedida + precioMontura;
+        // if (selectTipo.selectedIndex === 2) {
+        //     precioTotal = (precioMedida * porcentajePrecio / 100) + precioMedida + precioMontura + precioAumenoTipo;
+        // }
     } else{
         precioTotal = precioMedida + precioMontura;
     }
@@ -1471,29 +1471,29 @@ formTipo.addEventListener('change', (e) => {
 
     if (value == 'bifocalPlattop') {
         porcentajePrecio = 0;
-        porcentajePrecio += 0.8;
+        porcentajePrecio += 90;
         precioFinal();
         if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
             porcentajePrecio = 0;
-            porcentajePrecio += 0.5;
+            porcentajePrecio += 50;
             precioFinal();
         }
     } else if (value == 'bifocalInvisible') {
         porcentajePrecio = 0;
-        porcentajePrecio += 0.8;
+        porcentajePrecio += 120;
         precioFinal();
         if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
             porcentajePrecio = 0;
-            porcentajePrecio += 0.5;
+            porcentajePrecio += 70;
             precioFinal();
         }
     } else if (value == 'multifocal') {
         porcentajePrecio = 0;
-        porcentajePrecio += 1.15;
+        porcentajePrecio += 350;
         precioFinal();
         if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
             porcentajePrecio = 0;
-            porcentajePrecio += 0.95;
+            porcentajePrecio += 320;
             precioFinal();
         }
     } else if (value == 'sinTipo'){
