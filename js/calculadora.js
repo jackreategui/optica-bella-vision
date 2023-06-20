@@ -1489,11 +1489,11 @@ formTipo.addEventListener('change', (e) => {
         }
     } else if (value == 'multifocal') {
         porcentajePrecio = 0;
-        porcentajePrecio += 350;
+        porcentajePrecio += 250;
         precioFinal();
         if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
             porcentajePrecio = 0;
-            porcentajePrecio += 320;
+            porcentajePrecio += 220;
             precioFinal();
         }
     } else if (value == 'sinTipo'){
