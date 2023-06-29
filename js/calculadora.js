@@ -39,6 +39,7 @@ const preciosBases = {
 
 const preciosMonturas = {
     economico: 100,
+    intermedio: 160,
     calidad: 200,
     premium: 400,
 };
@@ -1472,29 +1473,29 @@ formTipo.addEventListener('change', (e) => {
         porcentajePrecio = 0;
         porcentajePrecio += 90;
         precioFinal();
-        if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
-            porcentajePrecio = 0;
-            porcentajePrecio += 50;
-            precioFinal();
-        }
+        // if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
+        //     porcentajePrecio = 0;
+        //     porcentajePrecio += 50;
+        //     precioFinal();
+        // }
     } else if (value == 'bifocalInvisible') {
         porcentajePrecio = 0;
         porcentajePrecio += 120;
         precioFinal();
-        if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
-            porcentajePrecio = 0;
-            porcentajePrecio += 70;
-            precioFinal();
-        }
+        // if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
+        //     porcentajePrecio = 0;
+        //     porcentajePrecio += 70;
+        //     precioFinal();
+        // }
     } else if (value == 'multifocal') {
         porcentajePrecio = 0;
         porcentajePrecio += 250;
         precioFinal();
-        if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
-            porcentajePrecio = 0;
-            porcentajePrecio += 220;
-            precioFinal();
-        }
+        // if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
+        //     porcentajePrecio = 0;
+        //     porcentajePrecio += 220;
+        //     precioFinal();
+        // }
     } else if (value == 'sinTipo'){
         porcentajePrecio = 0;
         precioFinal();
@@ -1507,6 +1508,10 @@ formMontura.addEventListener('change', (e) => {
     if (value == 'economico') {
         precioMontura = 0;
         precioMontura += preciosMonturas.economico;
+        precioFinal();
+    } else if (value == 'intermedio') {
+        precioMontura = 0;
+        precioMontura += preciosMonturas.intermedio;
         precioFinal();
     } else if (value == 'calidad') {
         precioMontura = 0;
