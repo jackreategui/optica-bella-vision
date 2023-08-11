@@ -14,6 +14,14 @@
     font-family: 'Inter', sans-serif;
 }
 
+.medias_cil h3{
+    color: var(--primario);
+}
+
+.medidas_cilindro_btn{
+    border: 3px solid var(--primario);
+}
+
 .calculadora_container{
     margin: 0 auto;
     padding: 18px 16px;
