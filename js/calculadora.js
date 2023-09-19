@@ -7,6 +7,9 @@ const selectMedidasCil = document.querySelector('#selectMedidasCil');
 const selectMaterial = document.querySelector('#selectMaterial');
 const selectTipo = document.querySelector('#selectTipo');
 
+const lenteContacto = document.getElementById('lenteContacto');
+const altoIndice = document.getElementById('altoIndice');
+
 const monturaNo = document.querySelector('#monturaNo');
 const monturaEconomica = document.querySelector('#monturaEconomica');
 const monturaCalidad = document.querySelector('#monturaCalidad');
@@ -22,6 +25,8 @@ let precioMedida = 0;
 let porcentajePrecio = 0;
 let precioMontura = 0;
 let precioTotal = 0;
+let precioLenteContacto = 0;
+let precioAltoIndice = 0;
 
 const preciosBases = {
     resinaBl: 100,
@@ -217,6 +222,7 @@ function precioLunas() {
         }
     }
     
+    // Precios por medidas
     if (claseLunas > 0) {
         if (medidasEsf == 'clase1') {
             precioMedida += precioAumento;
@@ -233,44 +239,45 @@ function precioLunas() {
         } else if (medidasEsf == 'clase5') {
             precioMedida += precioAumento * 5;
             precioFinal();
+             // Multiplico el precio si supera la clase 6
         } else if (medidasEsf == 'clase6') {
-            precioMedida += precioAumento * 6;
+            precioMedida += (precioAumento * 6) * 2 ;
             precioFinal();
         } else if (medidasEsf == 'clase7') {
-            precioMedida += precioAumento * 7;
+            precioMedida += (precioAumento * 7) * 2;
             precioFinal();
         } else if (medidasEsf == 'clase8') {
-            precioMedida += precioAumento * 8;
+            precioMedida += (precioAumento * 8) * 3;
             precioFinal();
         } else if (medidasEsf == 'clase9') {
-            precioMedida += precioAumento * 9;
+            precioMedida += (precioAumento * 9) * 3;
             precioFinal();
         } else if (medidasEsf == 'clase10') {
-            precioMedida += precioAumento * 10;
+            precioMedida += (precioAumento * 10) * 3.5;
             precioFinal();
         } else if (medidasEsf == 'clase11') {
-            precioMedida += precioAumento * 11;
+            precioMedida += (precioAumento * 11) * 3.5;
             precioFinal();
         } else if (medidasEsf == 'clase12') {
-            precioMedida += precioAumento * 12;
+            precioMedida += (precioAumento * 12) * 3.5;
             precioFinal();
         } else if (medidasEsf == 'clase13') {
-            precioMedida += precioAumento * 13;
+            precioMedida += (precioAumento * 13) * 4;
             precioFinal();
         } else if (medidasEsf == 'clase14') {
-            precioMedida += precioAumento * 14;
+            precioMedida += (precioAumento * 14) * 4;
             precioFinal();
         } else if (medidasEsf == 'clase15') {
-            precioMedida += precioAumento * 15;
+            precioMedida += (precioAumento * 15) * 5;
             precioFinal();
         } else if (medidasEsf == 'clase16') {
-            precioMedida += precioAumento * 16;
+            precioMedida += (precioAumento * 16) * 5;
             precioFinal();
         } else if (medidasEsf == 'clase17') {
-            precioMedida += precioAumento * 17;
+            precioMedida += (precioAumento * 17) * 5;
             precioFinal();
         } else if (medidasEsf == 'clase18') {
-            precioMedida += precioAumento * 18;
+            precioMedida += (precioAumento * 18) * 5;
             precioFinal();
         }
         
@@ -290,14 +297,50 @@ function precioLunas() {
     }
 }
 
+// Precio lente de contacto
+lenteContacto.addEventListener('change', (event) => {
+    if (event.target.checked) {
+        precioLenteContacto = 0;
+        precioLenteContacto += 300;
+        precioFinal()
+    } else {
+            precioLenteContacto = 0;
+            precioFinal()
+        }
+});
+    
+// Precio con alto indice
+altoIndice.addEventListener('change', (event) => {
+    if (event.target.checked) {
+        precioAltoIndice = 0;
+        precioAltoIndice += 1.8;
+        precioFinal()
+        console.log(precioAltoIndice);
+    } else {
+            precioAltoIndice = 0;
+            precioFinal()
+            console.log(precioAltoIndice);
+        }
+    });
+
 function precioFinal() {
     if (porcentajePrecio > 0) {
+        // Si el porcentaje de precio o el tipo de luna cambia entonces se usara este calculo, si no es asi. se hara el calculo siguiente.
         precioTotal = (precioMedida * porcentajePrecio / 100) + precioMedida + precioMontura;
-        // if (selectTipo.selectedIndex === 2) {
-        //     precioTotal = (precioMedida * porcentajePrecio / 100) + precioMedida + precioMontura + precioAumenoTipo;
-        // }
+
+    } else if(precioAltoIndice > 0) {
+        precioTotal = ((precioMedida * porcentajePrecio / 100) + precioMedida + precioMontura) * precioAltoIndice;
+        if (porcentajePrecio > 0){
+            precioTotal = ((precioMedida * porcentajePrecio / 100) + precioMedida + precioMontura) * precioAltoIndice;
+
+        } else{
+            precioTotal = (precioMedida + precioMontura + precioLenteContacto) * precioAltoIndice;
+    
+        }
+
     } else{
-        precioTotal = precioMedida + precioMontura;
+        precioTotal = precioMedida + precioMontura + precioLenteContacto;
+
     }
 
     precio.textContent = "Precio: s/." + precioTotal;
