@@ -301,7 +301,7 @@ function precioLunas() {
 lenteContacto.addEventListener('change', (event) => {
     if (event.target.checked) {
         precioLenteContacto = 0;
-        precioLenteContacto += 300;
+        precioLenteContacto += 400;
         precioFinal()
     } else {
             precioLenteContacto = 0;
