@@ -309,20 +309,6 @@ lenteContacto.addEventListener('change', (event) => {
         }
 });
     
-// Precio con alto indice
-altoIndice.addEventListener('change', (event) => {
-    if (event.target.checked) {
-        precioAltoIndice = 0;
-        precioAltoIndice += 1.8;
-        precioFinal()
-        console.log(precioAltoIndice);
-    } else {
-            precioAltoIndice = 0;
-            precioFinal()
-            console.log(precioAltoIndice);
-        }
-    });
-
 function precioFinal() {
     if (porcentajePrecio > 0) {
         // Si el porcentaje de precio o el tipo de luna cambia entonces se usara este calculo, si no es asi. se hara el calculo siguiente.
@@ -346,6 +332,17 @@ function precioFinal() {
     precio.textContent = "Precio: s/." + precioTotal;
 }
 
+// Precio con alto indice
+altoIndice.addEventListener('change', (event) => {
+    if (event.target.checked) {
+        precioAltoIndice = 0;
+        precioAltoIndice += 1.8;
+        precioFinal()
+    } else {
+            precioAltoIndice = 0;
+            precioFinal()
+        }
+    });
 
 // function precioLunasEsf() {
 //     if (selectMedidasEsf.selectedIndex == 1 && selectMaterial.selectedIndex == 1) {
@@ -1534,13 +1531,25 @@ formTipo.addEventListener('change', (e) => {
         porcentajePrecio = 0;
         porcentajePrecio += 250;
         precioFinal();
-        // if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
-        //     porcentajePrecio = 0;
-        //     porcentajePrecio += 220;
-        //     precioFinal();
-        // }
+
     } else if (value == 'sinTipo'){
         porcentajePrecio = 0;
+        precioFinal();
+    }
+
+    if (value === 'Normal') {
+        precioFinal();
+    } else if (value === 'Aberracion1') {
+        porcentajePrecio = 0;
+        porcentajePrecio += 300;
+        precioFinal();
+    } else if (value === 'Aberracion2') {
+        porcentajePrecio = 0;
+        porcentajePrecio += 350;
+        precioFinal();
+    } else if (value === 'Aberracion3') {
+        porcentajePrecio = 0;
+        porcentajePrecio += 450;
         precioFinal();
     }
 });
