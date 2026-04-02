@@ -97,11 +97,13 @@
             border-color: #fb923c;
             background-color: rgba(251, 146, 60, 0.04);
         }
+
         .select-wrapper:has(#selectAberracion) .select-custom-ui:hover,
         .select-wrapper:has(#selectAberracion) .select-custom-ui.active {
             border-color: #f97316;
             box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
         }
+
         /* Mobile: centrar select buttons */
         @media (max-width: 640px) {
             .select-custom-ui {
@@ -149,7 +151,8 @@
                         <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Medidas</h2>
                         <div class="grid grid-cols-2 gap-4">
                             <div class="space-y-2">
-                                <h3 class="font-bold text-dark-blue/60 text-xs uppercase tracking-widest pl-1">Esférico</h3>
+                                <h3 class="font-bold text-dark-blue/60 text-xs uppercase tracking-widest pl-1">Esférico
+                                </h3>
                                 <select name="selec" id="selectMedidasEsf" class="select-custom">
                                     <option value="">Selecciona</option>
                                     <option value="clase0">0 - 1.50</option>
@@ -189,7 +192,8 @@
 
                     <!-- Material y protecciones -->
                     <div class="space-y-4">
-                        <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Material y protecciones</h2>
+                        <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Material y
+                            protecciones</h2>
                         <select name="selec" id="selectMaterial" class="select-custom">
                             <option value="resinaBl" id="resinaBl" selected>Resina/Cristal Blanco</option>
                             <option value="resinaAr" id="resinaAr">Resina AR</option>
@@ -211,11 +215,13 @@
                 <form class="bg-white p-8 md:p-10 rounded-[3rem] shadow-premium space-y-8 border border-gray-100"
                     id="formTipo">
                     <div class="space-y-6">
-                        <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Características especiales</h2>
+                        <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Características
+                            especiales</h2>
 
                         <!-- Tipo de luna -->
                         <div class="space-y-2">
-                            <h3 class="font-bold text-dark-blue/60 text-xs uppercase tracking-widest pl-1">Tipo de luna</h3>
+                            <h3 class="font-bold text-dark-blue/60 text-xs uppercase tracking-widest pl-1">Tipo de luna
+                            </h3>
                             <select name="selec" id="selectTipo" class="select-custom">
                                 <option id="TipoNo" value="sinTipo">Monofocal</option>
                                 <option id="bifocalPlattop" value="bifocalPlattop">Bifocal Plattop</option>
@@ -226,8 +232,11 @@
 
                         <!-- Aberraciones (solo visible con Multifocal) -->
                         <div id="aberracionesGroup" class="space-y-2 hidden">
-                            <h3 class="font-bold text-orange-500 text-xs uppercase tracking-widest pl-1 flex items-center gap-1.5">
-                                <svg class="w-3 h-3 fill-orange-500" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+                            <h3
+                                class="font-bold text-orange-500 text-xs uppercase tracking-widest pl-1 flex items-center gap-1.5">
+                                <svg class="w-3 h-3 fill-orange-500" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="12" />
+                                </svg>
                                 Aberraciones
                             </h3>
                             <select name="selec" id="selectAberracion" class="select-custom">
@@ -242,11 +251,12 @@
                     <div class="grid grid-cols-1 gap-4">
                         <!-- Alto Índice (select) — PRIMERO -->
                         <div class="space-y-2">
-                            <h3 class="font-bold text-dark-blue/60 text-xs uppercase tracking-widest pl-1">Alto Índice <span class="normal-case text-dark-blue/40 font-medium">(Más delgadas)</span></h3>
+                            <h3 class="font-bold text-dark-blue/60 text-xs uppercase tracking-widest pl-1">Alto Índice
+                                <span class="normal-case text-dark-blue/40 font-medium">(Más delgadas)</span></h3>
                             <select name="selec" id="selectAltoIndice" class="select-custom">
-                                <option value="1.50" selected>1.50 — Estándar (base, sin costo adicional)</option>
-                                <option value="1.64">1.64 — Delgada (260% del precio total)</option>
-                                <option value="1.74">1.74 — Ultra delgada (280% del precio total)</option>
+                                <option value="1.50" selected>1.50 — Estándar</option>
+                                <option value="1.64">1.64 — Delgada</option>
+                                <option value="1.74">1.74 — Muy delgada</option>
                             </select>
                         </div>
 
