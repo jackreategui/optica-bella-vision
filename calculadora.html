@@ -54,7 +54,7 @@
                 @apply relative w-full;
             }
             .select-custom-ui {
-                @apply w-full bg-white border-2 border-transparent hover:border-primario/30 rounded-2xl px-6 py-4 outline-none transition-all duration-300 font-bold text-dark-blue cursor-pointer flex justify-between items-center shadow-md hover:shadow-lg;
+                @apply w-full bg-white border-2 border-transparent hover:border-primario/30 rounded-2xl px-3 py-2.5 md:px-6 md:py-4 outline-none transition-all duration-300 font-bold text-dark-blue text-sm md:text-base cursor-pointer flex justify-between items-center shadow-md hover:shadow-lg;
             }
             .select-custom-ui.active {
                 @apply border-primario bg-white shadow-xl;
@@ -66,7 +66,7 @@
                 @apply opacity-100 visible scale-100;
             }
             .select-option-ui {
-                @apply px-6 py-4 font-semibold text-dark-blue hover:bg-primario hover:text-white transition-colors cursor-pointer border-b border-gray-50 last:border-none;
+                @apply px-4 py-3 md:px-6 md:py-4 font-semibold text-sm text-dark-blue hover:bg-primario hover:text-white transition-colors cursor-pointer border-b border-gray-50 last:border-none;
             }
             .select-option-ui.selected {
                 @apply bg-primario/10 text-primario;
@@ -76,7 +76,7 @@
             }
 
             .checkbox-label {
-                @apply flex items-center justify-between w-full bg-secundario/30 hover:bg-secundario/50 border-2 border-transparent hover:border-primario/30 rounded-2xl px-6 py-4 transition-all duration-300 cursor-pointer;
+                @apply flex items-center justify-between w-full bg-secundario/30 hover:bg-secundario/50 border-2 border-transparent hover:border-primario/30 rounded-2xl px-3 py-2.5 md:px-6 md:py-4 transition-all duration-300 cursor-pointer;
             }
             /* Toast de notificación de error */
             .toast-error {
@@ -116,7 +116,7 @@
     </div>
     <!-- Navigation removed as requested -->
 
-    <main class="container mx-auto px-6 py-12 max-w-4xl">
+    <main class="container mx-auto px-6 py-12 max-w-4xl pb-28 md:pb-12">
         <header class="text-center mb-16 space-y-4">
             <h1 class="text-5xl font-black text-dark-blue tracking-tight">Calculadora de <span
                     class="text-primario italic">precios</span></h1>
@@ -129,7 +129,7 @@
                     id="formMedidasMaterial">
                     <div class="space-y-6">
                         <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Medidas</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="grid grid-cols-2 gap-4">
                             <div class="space-y-2 text-center sm:text-left">
                                 <h3 class="font-bold text-dark-blue/60 text-xs uppercase tracking-widest pl-1">Esfericos
                                 </h3>
@@ -195,7 +195,7 @@
                     id="formTipo">
                     <div class="space-y-6">
                         <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Tipo de luna</h2>
-                        <div class="grid grid-cols-1 gap-4">
+                        <div class="grid grid-cols-2 gap-4">
                             <select name="selec" id="selectTipo" class="select-custom">
                                 <option id="TipoNo" value="sinTipo">Monofocal</option>
                                 <option id="bifocalPlattop" value="bifocalPlattop">Bifocal Plattop</option>
@@ -243,18 +243,25 @@
             </div>
         </div>
 
-        <!-- Price Result Section -->
-        <div class="mt-20 text-center">
-            <div
-                class="inline-block bg-dark-blue text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden group hover:scale-105 transition-transform duration-500">
-                <div
-                    class="absolute top-0 right-0 w-32 h-32 bg-primario/20 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primario/40 transition-colors">
-                </div>
+        <!-- Price Result: Fixed bar on mobile, centered block on desktop -->
+        <!-- Mobile: hidden in flow -->
+        <div class="hidden md:block mt-20 text-center">
+            <div class="inline-block bg-dark-blue text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden group hover:scale-105 transition-transform duration-500">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primario/20 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primario/40 transition-colors"></div>
                 <h2 class="text-xl font-bold tracking-widest uppercase opacity-60 mb-2">Total Estimado</h2>
-                <div class="text-6xl md:text-7xl font-black text-primario tracking-tighter" id="precio">s/.0</div>
-                <p class="mt-4 text-terciario font-medium text-sm">* Precios sujetos a variaciones según stock y medidas
-                    finales.</p>
+                <div class="text-7xl font-black text-primario tracking-tighter" id="precio">s/.0</div>
+                <p class="mt-4 text-terciario font-medium text-sm">* Precios sujetos a variaciones según stock y medidas finales.</p>
             </div>
+        </div>
+
+        <!-- Mobile Fixed Bottom Bar -->
+        <div class="fixed md:hidden bottom-0 left-0 right-0 z-[200] bg-dark-blue text-white px-6 py-4 flex items-center justify-between shadow-2xl border-t border-white/10">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-primario/20 rounded-full blur-2xl -mr-8 -mt-8 pointer-events-none"></div>
+            <div>
+                <p class="text-xs font-bold tracking-widest uppercase opacity-50 leading-none mb-1">Total Estimado</p>
+                <div class="text-3xl font-black text-primario tracking-tighter" id="precioMobile">s/.0</div>
+            </div>
+            <p class="text-[10px] text-terciario/60 font-medium max-w-[140px] text-right leading-snug">* Sujeto a variaciones según stock y medidas.</p>
         </div>
 
         <!-- <div class="text-center mt-12">

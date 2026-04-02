@@ -192,7 +192,10 @@ function actualizarPrecio() {
         ? precioTotal
         : precioTotal.toFixed(2);
 
+    // Actualizar ambos displays (desktop e móvil)
     precioDisplay.textContent = `s/.${precioFormateado}`;
+    const precioMobile = document.querySelector('#precioMobile');
+    if (precioMobile) precioMobile.textContent = `s/.${precioFormateado}`;
 }
 
 // -------------------------------------------------------
