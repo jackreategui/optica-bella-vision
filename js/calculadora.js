@@ -1,521 +1,321 @@
+/**
+ * ============================================================
+ * Calculadora de Precios - Óptica Bella Visión
+ * ============================================================
+ * ESTRUCTURA DEL PRECIO FINAL:
+ *   subtotal = precioMedida + recargoTipo + recargoAber + precioMontura + precioLenteContacto
+ *   Si "Alto Índice": precioTotal = subtotal * 1.8
+ * ============================================================
+ */
+
+// -------------------------------------------------------
+// 1. REFERENCIAS AL DOM
+// -------------------------------------------------------
+
 const formMedidasMaterial = document.querySelector('#formMedidasMaterial');
-const formMontura = document.querySelector('#formMontura');
-const formTipo = document.querySelector('#formTipo');
+const formMontura         = document.querySelector('#formMontura');
+const formTipo            = document.querySelector('#formTipo');
 
 const selectMedidasEsf = document.querySelector('#selectMedidasEsf');
 const selectMedidasCil = document.querySelector('#selectMedidasCil');
-const selectMaterial = document.querySelector('#selectMaterial');
-const selectTipo = document.querySelector('#selectTipo');
+const selectMaterial   = document.querySelector('#selectMaterial');
+const selectTipo       = document.querySelector('#selectTipo');
+const selectAberracion = document.querySelector('#selectAberracion');
 
 const lenteContacto = document.getElementById('lenteContacto');
-const altoIndice = document.getElementById('altoIndice');
+const altoIndice    = document.getElementById('altoIndice');
 
-const monturaNo = document.querySelector('#monturaNo');
-const monturaEconomica = document.querySelector('#monturaEconomica');
-const monturaCalidad = document.querySelector('#monturaCalidad');
-const monturaPremium = document.querySelector('#monturaPremium');
+const precioDisplay = document.querySelector('#precio');
 
-const bifocalPlattop = document.querySelector('#bifocalPlattop');
-const bifocalInvisible = document.querySelector('#bifocalInvisible');
-const multifocal = document.querySelector('#multifocal');
+// -------------------------------------------------------
+// 2. TABLAS DE PRECIOS (soles peruanos)
+// -------------------------------------------------------
 
-const precio = document.querySelector('#precio');
-
-let precioMedida = 0;
-let porcentajePrecio = 0;
-let precioMontura = 0;
-let precioTotal = 0;
-let precioLenteContacto = 0;
-let precioAltoIndice = 0;
-
+/** Precio base de cada material (par de lunas), sin graduación. */
 const preciosBases = {
-    resinaBl: 100,
-    resinaAr: 160,
-    resinaBlue: 220,
-    resinaSenAr: 280,
-    resinaSenBlue: 340,
-    resinaFoto: 630,
+    resinaBl:        100,
+    resinaAr:        160,
+    resinaBlue:      220,
+    resinaSenAr:     280,
+    resinaSenBlue:   340,
+    resinaFoto:      630,
     resinaTransBlue: 900,
-    cristalAr: 180,
-    cristalPhg: 220,
-    cristalPhgAr: 280,
+    cristalAr:       180,
+    cristalPhg:      220,
+    cristalPhgAr:    280,
 };
 
+/** Precio fijo de cada tipo de montura. */
 const preciosMonturas = {
-    economico: 100,
+    economico:  100,
     intermedio: 160,
-    calidad: 200,
-    premium: 400,
+    calidad:    200,
+    premium:    400,
 };
 
-const clases = [
-    'clase0',
-    'clase1',
-    'clase2',
-    'clase3',
-    'clase4',
-    'clase5',
-    'clase6',
-    'clase7',
-    'clase8',
-    'clase9',
-    'clase10',
-    'clase11',
-    'clase12',
-    'clase13',
-    'clase14',
-    'clase15',
-    'clase16',
-    'clase17',
-    'clase18',
-];
+/** Recargo en soles para bifocales y multifocales (se SUMA, no es porcentaje). */
+const recargoTipoLuna = {
+    sinTipo:          0,
+    bifocalPlattop:   90,
+    bifocalInvisible: 120,
+    multifocal:       250,
+};
 
-let claseLunas = undefined;
+/** Recargo en soles por nivel de aberración / calidad de fabricación. */
+const recargoAberracion = {
+    Normal:      0,
+    Aberracion1: 300,
+    Aberracion2: 350,
+    Aberracion3: 450,
+};
 
-const precioAumento = 10;
-const precioAumentoCil = 20;
-const precioAumenoTipo = 40;
+// -------------------------------------------------------
+// 3. INCREMENTO DE PRECIO POR GRADUACIÓN
+// -------------------------------------------------------
 
-// const precioResinaCristalBl = 100;
-// const precioResinaAr = 160;
-// const precioResinaBlue = 220;
-// const precioResinaSensitiveFotomateAr = 280;
-// const precioResinaSensitiveFotomateBlue = 340;
-// const precioResinaFotocromatica = 400;
-// const precioResinaTransition = 460;
-// const precioResinaTransitionAr = 520;
-// const precioResinaTransitionBlue = 580;
-// const precioCristalAr = 180;
-// const precioCristalPhgPhb = 220;
-// const precioCristalPhgPhbAr = 280;
+const AUMENTO_ESF = 10; // soles de aumento por clase esférica
+const AUMENTO_CIL = 20; // soles de aumento por clase cilíndrica
 
-formMedidasMaterial.addEventListener('change', precioLunas);
+/**
+ * Calcula el recargo por clase esférica.
+ * Clases 0-5: lineal. 6-7: x2. 8-9: x3. 10-12: x3.5. 13-14: x4. 15+: x5.
+ */
+function calcularRecargoEsf(claseIndex) {
+    if (claseIndex <= 0)  return 0;
+    if (claseIndex <= 5)  return AUMENTO_ESF * claseIndex;
+    if (claseIndex <= 7)  return AUMENTO_ESF * claseIndex * 2;
+    if (claseIndex <= 9)  return AUMENTO_ESF * claseIndex * 3;
+    if (claseIndex <= 12) return AUMENTO_ESF * claseIndex * 3.5;
+    if (claseIndex <= 14) return AUMENTO_ESF * claseIndex * 4;
+    return AUMENTO_ESF * claseIndex * 5;
+}
 
-function precioLunas() {
-    const medidasEsf = selectMedidasEsf.value;
-    const medidasCil = selectMedidasCil.value;
-    const material = selectMaterial.value;
+/** Calcula el recargo por clase cilíndrica (incremento lineal). */
+function calcularRecargoCil(claseIndex) {
+    if (claseIndex <= 0) return 0;
+    return AUMENTO_CIL * claseIndex;
+}
 
-    function averiguarClase() {
-        for (let i = 0; i < clases.length; i++) {
-            if (clases[i] == medidasEsf || clases[i] == medidasCil) {
-                claseLunas = clases.indexOf(clases[i]);
-            }
-        }
-    }
+/**
+ * Convierte el valor del select (ej. "clase3") en su índice numérico.
+ * @returns {number} Índice, o -1 si el valor no es válido.
+ */
+function claseAIndice(claseStr) {
+    if (!claseStr || !claseStr.startsWith('clase')) return -1;
+    return parseInt(claseStr.replace('clase', ''), 10);
+}
 
-    averiguarClase();
+// -------------------------------------------------------
+// 4. ESTADO GLOBAL DE LA CALCULADORA
+// -------------------------------------------------------
 
-    //* Mejorar esto a futuro para hacer el codigo más corto
-    // Lo que estoy haciendo aca es validar el material pero no la medida
-    if (medidasEsf && material) {
-        if (medidasEsf && material == 'resinaBl') {
-            precioMedida = preciosBases[material];
+let precioMedida        = 0;     // Precio base del material + recargo de graduación
+let precioMontura       = 0;     // Precio de la montura seleccionada
+let precioLenteContacto = 0;     // Cargo adicional por lente de contacto
+let esAltoIndice        = false; // Multiplica el subtotal por 1.8
 
-            precioFinal();
-        } else if (medidasEsf && material == 'resinaAr') {
-            precioMedida = preciosBases[material];
+let recargoTipo = 0; // Recargo por tipo de luna (bifocal, multifocal)
+let recargoAber = 0; // Recargo por nivel de aberración
 
-            precioFinal();
-        } else if (medidasEsf && material == 'resinaBlue') {
-            precioMedida = preciosBases[material];
+// -------------------------------------------------------
+// 5. SISTEMA DE TOAST DE ERROR (Premium — sin alert())
+// -------------------------------------------------------
 
-            precioFinal();
-        } else if (medidasEsf && material == 'resinaSenAr') {
-            precioMedida = preciosBases[material];
+let toastTimeout = null; // Para cancelar el cierre automático si se remuestra
 
-            precioFinal();
-        } else if (medidasEsf && material == 'resinaSenBlue') {
-            precioMedida = preciosBases[material];
+/**
+ * Muestra un toast de error estilizado en la esquina inferior derecha.
+ * Se cierra automáticamente después de 4 segundos.
+ * @param {string} mensaje - Texto descriptivo del error.
+ */
+function mostrarError(mensaje) {
+    const toast   = document.getElementById('toastError');
+    const toastMsg = document.getElementById('toastMessage');
 
-            precioFinal();
-        } else if (medidasEsf && material == 'resinaFoto') {
-            precioMedida = preciosBases[material];
+    if (!toast || !toastMsg) return;
 
-            precioFinal();
-        } else if (medidasEsf && material == 'resinaTrans') {
-            precioMedida = preciosBases[material];
+    // Actualizar mensaje y mostrar
+    toastMsg.textContent = mensaje;
+    toast.classList.add('show');
 
-            precioFinal();
-        } else if (medidasEsf && material == 'resinaTransAr') {
-            precioMedida = preciosBases[material];
+    // Cancelar cierre previo si el toast ya estaba visible
+    if (toastTimeout) clearTimeout(toastTimeout);
 
-            precioFinal();
-        } else if (medidasEsf && material == 'resinaTransAr') {
-            precioMedida = preciosBases[material];
+    // Cerrar automáticamente después de 4 segundos
+    toastTimeout = setTimeout(() => cerrarToast(), 4000);
+}
 
-            precioFinal();
-        } else if (medidasEsf && material == 'resinaTransBlue') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf && material == 'cristalAr') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf && material == 'cristalPhg') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf && material == 'cristalPhgAr') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        }
-    }
-
-    if (medidasCil && material) {
-        if (medidasCil && material == 'resinaBl') {
-
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil && material == 'resinaAr') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil && material == 'resinaBlue') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil && material == 'resinaSenAr') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil && material == 'resinaSenBlue') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil && material == 'resinaFoto') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil && material == 'resinaTrans') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil && material == 'resinaTransAr') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil && material == 'resinaTransAr') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil && material == 'resinaTransBlue') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil && material == 'cristalAr') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil && material == 'cristalPhg') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil && material == 'cristalPhgAr') {
-            precioMedida = preciosBases[material];
-
-            precioFinal();
-        }
-    }
-    
-    // Precios por medidas
-    if (claseLunas >= 0) {
-        // Lunas esfericas
-        if (medidasEsf == 'clase0') {
-            precioMedida = 0;
-            precioMedida = preciosBases[material];
-            
-            precioFinal();
-            
-        } else if (medidasEsf == 'clase1') {
-            precioMedida = 0;
-            precioMedida += precioAumento + preciosBases[material];
-    
-            precioFinal();
-        } else if (medidasEsf == 'clase2') {
-            precioMedida = 0;
-            precioMedida += precioAumento * 2 + preciosBases[material];
-            
-            precioFinal();
-        } else if (medidasEsf == 'clase3') {
-            precioMedida = 0;
-            precioMedida += precioAumento * 3 + preciosBases[material];
-            
-            precioFinal();
-        } else if (medidasEsf == 'clase4') {
-            precioMedida = 0;
-            precioMedida += precioAumento * 4 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf == 'clase5') {
-            precioMedida = 0;
-            precioMedida += precioAumento * 5 + preciosBases[material];
-
-            precioFinal();
-             //* Multiplico el precio si supera la clase 6
-        } else if (medidasEsf == 'clase6') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 6) * 2 + preciosBases[material];
-            
-            precioFinal();
-        } else if (medidasEsf == 'clase7') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 7) * 2 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf == 'clase8') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 8) * 3 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf == 'clase9') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 9) * 3 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf == 'clase10') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 10) * 3.5 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf == 'clase11') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 11) * 3.5 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf == 'clase12') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 12) * 3.5 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf == 'clase13') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 13) * 4 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf == 'clase14') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 14) * 4 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf == 'clase15') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 15) * 5 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf == 'clase16') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 16) * 5 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf == 'clase17') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 17) * 5 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasEsf == 'clase18') {
-            precioMedida = 0;
-            precioMedida += (precioAumento * 18) * 5 + preciosBases[material];
-
-            precioFinal();
-        }
-        
-
-        // Medidas cilindricas
-        if (medidasCil == 'clase0') {
-            precioMedida = 0;
-            precioMedida = preciosBases[material];
-            
-            precioFinal();
-        } else if (medidasCil == 'clase1') {
-            precioMedida = 0;
-            precioMedida += precioAumentoCil + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil == 'clase2') {
-            precioMedida = 0;
-            precioMedida += precioAumentoCil * 2 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil == 'clase3') {
-            precioMedida = 0;
-            precioMedida += precioAumentoCil * 3 + preciosBases[material];
-
-            precioFinal();
-        } else if (medidasCil == 'clase4') {
-            precioMedida = 0;
-            precioMedida += precioAumentoCil * 4 + preciosBases[material];
-
-            precioFinal();
-        }
+/**
+ * Oculta el toast de error. También disponible globalmente para el botón "X".
+ */
+function cerrarToast() {
+    const toast = document.getElementById('toastError');
+    if (toast) toast.classList.remove('show');
+    if (toastTimeout) {
+        clearTimeout(toastTimeout);
+        toastTimeout = null;
     }
 }
 
-// Precio lente de contacto
-lenteContacto.addEventListener('change', (event) => {
-    if (event.target.checked) {
-        precioLenteContacto = 0;
-        precioLenteContacto += 500;
+// Exponer funciones al ámbito global para que el onclick del HTML funcione
+window.cerrarToast = cerrarToast;
 
-        precioFinal()
-    } else {
-            precioLenteContacto = 0;
-            precioFinal()
-        }
+// -------------------------------------------------------
+// 6. VALIDACIÓN: ¿Hay al menos una medida seleccionada?
+// -------------------------------------------------------
+
+/**
+ * Verifica si el usuario ha seleccionado al menos una medida esférica o cilíndrica.
+ * @returns {boolean} true si hay medida, false si no.
+ */
+function tieneMedidaSeleccionada() {
+    const tieneEsf = selectMedidasEsf.value && selectMedidasEsf.value.startsWith('clase');
+    const tieneCil = selectMedidasCil.value && selectMedidasCil.value.startsWith('clase');
+    return tieneEsf || tieneCil;
+}
+
+// -------------------------------------------------------
+// 7. FUNCIÓN PRINCIPAL: CALCULAR Y MOSTRAR PRECIO
+// -------------------------------------------------------
+
+/**
+ * Recalcula el precio total y actualiza el display.
+ * Fórmula: subtotal = medida + tipo + aberración + montura + lenteContacto
+ * Si altoIndice: total = subtotal * 1.8
+ */
+function actualizarPrecio() {
+    const subtotal    = precioMedida + recargoTipo + recargoAber + precioMontura + precioLenteContacto;
+    const precioTotal = esAltoIndice ? subtotal * 1.8 : subtotal;
+
+    // Mostrar entero si no tiene decimales, o con 2 decimales si los tiene
+    const precioFormateado = Number.isInteger(precioTotal)
+        ? precioTotal
+        : precioTotal.toFixed(2);
+
+    precioDisplay.textContent = `s/.${precioFormateado}`;
+}
+
+// -------------------------------------------------------
+// 8. LISTENER: MEDIDAS Y MATERIAL
+// -------------------------------------------------------
+
+/**
+ * Recalcula el precio base cada vez que cambia una medida o el material.
+ */
+formMedidasMaterial.addEventListener('change', () => {
+    const material    = selectMaterial.value;
+    const claseEsfStr = selectMedidasEsf.value;
+    const claseCilStr = selectMedidasCil.value;
+
+    // Sin material o sin medida esférica no hay cálculo
+    if (!material || !claseEsfStr) {
+        precioMedida = 0;
+        actualizarPrecio();
+        return;
+    }
+
+    const precioBase = preciosBases[material] ?? 0;
+    const indiceEsf  = claseAIndice(claseEsfStr);
+    const indiceCil  = claseAIndice(claseCilStr);
+
+    // El recargo es la SUMA de esférico + cilíndrico (se cobran independientemente)
+    const recargoEsf = calcularRecargoEsf(indiceEsf);
+    const recargoCil = indiceCil >= 0 ? calcularRecargoCil(indiceCil) : 0;
+
+    precioMedida = precioBase + recargoEsf + recargoCil;
+    actualizarPrecio();
 });
 
-window.addEventListener("load", () => { 
-    document.getElementById('lenteContacto').addEventListener("click", () => { 
-        
-        if (!(selectMaterial.value == 'resinaBl')) {
-            alert('Agrega el material de Resina Blanca');
-            console.log('lo hice');
-        }
-    });
-})
-    
-function precioFinal() {
-    if (porcentajePrecio > 0) {
-        // Si el porcentaje de precio o el tipo de luna cambia entonces se usara este calculo, si no es asi. se hara el calculo siguiente.
-        precioTotal = (precioMedida * porcentajePrecio / 100) + precioMedida + precioMontura;
-        
+// -------------------------------------------------------
+// 9. LISTENER: TIPO DE LUNA, ABERRACIÓN Y CHECKBOXES
+// -------------------------------------------------------
 
-    } else if(precioAltoIndice > 0) {
-        precioTotal = ((precioMedida * porcentajePrecio / 100) + precioMedida + precioMontura) * precioAltoIndice;
-        if (porcentajePrecio > 0){
-            precioTotal = ((precioMedida * porcentajePrecio / 100) + precioMedida + precioMontura) * precioAltoIndice;
-
-        } else{
-            precioTotal = (precioMedida + precioMontura + precioLenteContacto) * precioAltoIndice;
-    
-        }
-
-    } else{
-        precioTotal = precioMedida + precioMontura + precioLenteContacto;
-        
-    }
-
-    precio.textContent = "Precio: s/." + precioTotal;
-}
-
-// Precio con alto indice
-altoIndice.addEventListener('change', (event) => {
-    if (event.target.checked) {
-        precioAltoIndice = 0;
-        precioAltoIndice += 1.8;
-        precioFinal()
-    } else {
-            precioAltoIndice = 0;
-            precioFinal()
-        }
-    });
-
-// Precio bifocales
+/**
+ * Gestiona cambios en: tipo de luna, calidad/aberración, lente de contacto y alto índice.
+ * Valida que haya medida seleccionada antes de aceptar cambios en opciones avanzadas.
+ */
 formTipo.addEventListener('change', (e) => {
-    const value = e.target.value;
+    const valor = e.target.value;
 
-    if (value == 'bifocalPlattop') {
-        porcentajePrecio = 0;
-        porcentajePrecio += 90;
-        precioFinal();
-        // if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
-        //     porcentajePrecio = 0;
-        //     porcentajePrecio += 50;
-        //     precioFinal();
-        // }
-    } else if (value == 'bifocalInvisible') {
-        porcentajePrecio = 0;
-        porcentajePrecio += 120;
-        precioFinal();
-        // if (selectMedidasEsf.selectedIndex >= 3 || selectMedidasCil.selectedIndex >= 3) {
-        //     porcentajePrecio = 0;
-        //     porcentajePrecio += 70;
-        //     precioFinal();
-        // }
-    } else if (value == 'multifocal') {
-        porcentajePrecio = 0;
-        porcentajePrecio += 250;
-        precioFinal();
+    if (e.target === selectTipo) {
+        // --- Tipo de luna (Monofocal / Bifocal / Multifocal) ---
+        // Solo se valida si el usuario eligió algo diferente a Monofocal
+        if (valor !== 'sinTipo' && !tieneMedidaSeleccionada()) {
+            mostrarError('⚠️ Selecciona primero una medida esférica o cilíndrica para elegir el tipo de luna.');
+            // Revertir el selector a "Monofocal" para no acumular un cargo sin medida
+            selectTipo.value = 'sinTipo';
+            recargoTipo = 0;
+            actualizarPrecio();
+            return;
+        }
+        recargoTipo = recargoTipoLuna[valor] ?? 0;
 
-    } else if (value == 'sinTipo'){
-        porcentajePrecio = 0;
-        precioFinal();
+    } else if (e.target === selectAberracion) {
+        // --- Calidad / Aberración ---
+        // Solo se valida si el usuario eligió algo diferente a "Normal"
+        if (valor !== 'Normal' && !tieneMedidaSeleccionada()) {
+            mostrarError('⚠️ Selecciona primero una medida esférica o cilíndrica para elegir el nivel de calidad.');
+            selectAberracion.value = 'Normal';
+            recargoAber = 0;
+            actualizarPrecio();
+            return;
+        }
+        recargoAber = recargoAberracion[valor] ?? 0;
+
+    } else if (e.target === lenteContacto) {
+        // --- Checkbox: Lente de Contacto ---
+        if (e.target.checked) {
+            if (!tieneMedidaSeleccionada()) {
+                mostrarError('⚠️ Selecciona primero una medida esférica o cilíndrica para agregar lente de contacto.');
+                e.target.checked = false; // Revertir el checkbox
+                precioLenteContacto = 0;
+                actualizarPrecio();
+                return;
+            }
+            // Advertencia adicional: este servicio suele requerir resina blanca
+            if (selectMaterial.value !== 'resinaBl') {
+                mostrarError('⚠️ El lente de contacto generalmente aplica con "Resina/Cristal Blanco". Verifica con un asesor.');
+            }
+            precioLenteContacto = 500;
+        } else {
+            precioLenteContacto = 0;
+        }
+
+    } else if (e.target === altoIndice) {
+        // --- Checkbox: Alto Índice ---
+        if (e.target.checked && !tieneMedidaSeleccionada()) {
+            mostrarError('⚠️ Selecciona primero una medida esférica o cilíndrica para activar el alto índice.');
+            e.target.checked = false; // Revertir el checkbox
+            esAltoIndice = false;
+            actualizarPrecio();
+            return;
+        }
+        esAltoIndice = e.target.checked;
     }
 
-    if (value === 'Normal') {
-        precioFinal();
-    } else if (value === 'Aberracion1') {
-        porcentajePrecio = 0;
-        porcentajePrecio += 300;
-        precioFinal();
-    } else if (value === 'Aberracion2') {
-        porcentajePrecio = 0;
-        porcentajePrecio += 350;
-        precioFinal();
-    } else if (value === 'Aberracion3') {
-        porcentajePrecio = 0;
-        porcentajePrecio += 450;
-        precioFinal();
-    }
+    actualizarPrecio();
 });
 
-// Precios monturas
+// -------------------------------------------------------
+// 10. LISTENER: MONTURA
+// -------------------------------------------------------
+
+/**
+ * Actualiza el precio de la montura al cambiar la selección.
+ */
 formMontura.addEventListener('change', (e) => {
     const value = e.target.value;
-
-    if (value == 'economico') {
-        precioMontura = 0;
-        precioMontura += preciosMonturas.economico;
-        precioFinal();
-    } else if (value == 'intermedio') {
-        precioMontura = 0;
-        precioMontura += preciosMonturas.intermedio;
-        precioFinal();
-    } else if (value == 'calidad') {
-        precioMontura = 0;
-        precioMontura += preciosMonturas.calidad;
-        precioFinal();
-    } else if (value == 'premium') {
-        precioMontura = 0;
-        precioMontura += preciosMonturas.premium;
-        precioFinal();
-    } else if (value == 'monturaNo'){
-        precioMontura = 0;
-        precioFinal();
-    }
+    // Si el valor está en la tabla úsalo; si no (ej. "monturaNo") pon 0
+    precioMontura = preciosMonturas[value] ?? 0;
+    actualizarPrecio();
 });
 
-// Precio monturas
-// monturaEconomica.addEventListener('click', () => {
-//     if (monturaEconomica.checked) {
-//         precioFinal += 100;
-//     } else {
-//         precioFinal -= 100;
-//     }
+// -------------------------------------------------------
+// 11. INICIALIZACIÓN
+// -------------------------------------------------------
 
-//     precio.textContent = "Precio: s/." + precioFinal;
-// })
-
-// monturaCalidad.addEventListener('click', () => {
-//     if (monturaCalidad.checked) {
-//         precioFinal += 200;
-//     } else {
-//         precioFinal -= 200;
-//     }
-
-//     precio.textContent = "Precio: s/." + precioFinal;
-// })
-
-// monturaAltaCalidad.addEventListener('click', () => {
-//     if (monturaAltaCalidad.checked) {
-//         precioFinal += 400;
-//     } else {
-//         precioFinal -= 400;
-//     }
-
-//     precio.textContent = "Precio: s/." + precioFinal;
-// })
-
+// Al cargar la página: sincronizar el precio con las selecciones por defecto
+actualizarPrecio();
+formMedidasMaterial.dispatchEvent(new Event('change'));
+formMontura.dispatchEvent(new Event('change'));
+formTipo.dispatchEvent(new Event('change'));
