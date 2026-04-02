@@ -1,6 +1,6 @@
 const hamburgerIcon = document.querySelector('.nav_hamburger');
 const navOverlay = document.querySelector('.nav_overlay');
-const textArea = document.querySelector('.input_messege');
+const textArea = document.querySelector('.input_message');
 const formulario = document.querySelector('#form');
 
 hamburgerIcon.addEventListener('click', () => {

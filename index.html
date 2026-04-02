@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="icon" href="./assets/icon/logo_navegador.ico">
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -36,6 +36,21 @@
         }
     </script>
     <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply m-0 p-0 text-blackish font-sans overflow-x-hidden antialiased bg-white;
+            }
+            /* Hide number input arrows */
+            input[type='number']::-webkit-outer-spin-button,
+            input[type='number']::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            /* Hide textarea scrollbar */
+            .input_message::-webkit-scrollbar {
+                width: 0;
+            }
+        }
         @layer components {
             .nav_hamburger {
                 @apply bg-[url('./assets/icon/menu-amburguesa.svg')] bg-no-repeat bg-center bg-contain;
@@ -47,19 +62,16 @@
                 @apply opacity-100 pointer-events-auto;
             }
             .nav_overlay--show ul {
-                @apply translate-x-0 !visible;
-            }
-            /* Reset base styles */
-            body {
-                @apply m-0 p-0 box-border scroll-smooth;
+                @apply translate-x-0 visible;
             }
         }
     </style>
     <title>Óptica Bella Visión | Salud Visual de Calidad</title>
 </head>
 
-<body class="bg-white text-blackish font-sans overflow-x-hidden antialiased">
-    <nav class="mx-auto px-6 py-4 flex items-center justify-between sticky top-0 bg-white/95 backdrop-blur-xl z-[100] transition-all duration-500 border-b border-gray-100">
+<body class="">
+    <nav
+        class="mx-auto px-6 py-4 flex items-center justify-between sticky top-0 bg-white/95 backdrop-blur-xl z-[100] transition-all duration-500 border-b border-gray-100">
         <a href="index.html" class="flex items-center hover:scale-105 transition-transform duration-300">
             <img src="./assets/icon/logo-nav.svg" alt="Óptica Bella Visión" class="h-10 md:h-12 w-auto">
         </a>
@@ -68,18 +80,24 @@
         <div class="nav_hamburger md:hidden w-10 h-10 cursor-pointer z-[110] transition-all duration-300"></div>
 
         <!-- nav_overlay is required by JS selector '.nav_overlay' -->
-        <div class="nav_overlay fixed inset-0 bg-dark-blue/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-500 z-[105] md:static md:bg-transparent md:opacity-100 md:pointer-events-auto md:z-auto md:backdrop-blur-none">
-            <ul class="absolute right-0 top-0 bottom-0 w-[80%] max-w-sm bg-white p-16 flex flex-col gap-10 shadow-2xl translate-x-full invisible transition-all duration-500 md:static md:w-auto md:max-w-none md:bg-transparent md:p-0 md:flex-row md:items-center md:shadow-none md:gap-8 md:translate-x-0 md:visible">
+        <div
+            class="nav_overlay fixed inset-0 bg-dark-blue/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-500 z-[105] md:static md:bg-transparent md:opacity-100 md:pointer-events-auto md:z-auto md:backdrop-blur-none">
+            <ul
+                class="absolute right-0 top-0 bottom-0 w-[80%] max-w-sm bg-white p-16 flex flex-col gap-10 shadow-2xl translate-x-full invisible transition-all duration-500 md:static md:w-auto md:max-w-none md:bg-transparent md:p-0 md:flex-row md:items-center md:shadow-none md:gap-8 md:translate-x-0 md:visible">
                 <li>
-                    <a href="./index.html" class="group text-3xl md:text-base font-bold md:font-semibold text-dark-blue hover:text-primario transition-colors relative block">
+                    <a href="./index.html"
+                        class="group text-3xl md:text-base font-bold md:font-semibold text-dark-blue hover:text-primario transition-colors relative block">
                         Inicio
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primario transition-all group-hover:w-full"></span>
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primario transition-all group-hover:w-full"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="./sobre_nosotros.html" class="group text-3xl md:text-base font-bold md:font-semibold text-dark-blue hover:text-primario transition-colors relative block">
+                    <a href="./sobre_nosotros.html"
+                        class="group text-3xl md:text-base font-bold md:font-semibold text-dark-blue hover:text-primario transition-colors relative block">
                         Sobre nosotros
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primario transition-all group-hover:w-full"></span>
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primario transition-all group-hover:w-full"></span>
                     </a>
                 </li>
                 <li>
@@ -91,12 +109,16 @@
         </div>
     </nav>
 
-    <a class="fixed bottom-6 right-6 z-[200] w-16 h-16 flex items-center justify-center bg-[#25D366] rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group overflow-hidden" 
-       target="_blank" href="https://wa.me/message/5JJOS4GOWUKYD1" aria-label="Chat on WhatsApp">
-        <div class="absolute inset-0 bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full"></div>
+    <a class="fixed bottom-6 right-6 z-[200] w-16 h-16 flex items-center justify-center bg-[#25D366] rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group overflow-hidden"
+        target="_blank" href="https://wa.me/message/5JJOS4GOWUKYD1" aria-label="Chat on WhatsApp">
+        <div
+            class="absolute inset-0 bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full">
+        </div>
         <!-- Inline SVG for guaranteed visibility -->
-        <svg class="w-10 h-10 text-white fill-current relative z-10" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        <svg class="w-10 h-10 text-white fill-current relative z-10" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
         </svg>
     </a>
 
@@ -104,28 +126,35 @@
         <!-- Hero Section -->
         <section class="container mx-auto flex flex-col md:flex-row items-center gap-16 py-20 px-6 lg:py-28">
             <div class="w-full md:w-1/2 relative group">
-                <div class="absolute -inset-4 bg-primario/10 rounded-[2.5rem] blur-2xl group-hover:bg-primario/20 transition-colors duration-500"></div>
+                <div
+                    class="absolute -inset-4 bg-primario/10 rounded-[2.5rem] blur-2xl group-hover:bg-primario/20 transition-colors duration-500">
+                </div>
                 <picture class="relative block overflow-hidden rounded-[2.5rem] shadow-premium">
-                    <source srcset="./assets/img/chica-oferta-verano.png" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" media="(min-width: 768px)">
-                    <img src="./assets/img/chica-oferta-verano--mobile.jpg" alt="Oferta de verano" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <source srcset="./assets/img/chica-oferta-verano.png" media="(min-width: 768px)">
+                    <img src="./assets/img/chica-oferta-verano--mobile.jpg" alt="Oferta de verano"
+                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                 </picture>
             </div>
             <div class="w-full md:w-1/2 space-y-8">
                 <article class="space-y-6">
-                    <div class="inline-block px-4 py-1.5 bg-primario/10 text-primario text-sm font-bold tracking-widest uppercase rounded-lg">Bienvenido a Óptica Bella Visión</div>
-                    <h2 class="text-5xl md:text-6xl font-black text-dark-blue leading-[1.1] tracking-tight">Sobre <span class="text-primario italic">nosotros</span></h2>
+                    <div
+                        class="inline-block px-4 py-1.5 bg-primario/10 text-primario text-sm font-bold tracking-widest uppercase rounded-lg">
+                        Bienvenido a Óptica Bella Visión</div>
+                    <h2 class="text-5xl md:text-6xl font-black text-dark-blue leading-[1.1] tracking-tight">Sobre <span
+                            class="text-primario italic">nosotros</span></h2>
                     <p class="text-lg text-terciario font-medium leading-relaxed max-w-xl">
                         Contamos con un equipo de profesionales altamente capacitados y actualizados en
                         las últimas tendencias y tecnologías en el campo de la optometría. Además, contamos con una
                         amplia variedad de lentes y monturas de las mejores marcas.
                     </p>
                     <p class="text-lg text-terciario font-medium leading-relaxed max-w-xl">
-                        En nuestra óptica, nos enorgullecemos de brindar un excelente servicio al cliente y de ayudar a mejorar la calidad de
+                        En nuestra óptica, nos enorgullecemos de brindar un excelente servicio al cliente y de ayudar a
+                        mejorar la calidad de
                         vida mediante la corrección de sus problemas de visión.
                     </p>
                     <div class="pt-6">
                         <a href="mailto:santamariayeli6@gmai.com?subject=Atencion al cliente Optica Bella Vision&body=Hola, me gusto tu pagina y quiero mas informacion sobre el servicio de salud visual"
-                           class="inline-block w-full md:w-auto px-10 py-5 bg-primario text-white rounded-2xl font-black text-lg hover:bg-dark-blue hover:-translate-y-1 hover:shadow-button transition-all duration-300 active:scale-95 cursor-pointer text-center shadow-lg whitespace-nowrap">
+                            class="inline-block w-full md:w-auto px-10 py-5 bg-primario text-white rounded-2xl font-black text-lg hover:bg-dark-blue hover:-translate-y-1 hover:shadow-button transition-all duration-300 active:scale-95 cursor-pointer text-center shadow-lg whitespace-nowrap">
                             Agenda una cita ahora
                         </a>
                     </div>
@@ -136,26 +165,35 @@
         <!-- Features Section -->
         <section class="bg-secundario/30 py-24 px-6 border-y border-gray-100">
             <div class="container mx-auto flex flex-col md:flex-row justify-between gap-10">
-                <div class="flex flex-col items-center text-center p-10 bg-white rounded-[2.5rem] shadow-premium transition-all hover:shadow-2xl hover:-translate-y-2 duration-500 flex-1 border-b-8 border-transparent hover:border-primario transition-colors">
-                    <div class="w-24 h-24 mb-6 bg-primario/5 rounded-3xl flex items-center justify-center transition-transform hover:rotate-6">
+                <div
+                    class="flex flex-col items-center text-center p-10 bg-white rounded-[2.5rem] shadow-premium transition-all hover:shadow-2xl hover:-translate-y-2 duration-500 flex-1 border-b-8 border-transparent hover:border-primario transition-colors">
+                    <div
+                        class="w-24 h-24 mb-6 bg-primario/5 rounded-3xl flex items-center justify-center transition-transform hover:rotate-6">
                         <img src="./assets/icon/medalla.svg" alt="Productos" class="w-12 h-12">
                     </div>
                     <h4 class="text-xl font-black text-dark-blue tracking-tight mb-2">Productos originales</h4>
-                    <p class="text-terciario font-semibold text-sm uppercase tracking-tighter opacity-60">Garantía de autencidad</p>
+                    <p class="text-terciario font-semibold text-sm uppercase tracking-tighter opacity-60">Garantía de
+                        autencidad</p>
                 </div>
-                <div class="flex flex-col items-center text-center p-10 bg-white rounded-[2.5rem] shadow-premium transition-all hover:shadow-2xl hover:-translate-y-2 duration-500 flex-1 border-t-8 border-primario">
-                    <div class="w-24 h-24 mb-6 bg-primario/5 rounded-3xl flex items-center justify-center transition-transform hover:rotate-6">
+                <div
+                    class="flex flex-col items-center text-center p-10 bg-white rounded-[2.5rem] shadow-premium transition-all hover:shadow-2xl hover:-translate-y-2 duration-500 flex-1 border-t-8 border-primario">
+                    <div
+                        class="w-24 h-24 mb-6 bg-primario/5 rounded-3xl flex items-center justify-center transition-transform hover:rotate-6">
                         <img src="./assets/icon/garantia.svg" alt="Garantía" class="w-12 h-12">
                     </div>
                     <h4 class="text-xl font-black text-dark-blue tracking-tight mb-2">Garantía Asegurada</h4>
-                    <p class="text-terciario font-semibold text-sm uppercase tracking-tighter opacity-60">Protección total</p>
+                    <p class="text-terciario font-semibold text-sm uppercase tracking-tighter opacity-60">Protección
+                        total</p>
                 </div>
-                <div class="flex flex-col items-center text-center p-10 bg-white rounded-[2.5rem] shadow-premium transition-all hover:shadow-2xl hover:-translate-y-2 duration-500 flex-1 border-b-8 border-transparent hover:border-primario transition-colors">
-                    <div class="w-24 h-24 mb-6 bg-primario/5 rounded-3xl flex items-center justify-center transition-transform hover:rotate-6">
+                <div
+                    class="flex flex-col items-center text-center p-10 bg-white rounded-[2.5rem] shadow-premium transition-all hover:shadow-2xl hover:-translate-y-2 duration-500 flex-1 border-b-8 border-transparent hover:border-primario transition-colors">
+                    <div
+                        class="w-24 h-24 mb-6 bg-primario/5 rounded-3xl flex items-center justify-center transition-transform hover:rotate-6">
                         <img src="./assets/icon/envio.svg" alt="Envío" class="w-12 h-12">
                     </div>
                     <h4 class="text-xl font-black text-dark-blue tracking-tight mb-2">Envió rápido</h4>
-                    <p class="text-terciario font-semibold text-sm uppercase tracking-tighter opacity-60">Directo a tu puerta</p>
+                    <p class="text-terciario font-semibold text-sm uppercase tracking-tighter opacity-60">Directo a tu
+                        puerta</p>
                 </div>
             </div>
         </section>
@@ -164,28 +202,35 @@
         <section class="py-28 px-6 bg-white overflow-hidden">
             <div class="container mx-auto">
                 <div class="text-center mb-24 max-w-2xl mx-auto space-y-4">
-                    <h2 class="text-5xl md:text-6xl font-black text-dark-blue tracking-tight">Nuestros <span class="text-primario italic">Servicios</span></h2>
-                    <p class="text-terciario font-medium">Ofrecemos soluciones integrales para tu salud visual con tecnología de última generación.</p>
+                    <h2 class="text-5xl md:text-6xl font-black text-dark-blue tracking-tight">Nuestros <span
+                            class="text-primario italic">Servicios</span></h2>
+                    <p class="text-terciario font-medium">Ofrecemos soluciones integrales para tu salud visual con
+                        tecnología de última generación.</p>
                 </div>
-                
+
                 <div class="flex flex-col gap-32">
                     <!-- Service 1 -->
                     <div class="flex flex-col md:flex-row items-center gap-16 group">
                         <div class="w-full md:w-1/2 relative">
-                            <div class="absolute -inset-2 bg-primario/20 rounded-[3rem] blur-xl scale-95 group-hover:scale-105 transition-transform duration-500"></div>
+                            <div
+                                class="absolute -inset-2 bg-primario/20 rounded-[3rem] blur-xl scale-95 group-hover:scale-105 transition-transform duration-500">
+                            </div>
                             <picture class="relative block overflow-hidden rounded-[3rem] shadow-premium">
-                                <source srcset="./assets/img/reflaccion-ocular.jpg" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" media="(min-width: 768px)">
-                                <img src="./assets/img/reflaccion-ocular--mobile.jpg" alt="Refracción ocular" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110">
+                                <source srcset="./assets/img/reflaccion-ocular.jpg" media="(min-width: 768px)">
+                                <img src="./assets/img/reflaccion-ocular--mobile.jpg" alt="Refracción ocular"
+                                    class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110">
                             </picture>
                         </div>
                         <article class="w-full md:w-1/2 space-y-6">
-                            <h3 class="text-4xl font-black text-dark-blue group-hover:text-primario transition-colors">Refracción ocular</h3>
+                            <h3 class="text-4xl font-black text-dark-blue group-hover:text-primario transition-colors">
+                                Refracción ocular</h3>
                             <p class="text-lg text-terciario font-medium leading-relaxed">
                                 La refracción ocular es un proceso médico que determina la graduación correcta
                                 de las gafas o lentes de contacto. Se realiza mediante una serie de
                                 pruebas para determinar la cantidad de corrección necesaria para una visión nítida.
                             </p>
-                            <p class="text-lg text-terciario/80 font-medium leading-relaxed italic border-l-4 border-primario/20 pl-6">
+                            <p
+                                class="text-lg text-terciario/80 font-medium leading-relaxed italic border-l-4 border-primario/20 pl-6">
                                 Es esencial para el diagnóstico y tratamiento de miopía, hipermetropía y astigmatismo.
                             </p>
                         </article>
@@ -194,19 +239,26 @@
                     <!-- Service 2 -->
                     <div class="flex flex-col md:flex-row-reverse items-center gap-16 group">
                         <div class="w-full md:w-1/2 relative">
-                            <div class="absolute -inset-2 bg-dark-blue/10 rounded-[3rem] blur-xl scale-95 group-hover:scale-105 transition-transform duration-500"></div>
-                            <picture class="relative block overflow-hidden rounded-[3rem] shadow-premium border-r-[12px] border-primario/20">
-                                <source srcset="./assets/img/descarte-patologias.jpg" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" media="(min-width: 768px)">
-                                <img src="./assets/img/descarte-patologias--mobile.jpg" alt="Descarte de patologías" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110">
+                            <div
+                                class="absolute -inset-2 bg-dark-blue/10 rounded-[3rem] blur-xl scale-95 group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <picture class="relative block overflow-hidden rounded-[3rem] shadow-premium">
+                                <source srcset="./assets/img/descarte-patologias.jpg" media="(min-width: 768px)">
+                                <img src="./assets/img/descarte-patologias--mobile.jpg" alt="Descarte de patologías"
+                                    class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110">
                             </picture>
                         </div>
                         <article class="w-full md:w-1/2 space-y-6">
-                            <h3 class="text-4xl font-black text-dark-blue group-hover:text-primario transition-colors">Descarte de patologías</h3>
+                            <h3 class="text-4xl font-black text-dark-blue group-hover:text-primario transition-colors">
+                                Descarte de patologías</h3>
                             <p class="text-lg text-terciario font-medium leading-relaxed">
-                                Proceso de identificación y eliminación de cualquier tipo de enfermedad o anomalía en material biológico. 
-                                Esta técnica es esencial para garantizar la seguridad y asegurar la precisión de los análisis médicos.
+                                Proceso de identificación y eliminación de cualquier tipo de enfermedad o anomalía en
+                                material biológico.
+                                Esta técnica es esencial para garantizar la seguridad y asegurar la precisión de los
+                                análisis médicos.
                             </p>
-                            <div class="flex items-center gap-4 text-primario font-black tracking-widest text-sm uppercase">
+                            <div
+                                class="flex items-center gap-4 text-primario font-black tracking-widest text-sm uppercase">
                                 <span class="w-16 h-1.5 bg-primario rounded-full"></span>
                                 Prevención Activa
                             </div>
@@ -219,8 +271,9 @@
         <!-- Contact Section -->
         <section class="py-28 px-6 bg-dark-blue relative overflow-hidden">
             <div class="absolute top-0 right-0 w-96 h-96 bg-primario/10 rounded-full blur-[100px] -mr-48 -mt-48"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] -ml-48 -mb-48"></div>
-            
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] -ml-48 -mb-48">
+            </div>
+
             <div class="container mx-auto max-w-5xl bg-white rounded-[4rem] p-10 md:p-20 shadow-2xl relative z-10">
                 <div class="text-center mb-16 space-y-4">
                     <h2 class="text-5xl font-black text-dark-blue tracking-tight">Cuéntanos sobre ti</h2>
@@ -230,29 +283,49 @@
                 <form class="space-y-8" id="form" action="https://formspree.io/f/mjvdylob" method="POST">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="space-y-2">
-                            <label for="name" class="font-bold text-dark-blue/60 text-sm uppercase tracking-widest pl-2">Nombres y Apellidos</label>
-                            <input type="text" id="name" class="w-full bg-secundario/50 border-2 border-transparent focus:border-primario focus:bg-white rounded-2xl px-8 py-5 outline-none transition-all duration-300 font-bold text-dark-blue" name="name" placeholder="Ej: Juan Pérez" required>
+                            <label for="name"
+                                class="font-bold text-dark-blue/60 text-sm uppercase tracking-widest pl-2">Nombres y
+                                Apellidos</label>
+                            <input type="text" id="name"
+                                class="w-full bg-secundario/50 border-2 border-transparent focus:border-primario focus:bg-white rounded-2xl px-8 py-5 outline-none transition-all duration-300 font-bold text-dark-blue"
+                                name="name" placeholder="Ej: Juan Pérez" required>
                         </div>
                         <div class="space-y-2">
-                            <label for="phone" class="font-bold text-dark-blue/60 text-sm uppercase tracking-widest pl-2">Número celular</label>
-                            <input type="number" name="phone" id="phone" min="9" class="w-full bg-secundario/50 border-2 border-transparent focus:border-primario focus:bg-white rounded-2xl px-8 py-5 outline-none transition-all duration-300 font-bold text-dark-blue" placeholder="Ej: 987654321" required>
+                            <label for="phone"
+                                class="font-bold text-dark-blue/60 text-sm uppercase tracking-widest pl-2">Número
+                                celular</label>
+                            <input type="number" name="phone" id="phone" min="9"
+                                class="w-full bg-secundario/50 border-2 border-transparent focus:border-primario focus:bg-white rounded-2xl px-8 py-5 outline-none transition-all duration-300 font-bold text-dark-blue"
+                                placeholder="Ej: 987654321" required>
                         </div>
                     </div>
 
                     <div class="space-y-2">
-                        <label for="email" class="font-bold text-dark-blue/60 text-sm uppercase tracking-widest pl-2">Correo Electrónico</label>
-                        <input type="email" name="email" id="email" class="w-full bg-secundario/50 border-2 border-transparent focus:border-primario focus:bg-white rounded-2xl px-8 py-5 outline-none transition-all duration-300 font-bold text-dark-blue" placeholder="ejemplo@correo.com" required>
+                        <label for="email"
+                            class="font-bold text-dark-blue/60 text-sm uppercase tracking-widest pl-2">Correo
+                            Electrónico</label>
+                        <input type="email" name="email" id="email"
+                            class="w-full bg-secundario/50 border-2 border-transparent focus:border-primario focus:bg-white rounded-2xl px-8 py-5 outline-none transition-all duration-300 font-bold text-dark-blue"
+                            placeholder="ejemplo@correo.com" required>
                     </div>
 
                     <div class="space-y-2">
-                        <label for="messege" class="font-bold text-dark-blue/60 text-sm uppercase tracking-widest pl-2">Mensaje</label>
-                        <textarea name="messege" id="messege" class="input_messege w-full bg-secundario/50 border-2 border-transparent focus:border-primario focus:bg-white rounded-2xl px-8 py-5 outline-none transition-all duration-300 font-bold text-dark-blue min-h-[180px] resize-none" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                        <label for="message"
+                            class="font-bold text-dark-blue/60 text-sm uppercase tracking-widest pl-2">Mensaje</label>
+                        <textarea name="message" id="message"
+                            class="input_message w-full bg-secundario/50 border-2 border-transparent focus:border-primario focus:bg-white rounded-2xl px-8 py-5 outline-none transition-all duration-300 font-bold text-dark-blue min-h-[180px] resize-none"
+                            placeholder="¿En qué podemos ayudarte?" required></textarea>
                     </div>
 
                     <div class="text-center pt-10">
-                        <button type="submit" class="group transition-all duration-300 relative inline-flex items-center justify-center w-full md:w-auto min-w-[280px] px-12 py-6 bg-primario hover:bg-dark-blue text-white rounded-2xl font-black text-xl md:text-2xl shadow-button hover:scale-105 active:scale-95 whitespace-nowrap overflow-hidden">
+                        <button type="submit"
+                            class="group transition-all duration-300 relative inline-flex items-center justify-center w-full md:w-auto min-w-[280px] px-12 py-6 bg-primario hover:bg-dark-blue text-white rounded-2xl font-black text-xl md:text-2xl shadow-button hover:scale-105 active:scale-95 whitespace-nowrap overflow-hidden">
                             <span class="mr-3 relative z-10">Enviar Mensaje</span>
-                            <svg class="w-6 h-6 transition-transform group-hover:translate-x-2 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            <svg class="w-6 h-6 transition-transform group-hover:translate-x-2 relative z-10"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
                         </button>
                     </div>
                 </form>
@@ -264,11 +337,19 @@
         <div class="container mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-16 mb-20">
                 <div class="col-span-1 lg:col-span-1 space-y-8">
-                    <h3 class="text-4xl font-black italic tracking-tighter text-primario underline decoration-white/20">OBV</h3>
-                    <p class="text-terciario font-medium leading-relaxed opacity-80">Llevando la mejor salud visual a Puerto Maldonado con tecnología de vanguardia y atención personalizada.</p>
+                    <h3 class="text-4xl font-black italic tracking-tighter text-primario underline decoration-white/20">
+                        OBV</h3>
+                    <p class="text-terciario font-medium leading-relaxed opacity-80">Llevando la mejor salud visual a
+                        Puerto Maldonado con tecnología de vanguardia y atención personalizada.</p>
                     <div class="flex gap-6">
-                        <a aria-label="Facebook" href="#" class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-primario hover:scale-110 transition-all duration-300"><img src="https://www.svgrepo.com/show/521654/facebook.svg" class="w-6 h-6 invert" alt="FB"></a>
-                        <a aria-label="Instagram" href="#" class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-primario hover:scale-110 transition-all duration-300"><img src="https://www.svgrepo.com/show/521711/instagram.svg" class="w-6 h-6 invert" alt="IG"></a>
+                        <a aria-label="Facebook" href="#"
+                            class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-primario hover:scale-110 transition-all duration-300"><img
+                                src="https://www.svgrepo.com/show/521654/facebook.svg" class="w-6 h-6 invert"
+                                alt="FB"></a>
+                        <a aria-label="Instagram" href="#"
+                            class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-primario hover:scale-110 transition-all duration-300"><img
+                                src="https://www.svgrepo.com/show/521711/instagram.svg" class="w-6 h-6 invert"
+                                alt="IG"></a>
                     </div>
                 </div>
 
@@ -276,40 +357,62 @@
                     <div class="space-y-6">
                         <h4 class="text-xl font-black border-b-2 border-primario w-fit pb-1">Empresa</h4>
                         <ul class="space-y-4 font-medium text-terciario">
-                            <li><a href="./sobre_nosotros.html" class="hover:text-white transition-colors">Sobre Nosotros</a></li>
-                            <li><a href="./politicas_privacidad.html" class="hover:text-white transition-colors">Políticas de Privacidad</a></li>
-                            <li><a href="./terminos_condiciones.html" class="hover:text-white transition-colors">Términos y Condiciones</a></li>
+                            <li><a href="./sobre_nosotros.html" class="hover:text-white transition-colors">Sobre
+                                    Nosotros</a></li>
+                            <li><a href="./politicas_privacidad.html"
+                                    class="hover:text-white transition-colors">Políticas de Privacidad</a></li>
+                            <li><a href="./terminos_condiciones.html"
+                                    class="hover:text-white transition-colors">Términos y Condiciones</a></li>
                         </ul>
                     </div>
-                    
+
                     <div class="space-y-6">
                         <h4 class="text-xl font-black border-b-2 border-primario w-fit pb-1">Ubicación</h4>
-                        <a href="https://www.google.com/maps/place/Av.+2+de+Mayo+768,+Puerto+Maldonado..." 
-                           target="_blank" class="block text-terciario hover:text-white transition-all underline underline-offset-8 decoration-primario/40 hover:decoration-primario">Puerto Maldonado, Av. 2 de Mayo 768</a>
+                        <a href="https://www.google.com/maps/place/Av.+2+de+Mayo+768,+Puerto+Maldonado..."
+                            target="_blank"
+                            class="block text-terciario hover:text-white transition-all underline underline-offset-8 decoration-primario/40 hover:decoration-primario">Puerto
+                            Maldonado, Av. 2 de Mayo 768</a>
                         <div class="text-terciario space-y-3 font-bold text-xs uppercase tracking-widest mt-4">
-                            <div class="flex justify-between items-center"><span class="opacity-40">L-V:</span> <span class="bg-white/5 px-3 py-1 rounded-full text-[10px]">09:30 - 21:00</span></div>
-                            <div class="flex justify-between items-center"><span class="opacity-40">Sáb:</span> <span class="bg-white/5 px-3 py-1 rounded-full text-[10px]">10:00 - 18:00</span></div>
-                            <div class="flex justify-between items-center"><span class="opacity-40">Dom:</span> <span class="bg-white/5 px-3 py-1 rounded-full text-[10px] text-primario">10:00 - 16:00</span></div>
+                            <div class="flex justify-between items-center"><span class="opacity-40">L-V:</span> <span
+                                    class="bg-white/5 px-3 py-1 rounded-full text-[10px]">09:30 - 21:00</span></div>
+                            <div class="flex justify-between items-center"><span class="opacity-40">Sáb:</span> <span
+                                    class="bg-white/5 px-3 py-1 rounded-full text-[10px]">10:00 - 18:00</span></div>
+                            <div class="flex justify-between items-center"><span class="opacity-40">Dom:</span> <span
+                                    class="bg-white/5 px-3 py-1 rounded-full text-[10px] text-primario">10:00 -
+                                    16:00</span></div>
                         </div>
                     </div>
 
                     <div class="space-y-6">
                         <h4 class="text-xl font-black border-b-2 border-primario w-fit pb-1">Contacto</h4>
                         <div class="flex flex-col gap-6">
-                            <a href="https://wa.me/message/5JJOS4GOWUKYD1" target="_blank" class="flex items-center gap-4 group">
-                                <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"><span class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span></div>
-                                <span class="text-terciario font-black group-hover:text-white transition-colors text-sm">+51 989 367 345</span>
+                            <a href="https://wa.me/message/5JJOS4GOWUKYD1" target="_blank"
+                                class="flex items-center gap-4 group">
+                                <div
+                                    class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <span class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+                                </div>
+                                <span
+                                    class="text-terciario font-black group-hover:text-white transition-colors text-sm">+51
+                                    989 367 345</span>
                             </a>
-                            <a href="https://wa.me/message/2Q65ORUSNUJ7B1" target="_blank" class="flex items-center gap-4 group">
-                                <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"><span class="w-3 h-3 bg-green-500 rounded-full"></span></div>
-                                <span class="text-terciario font-black group-hover:text-white transition-colors text-sm">+51 910 646 756</span>
+                            <a href="https://wa.me/message/2Q65ORUSNUJ7B1" target="_blank"
+                                class="flex items-center gap-4 group">
+                                <div
+                                    class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                                </div>
+                                <span
+                                    class="text-terciario font-black group-hover:text-white transition-colors text-sm">+51
+                                    910 646 756</span>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="pt-10 border-t border-white/5 text-center">
-                <p class="text-sm text-terciario/40 font-bold uppercase tracking-widest">© 2026 Óptica Bella Visión. Diseñado con pasión.</p>
+                <p class="text-sm text-terciario/40 font-bold uppercase tracking-widest">© 2026 Óptica Bella Visión.
+                    Diseñado con pasión.</p>
             </div>
         </div>
     </footer>
