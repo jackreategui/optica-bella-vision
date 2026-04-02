@@ -42,7 +42,7 @@ const preciosBases = {
     resinaSenAr: 280,
     resinaSenBlue: 340,
     resinaFoto: 630,
-    resinaTransBlue: 900,
+    resinaTransBlue: 1025,
     cristalAr: 180,
     cristalPhg: 220,
     cristalPhgAr: 280,
@@ -76,27 +76,19 @@ const recargoAberracion = {
 // 3. INCREMENTO DE PRECIO POR GRADUACIÓN
 // -------------------------------------------------------
 
-const AUMENTO_ESF = 10 // soles de aumento por clase esférica
-const AUMENTO_CIL = 20 // soles de aumento por clase cilíndrica
+const PORCENTAJE_ESF = 0.1 // 10% de aumento por clase esférica sobre el precio base
+const PORCENTAJE_CIL = 0.2 // 20% de aumento por clase cilíndrica sobre el precio base
 
-/**
- * Calcula el recargo por clase esférica.
- * Clases 0-5: lineal. 6-7: x2. 8-9: x3. 10-12: x3.5. 13-14: x4. 15+: x5.
- */
-function calcularRecargoEsf(claseIndex) {
+/** Calcula el recargo por clase esférica basado en porcentaje del precio base. */
+function calcularRecargoEsf(claseIndex, precioBase) {
     if (claseIndex <= 0) return 0
-    if (claseIndex <= 5) return AUMENTO_ESF * claseIndex
-    if (claseIndex <= 7) return AUMENTO_ESF * claseIndex * 2
-    if (claseIndex <= 9) return AUMENTO_ESF * claseIndex * 3
-    if (claseIndex <= 12) return AUMENTO_ESF * claseIndex * 3.5
-    if (claseIndex <= 14) return AUMENTO_ESF * claseIndex * 4
-    return AUMENTO_ESF * claseIndex * 5
+    return precioBase * PORCENTAJE_ESF * claseIndex
 }
 
-/** Calcula el recargo por clase cilíndrica (incremento lineal). */
-function calcularRecargoCil(claseIndex) {
+/** Calcula el recargo por clase cilíndrica basado en porcentaje del precio base. */
+function calcularRecargoCil(claseIndex, precioBase) {
     if (claseIndex <= 0) return 0
-    return AUMENTO_CIL * claseIndex
+    return precioBase * PORCENTAJE_CIL * claseIndex
 }
 
 /**
@@ -223,9 +215,7 @@ function actualizarPrecio() {
     const multiplicador = getMultiplicadorAltoIndice()
     const precioTotal = subtotal * multiplicador
 
-    const precioFormateado = Number.isInteger(precioTotal)
-        ? precioTotal
-        : precioTotal.toFixed(2)
+    const precioFormateado = Math.round(precioTotal)
 
     precioDisplay.textContent = `s/.${precioFormateado}`
     const precioMobile = document.querySelector("#precioMobile")
@@ -274,8 +264,10 @@ formMedidasMaterial.addEventListener("change", (e) => {
     const indiceCil = claseAIndice(claseCilStr)
 
     // El recargo es la SUMA de esférico + cilíndrico (se cobran independientemente)
-    const recargoEsf = indiceEsf >= 0 ? calcularRecargoEsf(indiceEsf) : 0
-    const recargoCil = indiceCil >= 0 ? calcularRecargoCil(indiceCil) : 0
+    const recargoEsf =
+        indiceEsf >= 0 ? calcularRecargoEsf(indiceEsf, precioBase) : 0
+    const recargoCil =
+        indiceCil >= 0 ? calcularRecargoCil(indiceCil, precioBase) : 0
 
     precioMedida = precioBase + recargoEsf + recargoCil
 
