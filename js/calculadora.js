@@ -4,7 +4,10 @@
  * ============================================================
  * ESTRUCTURA DEL PRECIO FINAL:
  *   subtotal = precioMedida + recargoTipo + recargoAber + precioMontura + precioLenteContacto
- *   Si "Alto Índice": precioTotal = subtotal * 1.8
+ *   Multiplicador alto índice:
+ *     Sin selección o 1.50 → ×1.0 (base, sin aumento)
+ *     1.64 → ×1.6 (+60%)
+ *     1.74 → ×1.8 (+80%)
  * ============================================================
  */
 
@@ -21,9 +24,9 @@ const selectMedidasCil = document.querySelector('#selectMedidasCil');
 const selectMaterial   = document.querySelector('#selectMaterial');
 const selectTipo       = document.querySelector('#selectTipo');
 const selectAberracion = document.querySelector('#selectAberracion');
+const selectAltoIndice = document.querySelector('#selectAltoIndice'); // Ahora es un <select>
 
 const lenteContacto = document.getElementById('lenteContacto');
-const altoIndice    = document.getElementById('altoIndice');
 
 const precioDisplay = document.querySelector('#precio');
 
@@ -109,65 +112,92 @@ function claseAIndice(claseStr) {
 // 4. ESTADO GLOBAL DE LA CALCULADORA
 // -------------------------------------------------------
 
-let precioMedida        = 0;     // Precio base del material + recargo de graduación
-let precioMontura       = 0;     // Precio de la montura seleccionada
-let precioLenteContacto = 0;     // Cargo adicional por lente de contacto
-let esAltoIndice        = false; // Multiplica el subtotal por 1.8
+let precioMedida        = 0;  // Precio base del material + recargo de graduación
+let precioMontura       = 0;  // Precio de la montura seleccionada
+let precioLenteContacto = 0;  // Cargo adicional por lente de contacto
 
 let recargoTipo = 0; // Recargo por tipo de luna (bifocal, multifocal)
 let recargoAber = 0; // Recargo por nivel de aberración
+
+/**
+ * Retorna el multiplicador de alto índice según el select.
+ * 1.50 → 1.0 (base, sin aumento)
+ * 1.64 → 1.6 (+60%)
+ * 1.74 → 1.8 (+80%)
+ */
+function getMultiplicadorAltoIndice() {
+    if (!selectAltoIndice) return 1.0;
+    const val = selectAltoIndice.value;
+    if (val === '1.64') return 2.6;
+    if (val === '1.74') return 2.8;
+    return 1.0;
+}
 
 // -------------------------------------------------------
 // 5. SISTEMA DE TOAST DE ERROR (Premium — sin alert())
 // -------------------------------------------------------
 
-let toastTimeout = null; // Para cancelar el cierre automático si se remuestra
+let toastTimeout = null;
 
 /**
  * Muestra un toast de error estilizado en la esquina inferior derecha.
  * Se cierra automáticamente después de 4 segundos.
- * @param {string} mensaje - Texto descriptivo del error.
  */
 function mostrarError(mensaje) {
-    const toast   = document.getElementById('toastError');
+    const toast    = document.getElementById('toastError');
     const toastMsg = document.getElementById('toastMessage');
-
     if (!toast || !toastMsg) return;
-
-    // Actualizar mensaje y mostrar
     toastMsg.textContent = mensaje;
     toast.classList.add('show');
-
-    // Cancelar cierre previo si el toast ya estaba visible
     if (toastTimeout) clearTimeout(toastTimeout);
-
-    // Cerrar automáticamente después de 4 segundos
     toastTimeout = setTimeout(() => cerrarToast(), 4000);
 }
 
-/**
- * Oculta el toast de error. También disponible globalmente para el botón "X".
- */
+/** Oculta el toast de error. */
 function cerrarToast() {
     const toast = document.getElementById('toastError');
     if (toast) toast.classList.remove('show');
-    if (toastTimeout) {
-        clearTimeout(toastTimeout);
-        toastTimeout = null;
-    }
+    if (toastTimeout) { clearTimeout(toastTimeout); toastTimeout = null; }
 }
 
-// Exponer funciones al ámbito global para que el onclick del HTML funcione
 window.cerrarToast = cerrarToast;
 
 // -------------------------------------------------------
-// 6. VALIDACIÓN: ¿Hay al menos una medida seleccionada?
+// 6. SINCRONIZACIÓN DEL CUSTOM SELECT UI
 // -------------------------------------------------------
 
 /**
- * Verifica si el usuario ha seleccionado al menos una medida esférica o cilíndrica.
- * @returns {boolean} true si hay medida, false si no.
+ * Actualiza el texto y resaltado del custom select UI para que coincida
+ * con el valor actual del native select. Llamar siempre que se revierta
+ * un select programáticamente.
+ * @param {HTMLSelectElement} nativeSelect
  */
+function syncCustomSelectUI(nativeSelect) {
+    if (!nativeSelect) return;
+    const wrapper = nativeSelect.parentNode;
+    if (!wrapper || !wrapper.classList.contains('select-wrapper')) return;
+
+    const uiSelect  = wrapper.querySelector('.select-custom-ui');
+    const uiOptions = wrapper.querySelector('.select-options-ui');
+    if (!uiSelect || !uiOptions) return;
+
+    const selectedOption = nativeSelect.options[nativeSelect.selectedIndex];
+    const selectedText   = selectedOption ? selectedOption.text : 'Selecciona';
+    const span = uiSelect.querySelector('span');
+    if (span) span.textContent = selectedText;
+
+    uiOptions.querySelectorAll('li').forEach((li, i) => {
+        li.classList.toggle('selected', i === nativeSelect.selectedIndex);
+    });
+}
+
+// Exponer para uso desde el inline script si es necesario
+window.syncCustomSelectUI = syncCustomSelectUI;
+
+// -------------------------------------------------------
+// 7. VALIDACIÓN: ¿Hay al menos una medida seleccionada?
+// -------------------------------------------------------
+
 function tieneMedidaSeleccionada() {
     const tieneEsf = selectMedidasEsf.value && selectMedidasEsf.value.startsWith('clase');
     const tieneCil = selectMedidasCil.value && selectMedidasCil.value.startsWith('clase');
@@ -175,43 +205,51 @@ function tieneMedidaSeleccionada() {
 }
 
 // -------------------------------------------------------
-// 7. FUNCIÓN PRINCIPAL: CALCULAR Y MOSTRAR PRECIO
+// 8. FUNCIÓN PRINCIPAL: CALCULAR Y MOSTRAR PRECIO
 // -------------------------------------------------------
 
-/**
- * Recalcula el precio total y actualiza el display.
- * Fórmula: subtotal = medida + tipo + aberración + montura + lenteContacto
- * Si altoIndice: total = subtotal * 1.8
- */
 function actualizarPrecio() {
-    const subtotal    = precioMedida + recargoTipo + recargoAber + precioMontura + precioLenteContacto;
-    const precioTotal = esAltoIndice ? subtotal * 1.8 : subtotal;
+    const subtotal       = precioMedida + recargoTipo + recargoAber + precioMontura + precioLenteContacto;
+    const multiplicador  = getMultiplicadorAltoIndice();
+    const precioTotal    = subtotal * multiplicador;
 
-    // Mostrar entero si no tiene decimales, o con 2 decimales si los tiene
     const precioFormateado = Number.isInteger(precioTotal)
         ? precioTotal
         : precioTotal.toFixed(2);
 
-    // Actualizar ambos displays (desktop e móvil)
     precioDisplay.textContent = `s/.${precioFormateado}`;
     const precioMobile = document.querySelector('#precioMobile');
     if (precioMobile) precioMobile.textContent = `s/.${precioFormateado}`;
 }
 
 // -------------------------------------------------------
-// 8. LISTENER: MEDIDAS Y MATERIAL
+// 9. LISTENER: MEDIDAS Y MATERIAL
 // -------------------------------------------------------
 
-/**
- * Recalcula el precio base cada vez que cambia una medida o el material.
- */
-formMedidasMaterial.addEventListener('change', () => {
-    const material    = selectMaterial.value;
-    const claseEsfStr = selectMedidasEsf.value;
-    const claseCilStr = selectMedidasCil.value;
+formMedidasMaterial.addEventListener('change', (e) => {
+    const material = selectMaterial.value;
+    // Use let so we can update after a revert
+    let claseEsfStr = selectMedidasEsf.value;
+    let claseCilStr = selectMedidasCil.value;
 
-    // Sin material o sin medida esférica no hay cálculo
-    if (!material || !claseEsfStr) {
+    // --- Exclusión mutua ESF ↔ CIL ---
+    // When ESF is set and CIL already has a value → revert ESF, keep CIL
+    if (e.target === selectMedidasEsf && claseEsfStr && claseCilStr) {
+        mostrarError('⚠️ Solo puedes seleccionar Esférico O Cilíndrico a la vez, no ambos simultáneamente.');
+        selectMedidasEsf.value = '';
+        syncCustomSelectUI(selectMedidasEsf);
+        claseEsfStr = ''; // Update local var so calculation uses only CIL
+    }
+    // When CIL is set and ESF already has a value → revert CIL, keep ESF
+    else if (e.target === selectMedidasCil && claseCilStr && claseEsfStr) {
+        mostrarError('⚠️ Solo puedes seleccionar Esférico O Cilíndrico a la vez, no ambos simultáneamente.');
+        selectMedidasCil.value = '';
+        syncCustomSelectUI(selectMedidasCil);
+        claseCilStr = ''; // Update local var so calculation uses only ESF
+    }
+
+    // --- Sin medida ni material: reset ---
+    if (!material || (!claseEsfStr && !claseCilStr)) {
         precioMedida = 0;
         actualizarPrecio();
         return;
@@ -222,43 +260,67 @@ formMedidasMaterial.addEventListener('change', () => {
     const indiceCil  = claseAIndice(claseCilStr);
 
     // El recargo es la SUMA de esférico + cilíndrico (se cobran independientemente)
-    const recargoEsf = calcularRecargoEsf(indiceEsf);
+    const recargoEsf = indiceEsf >= 0 ? calcularRecargoEsf(indiceEsf) : 0;
     const recargoCil = indiceCil >= 0 ? calcularRecargoCil(indiceCil) : 0;
 
     precioMedida = precioBase + recargoEsf + recargoCil;
+    
+    // Si cambio de material y tiene lente de contacto y el material ya no es válido, desactivarlo
+    if (material !== 'resinaBl' && lenteContacto.checked) {
+        lenteContacto.checked = false;
+        precioLenteContacto = 0;
+        mostrarError('⚠️ Lente de contacto desmarcado: solo aplica con material Resina/Cristal Blanco.');
+    }
+    
     actualizarPrecio();
 });
 
 // -------------------------------------------------------
-// 9. LISTENER: TIPO DE LUNA, ABERRACIÓN Y CHECKBOXES
+// 10. LISTENER: TIPO DE LUNA, ABERRACIÓN Y CHECKBOXES
 // -------------------------------------------------------
 
-/**
- * Gestiona cambios en: tipo de luna, calidad/aberración, lente de contacto y alto índice.
- * Valida que haya medida seleccionada antes de aceptar cambios en opciones avanzadas.
- */
 formTipo.addEventListener('change', (e) => {
     const valor = e.target.value;
 
     if (e.target === selectTipo) {
-        // --- Tipo de luna (Monofocal / Bifocal / Multifocal) ---
-        // Solo se valida si el usuario eligió algo diferente a Monofocal
+        // --- Tipo de luna ---
         if (valor !== 'sinTipo' && !tieneMedidaSeleccionada()) {
             mostrarError('⚠️ Selecciona primero una medida esférica o cilíndrica para elegir el tipo de luna.');
-            // Revertir el selector a "Monofocal" para no acumular un cargo sin medida
             selectTipo.value = 'sinTipo';
+            syncCustomSelectUI(selectTipo);
             recargoTipo = 0;
             actualizarPrecio();
             return;
         }
         recargoTipo = recargoTipoLuna[valor] ?? 0;
 
+        // Mostrar/ocultar aberraciones solo para Multifocal
+        const aberracionesGroup = document.getElementById('aberracionesGroup');
+        if (aberracionesGroup) {
+            if (valor === 'multifocal') {
+                aberracionesGroup.classList.remove('hidden');
+            } else {
+                aberracionesGroup.classList.add('hidden');
+                // Resetear aberración al ocultar
+                selectAberracion.value = 'Normal';
+                syncCustomSelectUI(selectAberracion);
+                recargoAber = 0;
+            }
+        }
+
+        // Lente de contacto: si se cambió a un tipo no válido, se desmarca y advierte
+        if (valor !== 'sinTipo' && lenteContacto.checked) {
+            lenteContacto.checked = false;
+            precioLenteContacto = 0;
+            mostrarError('⚠️ Lente de contacto desmarcado: solo aplica con tipo Monofocal.');
+        }
+
     } else if (e.target === selectAberracion) {
         // --- Calidad / Aberración ---
-        // Solo se valida si el usuario eligió algo diferente a "Normal"
         if (valor !== 'Normal' && !tieneMedidaSeleccionada()) {
             mostrarError('⚠️ Selecciona primero una medida esférica o cilíndrica para elegir el nivel de calidad.');
             selectAberracion.value = 'Normal';
+            syncCustomSelectUI(selectAberracion);
             recargoAber = 0;
             actualizarPrecio();
             return;
@@ -270,54 +332,71 @@ formTipo.addEventListener('change', (e) => {
         if (e.target.checked) {
             if (!tieneMedidaSeleccionada()) {
                 mostrarError('⚠️ Selecciona primero una medida esférica o cilíndrica para agregar lente de contacto.');
-                e.target.checked = false; // Revertir el checkbox
+                e.target.checked = false;
                 precioLenteContacto = 0;
                 actualizarPrecio();
                 return;
             }
-            // Advertencia adicional: este servicio suele requerir resina blanca
             if (selectMaterial.value !== 'resinaBl') {
-                mostrarError('⚠️ El lente de contacto generalmente aplica con "Resina/Cristal Blanco". Verifica con un asesor.');
+                mostrarError('⚠️ No puedes agregar Lente de Contacto. El material debe ser Resina/Cristal Blanco.');
+                e.target.checked = false;
+                precioLenteContacto = 0;
+                actualizarPrecio();
+                return;
+            }
+            if (selectTipo.value !== 'sinTipo') {
+                mostrarError('⚠️ No puedes agregar Lente de Contacto. El tipo de luna debe ser Monofocal.');
+                e.target.checked = false;
+                precioLenteContacto = 0;
+                actualizarPrecio();
+                return;
+            }
+            if (selectAltoIndice.value !== '1.50') {
+                mostrarError('⚠️ No puedes agregar Lente de Contacto. El Alto Índice debe ser 1.50 (Estándar).');
+                e.target.checked = false;
+                precioLenteContacto = 0;
+                actualizarPrecio();
+                return;
             }
             precioLenteContacto = 500;
         } else {
             precioLenteContacto = 0;
         }
 
-    } else if (e.target === altoIndice) {
-        // --- Checkbox: Alto Índice ---
-        if (e.target.checked && !tieneMedidaSeleccionada()) {
+    } else if (e.target === selectAltoIndice) {
+        // --- Select: Alto Índice ---
+        if (e.target.value !== '1.50' && !tieneMedidaSeleccionada()) {
             mostrarError('⚠️ Selecciona primero una medida esférica o cilíndrica para activar el alto índice.');
-            e.target.checked = false; // Revertir el checkbox
-            esAltoIndice = false;
+            e.target.value = '1.50';
+            syncCustomSelectUI(e.target);
             actualizarPrecio();
             return;
         }
-        esAltoIndice = e.target.checked;
+        if (e.target.value !== '1.50' && lenteContacto.checked) {
+            lenteContacto.checked = false;
+            precioLenteContacto = 0;
+            mostrarError('⚠️ Lente de contacto desmarcado: solo aplica con Índice 1.50.');
+        }
+        // El multiplicador se aplica directamente en actualizarPrecio()
     }
 
     actualizarPrecio();
 });
 
 // -------------------------------------------------------
-// 10. LISTENER: MONTURA
+// 11. LISTENER: MONTURA
 // -------------------------------------------------------
 
-/**
- * Actualiza el precio de la montura al cambiar la selección.
- */
 formMontura.addEventListener('change', (e) => {
     const value = e.target.value;
-    // Si el valor está en la tabla úsalo; si no (ej. "monturaNo") pon 0
     precioMontura = preciosMonturas[value] ?? 0;
     actualizarPrecio();
 });
 
 // -------------------------------------------------------
-// 11. INICIALIZACIÓN
+// 12. INICIALIZACIÓN
 // -------------------------------------------------------
 
-// Al cargar la página: sincronizar el precio con las selecciones por defecto
 actualizarPrecio();
 formMedidasMaterial.dispatchEvent(new Event('change'));
 formMontura.dispatchEvent(new Event('change'));

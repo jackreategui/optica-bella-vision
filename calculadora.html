@@ -18,7 +18,7 @@
             theme: {
                 extend: {
                     colors: {
-                        primario: '#ff8800', // UPDATED: Orange color as requested
+                        primario: '#ff8800',
                         secundario: '#ECECEC',
                         terciario: '#8D99AE',
                         'dark-blue': '#2B2D42',
@@ -60,7 +60,7 @@
                 @apply border-primario bg-white shadow-xl;
             }
             .select-options-ui {
-                @apply absolute left-0 right-0 top-[110%] bg-white rounded-2xl shadow-2xl overflow-hidden z-[150] transition-all duration-300 opacity-0 invisible scale-95 origin-top border border-gray-100;
+                @apply absolute left-0 right-0 top-[110%] bg-white rounded-2xl shadow-2xl overflow-hidden z-[500] transition-all duration-300 opacity-0 invisible scale-95 origin-top border border-gray-100;
             }
             .select-options-ui.show {
                 @apply opacity-100 visible scale-100;
@@ -91,6 +91,24 @@
             }
         }
     </style>
+    <!-- Orange border for aberraciones custom select -->
+    <style>
+        .select-wrapper:has(#selectAberracion) .select-custom-ui {
+            border-color: #fb923c;
+            background-color: rgba(251, 146, 60, 0.04);
+        }
+        .select-wrapper:has(#selectAberracion) .select-custom-ui:hover,
+        .select-wrapper:has(#selectAberracion) .select-custom-ui.active {
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+        }
+        /* Mobile: centrar select buttons */
+        @media (max-width: 640px) {
+            .select-custom-ui {
+                justify-content: space-between;
+            }
+        }
+    </style>
     <title>Calculadora | Óptica Bella Visión</title>
 </head>
 
@@ -114,7 +132,6 @@
             </svg>
         </button>
     </div>
-    <!-- Navigation removed as requested -->
 
     <main class="container mx-auto px-6 py-12 max-w-4xl pb-28 md:pb-12">
         <header class="text-center mb-16 space-y-4">
@@ -127,12 +144,12 @@
             <div class="space-y-10">
                 <form class="bg-white p-8 md:p-10 rounded-[3rem] shadow-premium space-y-8 border border-gray-100"
                     id="formMedidasMaterial">
+                    <!-- Medidas -->
                     <div class="space-y-6">
                         <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Medidas</h2>
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="space-y-2 text-center sm:text-left">
-                                <h3 class="font-bold text-dark-blue/60 text-xs uppercase tracking-widest pl-1">Esfericos
-                                </h3>
+                            <div class="space-y-2">
+                                <h3 class="font-bold text-dark-blue/60 text-xs uppercase tracking-widest pl-1">Esférico</h3>
                                 <select name="selec" id="selectMedidasEsf" class="select-custom">
                                     <option value="">Selecciona</option>
                                     <option value="clase0">0 - 1.50</option>
@@ -156,10 +173,9 @@
                                     <option value="clase18">18.75 - 20</option>
                                 </select>
                             </div>
-                            <div class="space-y-2 text-center sm:text-left">
-                                <h3 class="font-bold text-primario text-xs uppercase tracking-widest pl-1">Cilindros
-                                </h3>
-                                <select name="selec" id="selectMedidasCil" class="select-custom border-primario/30">
+                            <div class="space-y-2">
+                                <h3 class="font-bold text-primario text-xs uppercase tracking-widest pl-1">Cilindro</h3>
+                                <select name="selec" id="selectMedidasCil" class="select-custom">
                                     <option value="">Selecciona</option>
                                     <option value="clase0">0 - 1.50</option>
                                     <option value="clase1">1.75 - 2.50</option>
@@ -171,8 +187,9 @@
                         </div>
                     </div>
 
+                    <!-- Material y protecciones -->
                     <div class="space-y-4">
-                        <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Material</h2>
+                        <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Material y protecciones</h2>
                         <select name="selec" id="selectMaterial" class="select-custom">
                             <option value="resinaBl" id="resinaBl" selected>Resina/Cristal Blanco</option>
                             <option value="resinaAr" id="resinaAr">Resina AR</option>
@@ -189,22 +206,32 @@
                 </form>
             </div>
 
-            <!-- Right Column: Type & Frame -->
+            <!-- Right Column: Characteristics & Frame -->
             <div class="space-y-10">
                 <form class="bg-white p-8 md:p-10 rounded-[3rem] shadow-premium space-y-8 border border-gray-100"
                     id="formTipo">
                     <div class="space-y-6">
-                        <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Tipo de luna</h2>
-                        <div class="grid grid-cols-2 gap-4">
+                        <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Características especiales</h2>
+
+                        <!-- Tipo de luna -->
+                        <div class="space-y-2">
+                            <h3 class="font-bold text-dark-blue/60 text-xs uppercase tracking-widest pl-1">Tipo de luna</h3>
                             <select name="selec" id="selectTipo" class="select-custom">
                                 <option id="TipoNo" value="sinTipo">Monofocal</option>
                                 <option id="bifocalPlattop" value="bifocalPlattop">Bifocal Plattop</option>
                                 <option id="bifocalInvisible" value="bifocalInvisible">Bifocal Invisible</option>
                                 <option id="multifocal" value="multifocal">Multifocal</option>
                             </select>
+                        </div>
 
+                        <!-- Aberraciones (solo visible con Multifocal) -->
+                        <div id="aberracionesGroup" class="space-y-2 hidden">
+                            <h3 class="font-bold text-orange-500 text-xs uppercase tracking-widest pl-1 flex items-center gap-1.5">
+                                <svg class="w-3 h-3 fill-orange-500" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+                                Aberraciones
+                            </h3>
                             <select name="selec" id="selectAberracion" class="select-custom">
-                                <option id="Normal" value="Normal">Calidad: Normal</option>
+                                <option id="Normal" value="Normal">Normal</option>
                                 <option id="Aberracion1" value="Aberracion1">Aberración 1 (Mejorada)</option>
                                 <option id="Aberracion2" value="Aberracion2">Aberración 2 (Premium)</option>
                                 <option id="Aberracion3" value="Aberracion3">Aberración 3 (HD)</option>
@@ -213,17 +240,21 @@
                     </div>
 
                     <div class="grid grid-cols-1 gap-4">
-                        <label class="checkbox-label group">
+                        <!-- Alto Índice (select) — PRIMERO -->
+                        <div class="space-y-2">
+                            <h3 class="font-bold text-dark-blue/60 text-xs uppercase tracking-widest pl-1">Alto Índice <span class="normal-case text-dark-blue/40 font-medium">(Más delgadas)</span></h3>
+                            <select name="selec" id="selectAltoIndice" class="select-custom">
+                                <option value="1.50" selected>1.50 — Estándar (base, sin costo adicional)</option>
+                                <option value="1.64">1.64 — Delgada (260% del precio total)</option>
+                                <option value="1.74">1.74 — Ultra delgada (280% del precio total)</option>
+                            </select>
+                        </div>
+
+                        <!-- Lente de Contacto — SEGUNDO -->
+                        <label id="lenteContactoGroup" class="checkbox-label group transition-opacity duration-300">
                             <span class="font-bold text-dark-blue group-hover:text-primario transition-colors">Lente de
                                 contacto</span>
                             <input type="checkbox" id="lenteContacto" name="myCheckbox"
-                                class="w-6 h-6 rounded-lg border-2 border-terciario text-primario focus:ring-primario cursor-pointer">
-                        </label>
-
-                        <label class="checkbox-label group">
-                            <span class="font-bold text-dark-blue group-hover:text-primario transition-colors">Alto
-                                Indice (Más delgadas)</span>
-                            <input type="checkbox" id="altoIndice" name="myCheckbox"
                                 class="w-6 h-6 rounded-lg border-2 border-terciario text-primario focus:ring-primario cursor-pointer">
                         </label>
                     </div>
@@ -233,7 +264,7 @@
                     id="formMontura">
                     <h2 class="text-2xl font-black text-dark-blue border-l-4 border-primario pl-4">Tipo de montura</h2>
                     <select name="selec" id="selectMonturas" class="select-custom">
-                        <option id="monturaNo" value="monturaNo">Sin montura (Traer propia)</option>
+                        <option id="monturaNo" value="monturaNo">Montura propia</option>
                         <option id="monturaEconomica" value="economico">Económico (S/. 100.00)</option>
                         <option id="monturaIntermedio" value="intermedio">Intermedio (S/. 160.00)</option>
                         <option id="monturaCalidad" value="calidad">Calidad (S/. 200.00)</option>
@@ -244,36 +275,33 @@
         </div>
 
         <!-- Price Result: Fixed bar on mobile, centered block on desktop -->
-        <!-- Mobile: hidden in flow -->
+        <!-- Desktop -->
         <div class="hidden md:block mt-20 text-center">
-            <div class="inline-block bg-dark-blue text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden group hover:scale-105 transition-transform duration-500">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-primario/20 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primario/40 transition-colors"></div>
+            <div
+                class="inline-block bg-dark-blue text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden group hover:scale-105 transition-transform duration-500">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-primario/20 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primario/40 transition-colors">
+                </div>
                 <h2 class="text-xl font-bold tracking-widest uppercase opacity-60 mb-2">Total Estimado</h2>
-                <div class="text-7xl font-black text-primario tracking-tighter" id="precio">s/.0</div>
-                <p class="mt-4 text-terciario font-medium text-sm">* Precios sujetos a variaciones según stock y medidas finales.</p>
+                <div class="text-9xl font-black text-primario tracking-tighter" id="precio">s/.0</div>
+                <p class="mt-4 text-terciario font-medium text-sm">* Precios sujetos a variaciones según stock y medidas
+                    finales.</p>
             </div>
         </div>
 
         <!-- Mobile Fixed Bottom Bar -->
-        <div class="fixed md:hidden bottom-0 left-0 right-0 z-[200] bg-dark-blue text-white px-6 py-4 flex items-center justify-between shadow-2xl border-t border-white/10">
-            <div class="absolute top-0 right-0 w-24 h-24 bg-primario/20 rounded-full blur-2xl -mr-8 -mt-8 pointer-events-none"></div>
+        <div
+            class="fixed md:hidden bottom-0 left-0 right-0 z-[200] bg-dark-blue text-white px-6 py-4 flex items-center justify-between shadow-2xl border-t border-white/10">
+            <div
+                class="absolute top-0 right-0 w-24 h-24 bg-primario/20 rounded-full blur-2xl -mr-8 -mt-8 pointer-events-none">
+            </div>
             <div>
                 <p class="text-xs font-bold tracking-widest uppercase opacity-50 leading-none mb-1">Total Estimado</p>
-                <div class="text-3xl font-black text-primario tracking-tighter" id="precioMobile">s/.0</div>
+                <div class="text-4xl font-black text-primario tracking-tighter" id="precioMobile">s/.0</div>
             </div>
-            <p class="text-[10px] text-terciario/60 font-medium max-w-[140px] text-right leading-snug">* Sujeto a variaciones según stock y medidas.</p>
+            <p class="text-[10px] text-terciario/60 font-medium max-w-[140px] text-right leading-snug">* Sujeto a
+                variaciones según stock y medidas.</p>
         </div>
-
-        <!-- <div class="text-center mt-12">
-            <a href="https://wa.me/message/5JJOS4GOWUKYD1" target="_blank"
-                class="inline-flex items-center justify-center px-12 py-5 bg-primario text-white rounded-2xl font-black text-xl hover:bg-dark-blue hover:-translate-y-1 hover:shadow-button transition-all duration-300 active:scale-95 shadow-xl">
-                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-                Reservar con un asesor
-            </a>
-        </div> -->
     </main>
 
     <script src="./js/calculadora.js"></script>
