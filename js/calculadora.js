@@ -40,7 +40,7 @@ const preciosBases = {
     resinaAr: 160,
     resinaBlue: 220,
     resinaSenAr: 280,
-    resinaSenBlue: 340,
+    resinaSenBlue: 350,
     resinaFoto: 630,
     resinaTransBlue: 1025,
     cristalAr: 180,
