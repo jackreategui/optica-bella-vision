@@ -61,7 +61,7 @@ const recargoTipoLuna = {
     sinTipo: 0,
     bifocalPlattop: 90,
     bifocalInvisible: 120,
-    multifocal: 250,
+    multifocal: 400,
 }
 
 /** Recargo en soles por nivel de aberración / calidad de fabricación. */
