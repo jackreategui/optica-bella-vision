@@ -394,6 +394,8 @@ function precioFinal() {
     }
 
     precio.textContent = "Precio: s/." + precioTotal
+    const precioMobile = document.querySelector("#precioMobile")
+    if (precioMobile) precioMobile.textContent = "s/." + precioTotal
 }
 
 // Precio con alto indice
