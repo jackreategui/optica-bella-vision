@@ -8,7 +8,7 @@ const selectMaterial = document.querySelector("#selectMaterial")
 const selectTipo = document.querySelector("#selectTipo")
 
 const lenteContacto = document.getElementById("lenteContacto")
-const altoIndice = document.getElementById("altoIndice")
+const altoIndice = document.getElementById("selectAltoIndice")
 
 const monturaNo = document.querySelector("#monturaNo")
 const monturaEconomica = document.querySelector("#monturaEconomica")
@@ -399,14 +399,15 @@ function precioFinal() {
 // Precio con alto indice
 if (altoIndice)
     altoIndice.addEventListener("change", (event) => {
-        if (event.target.checked) {
-            precioAltoIndice = 0
-            precioAltoIndice += 1.8
-            precioFinal()
+        const value = event.target.value
+        if (value === "1.64") {
+            precioAltoIndice = 1.6
+        } else if (value === "1.74") {
+            precioAltoIndice = 1.8
         } else {
             precioAltoIndice = 0
-            precioFinal()
         }
+        precioFinal()
     })
 
 // Precio bifocales
